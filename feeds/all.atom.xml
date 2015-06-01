@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Sleepy Coding</title><link href="https://sopoforic.github.io/" rel="alternate"></link><link href="https://sopoforic.github.io/feeds/all.atom.xml" rel="self"></link><id>https://sopoforic.github.io/</id><updated>2015-06-01T11:57:31-04:00</updated><entry><title>CGRR transferred to github</title><link href="https://sopoforic.github.io/cgrr-transferred.html" rel="alternate"></link><updated>2015-06-01T11:57:31-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2015-06-01:cgrr-transferred.html</id><summary type="html">&lt;p&gt;After many months of procrastination, I&amp;#8217;ve finally split up my cgrr project and
+transferred it to github. It took quite a while, but in the end I think it will
+be much more maintainable and useful with each of the parser modules taken
+separately than it would be with them all jammed together pretending to be
+plugins for some yet-unwritten master program. If I want to write some wrapper
+around them all later, they&amp;#8217;ll perfectly well support it, but until then, all
+the plugin stuff is just an extra mess&amp;#8212;&lt;span class="caps"&gt;YAGNI&lt;/span&gt;.&lt;/p&gt;</summary><category term="cgrr"></category><category term="github"></category></entry></feed>
