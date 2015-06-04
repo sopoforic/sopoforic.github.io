@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Arrays for Fun and Profit</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+        <link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./index.html">Sleepy Coding </a></h1>
+                <nav><ul>
+                    <li><a href="./pages/about-me.html">About</a></li>
+                    <li><a href="./pages/projects.html">Projects</a></li>
+                    <li class="active"><a href="./category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./arrays-for-fun-and-profit.html" rel="bookmark"
+           title="Permalink to Arrays for Fun and Profit">Arrays for Fun and&nbsp;Profit</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-02-21T10:48:00-05:00">
+                Published: Sun 21 February 2010
+        </abbr>
+		<br />
+        <abbr class="modified" title="2010-02-21T10:48:00-05:00">
+                Updated: Sun 21 February 2010
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
+        </address>
+<p>In <a href="./category/misc.html">misc</a>. </p>
+<p>tags: <a href="./tag/autofill-ebay.html">autofill-ebay</a> <a href="./tag/javascript.html">javascript</a> <a href="./tag/greasemonkey.html">greasemonkey</a> </p>
+</footer><!-- /.post-info -->      <p>My greasemonkey script for filling in a bid on eBay started out fairly horrible,
+referencing element IDs that seemed to differ based on the phase of the moon.
+It was terribly difficult to maintain and did not function&nbsp;well.</p>
+<p>Epiphany: I discovered an element <span class="caps">ID</span> I could safely use that seems constant.
+Also, discovered that <code>document.getElementsByName</code> seems to work in (at least
+recent versions of) firefox&#8212;wasn’t there some recommendation against using that
+a while back? My knowledge of javascript is poor. Anyway, between those two, it
+became much simpler to maintain the script, and it worked much better, to&nbsp;boot.</p>
+<p>Epiphany the second (third?): Javascript arrays let you do <code>array.push(value)</code>,
+so now I push the patterns into an array, which means I can divide them up by
+language and add new ones without worrying about which index the new pattern
+should use. Super. Now adding a new currency/language pair is as simple as
+adding a single line pushing the pattern into the&nbsp;array.</p>
+<p>Unfortunately, I can’t safely (for my paranoid definition of safe) just run the
+regex on the whole document–if a sneaky auctioneer inserted “Enter <span class="caps">US</span> $500.00 or
+more” in the auction description, and the auction was actually in another
+currency, then the English/<span class="caps">USD</span> pattern would pick up that $500 text before the
+other-currency patterns ran, and the bid box would be filled with that value. Of
+course, the user would still have to click the button to place the bid, and then
+confirm it, but remember: paranoid. As long as eBay doesn’t decide to remove the
+table IDs or something, though, this shouldn’t be an&nbsp;issue.</p>
+<p>Next up is to try to get the script to work on the outbid pages that present
+themselves immediately after entering a bid that’s too low. Magic 8-Ball says:
+outlook&nbsp;good.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

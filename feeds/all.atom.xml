@@ -5,4 +5,94 @@ be much more maintainable and useful with each of the parser modules taken
 separately than it would be with them all jammed together pretending to be
 plugins for some yet-unwritten master program. If I want to write some wrapper
 around them all later, they&amp;#8217;ll perfectly well support it, but until then, all
-the plugin stuff is just an extra mess&amp;#8212;&lt;span class="caps"&gt;YAGNI&lt;/span&gt;.&lt;/p&gt;</summary><category term="cgrr"></category><category term="github"></category></entry></feed>
+the plugin stuff is just an extra mess&amp;#8212;&lt;span class="caps"&gt;YAGNI&lt;/span&gt;.&lt;/p&gt;</summary><category term="cgrr"></category><category term="github"></category></entry><entry><title>WordsPy Milestone</title><link href="https://sopoforic.github.io/wordspy-milestone.html" rel="alternate"></link><updated>2010-05-16T16:48:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2010-05-16:wordspy-milestone.html</id><summary type="html">&lt;p&gt;As of the most recent revision (r18:6453f11b96e6), WordsPy functions as a (bad)
+game. The dictionary is hooked up, and it only lets you remove letters if they
+form a word in the dictionary (That’s a rule. Games have rules. Ergo, game.&amp;nbsp;Right?).&lt;/p&gt;
+&lt;p&gt;Other&amp;nbsp;features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Selected letters are&amp;nbsp;highlighted&lt;/li&gt;
+&lt;li&gt;Backspace&amp;nbsp;support&lt;/li&gt;
+&lt;li&gt;Nonstop key-pressing&amp;nbsp;action!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Next steps will be arranging it so the letter generator provides useful letters
+rather than just random ones (probably just analyze the dictionary for letter
+frequencies and use that), creating some kind of status display, and additional
+nice things (score? list of words you made in that session? difficulty levels?
+the possibilities are&amp;nbsp;endless!)&lt;/p&gt;
+&lt;p&gt;Edit: and a screenshot for&amp;nbsp;posterity.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="WordsPy screenshot" src="{filename}/images/snap0391.png" /&gt;&lt;/p&gt;</summary><category term="wordspy"></category></entry><entry><title>WordsPy, again</title><link href="https://sopoforic.github.io/wordspy-again.html" rel="alternate"></link><updated>2010-05-16T13:10:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2010-05-16:wordspy-again.html</id><summary type="html">&lt;p&gt;Well, the bad news is that wordspy still does nothing other than scroll new
+lines onto the screen. The good news is that it does it in a better&amp;nbsp;way.&lt;/p&gt;
+&lt;p&gt;In order to deal with letters dropping (due to letters below them being removed)
+at the same time as a new line was scrolling up, it was necessary to re-engineer
+the whole thing. Now letters store their current location, and it’s modified
+whenever necessary by the newlinescroll and drop actions. This does have some
+other benefits, too. For example, it simplifies drawing the new line onto the
+screen somewhat. Before, I was&amp;nbsp;doing:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;col&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;screen&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;blit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Game&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;letters&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;64&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;481&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, since I initialize the letters with their location, I can just&amp;nbsp;do:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;letter&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;Game&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;letters&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="n"&gt;screen&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;blit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;letter&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;letter&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Which is rather more&amp;nbsp;readable.&lt;/p&gt;
+&lt;p&gt;Lesson learned, though: don’t forget to empty the dirty rectangles list after
+updating the screen. Once it grows to 64 items or so, it noticeably slows down
+the game. I’m fairly sure it shouldn’t contain more than a dozen or so items
+under normal usage, but I’ll have to remember to keep an eye on&amp;nbsp;it.&lt;/p&gt;</summary><category term="wordspy"></category><category term="python"></category></entry><entry><title>New Project: WordsPy</title><link href="https://sopoforic.github.io/new-project-wordspy.html" rel="alternate"></link><updated>2010-05-15T09:09:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2010-05-15:new-project-wordspy.html</id><summary type="html">&lt;p&gt;I found that I wanted to play Word Zap/Word Jolt/Bookworm/whatever word
+construction game, but I didn’t seem to have one on hand, and &lt;a href="http://www.popcap.com/games/free/bookworm"&gt;the version of
+Bookworm I found&lt;/a&gt; was far from
+satisfying. So, I did what anyone would do: set out to make my&amp;nbsp;own.&lt;/p&gt;
+&lt;p&gt;I’ve been wanting to learn to use pygame for a while, and this seemed like a
+good opportunity. I’ve had my fair share of trouble so far, but I think I’m
+beginning to get a handle on how to use it. It’s
+&lt;a href="http://bitbucket.org/sopoforic/wordspy"&gt;here&lt;/a&gt; for now, though it’s not playable
+yet&amp;#8212;it only generates the letters and scrolls them onto the screen. Still, it’s
+a&amp;nbsp;start.&lt;/p&gt;</summary><category term="wordspy"></category></entry><entry><title>Arrays for Fun and Profit</title><link href="https://sopoforic.github.io/arrays-for-fun-and-profit.html" rel="alternate"></link><updated>2010-02-21T10:48:00-05:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2010-02-21:arrays-for-fun-and-profit.html</id><summary type="html">&lt;p&gt;My greasemonkey script for filling in a bid on eBay started out fairly horrible,
+referencing element IDs that seemed to differ based on the phase of the moon.
+It was terribly difficult to maintain and did not function&amp;nbsp;well.&lt;/p&gt;
+&lt;p&gt;Epiphany: I discovered an element &lt;span class="caps"&gt;ID&lt;/span&gt; I could safely use that seems constant.
+Also, discovered that &lt;code&gt;document.getElementsByName&lt;/code&gt; seems to work in (at least
+recent versions of) firefox&amp;#8212;wasn’t there some recommendation against using that
+a while back? My knowledge of javascript is poor. Anyway, between those two, it
+became much simpler to maintain the script, and it worked much better, to&amp;nbsp;boot.&lt;/p&gt;
+&lt;p&gt;Epiphany the second (third?): Javascript arrays let you do &lt;code&gt;array.push(value)&lt;/code&gt;,
+so now I push the patterns into an array, which means I can divide them up by
+language and add new ones without worrying about which index the new pattern
+should use. Super. Now adding a new currency/language pair is as simple as
+adding a single line pushing the pattern into the&amp;nbsp;array.&lt;/p&gt;
+&lt;p&gt;Unfortunately, I can’t safely (for my paranoid definition of safe) just run the
+regex on the whole document–if a sneaky auctioneer inserted “Enter &lt;span class="caps"&gt;US&lt;/span&gt; $500.00 or
+more” in the auction description, and the auction was actually in another
+currency, then the English/&lt;span class="caps"&gt;USD&lt;/span&gt; pattern would pick up that $500 text before the
+other-currency patterns ran, and the bid box would be filled with that value. Of
+course, the user would still have to click the button to place the bid, and then
+confirm it, but remember: paranoid. As long as eBay doesn’t decide to remove the
+table IDs or something, though, this shouldn’t be an&amp;nbsp;issue.&lt;/p&gt;
+&lt;p&gt;Next up is to try to get the script to work on the outbid pages that present
+themselves immediately after entering a bid that’s too low. Magic 8-Ball says:
+outlook&amp;nbsp;good.&lt;/p&gt;</summary><category term="autofill-ebay"></category><category term="javascript"></category><category term="greasemonkey"></category></entry><entry><title>Awari AI</title><link href="https://sopoforic.github.io/awari-ai.html" rel="alternate"></link><updated>2010-02-21T09:01:00-05:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2010-02-21:awari-ai.html</id><summary type="html">&lt;p&gt;I&amp;#8217;ve sorted out the &lt;span class="caps"&gt;BASIC&lt;/span&gt; version of Awari I&amp;#8217;m porting into the &amp;#8216;draw the board&amp;#8217;
+routine, the &amp;#8216;make a move&amp;#8217; routine and the &amp;#8216;incomprehensible &lt;span class="caps"&gt;AI&lt;/span&gt;&amp;#8217; routine. The &lt;span class="caps"&gt;AI&lt;/span&gt;
+seems to first sow from the first nonempty pit, then makes some weird comparison
+and modifies a&amp;nbsp;value:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;860 FOR I=0 TO N-1:IF F(N)*6+K=INT(F(I)/6^(7-C)+.1) THEN Q=Q-2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The reason for that is fairly inscrutable. F is some array, and the program
+claims to have a learning mechanism to improve the &lt;span class="caps"&gt;AI&lt;/span&gt;, so I suspect this is that
+mechanism, but I&amp;#8217;m not at all sure how it&amp;#8217;s meant to work. I think I&amp;#8217;ll have to
+make a flow chart or something to decipher this thing. This would be easier if
+the variables had meaningful names. I remember once, when I was first learning
+to program, I thought that using meaningful names was a big waste of time, since
+after all the code should be pretty self-evident, right? A second look at my
+code after some weeks disabused me of that notion, and this serves to reinforce
+that: code should be self-evident, but it won&amp;#8217;t be if you don&amp;#8217;t work at&amp;nbsp;it.&lt;/p&gt;
+&lt;p&gt;Oh well. With any luck, I&amp;#8217;ll be able to sort this out with an hour or so of
+concerted effort–it&amp;#8217;s just that reading &lt;span class="caps"&gt;BASIC&lt;/span&gt; is giving me a headache and I
+haven&amp;#8217;t yet put in the requisite time. I must&amp;nbsp;persevere!&lt;/p&gt;</summary><category term="awari"></category><category term="BASIC"></category><category term="porting"></category></entry><entry><title>Awari</title><link href="https://sopoforic.github.io/awari.html" rel="alternate"></link><updated>2010-02-13T06:40:00-05:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2010-02-13:awari.html</id><summary type="html">&lt;p&gt;Trying to decipher an ancient implementation of Awari in a dialect of &lt;span class="caps"&gt;BASIC&lt;/span&gt; I’m
+not familiar with.&amp;nbsp;Fun!&lt;/p&gt;</summary><category term="awari"></category><category term="BASIC"></category><category term="porting"></category></entry></feed>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Awari AI</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+        <link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./index.html">Sleepy Coding </a></h1>
+                <nav><ul>
+                    <li><a href="./pages/about-me.html">About</a></li>
+                    <li><a href="./pages/projects.html">Projects</a></li>
+                    <li class="active"><a href="./category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./awari-ai.html" rel="bookmark"
+           title="Permalink to Awari AI">Awari <span class="caps">AI</span></a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-02-21T09:01:00-05:00">
+                Published: Sun 21 February 2010
+        </abbr>
+		<br />
+        <abbr class="modified" title="2010-02-21T09:01:00-05:00">
+                Updated: Sun 21 February 2010
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
+        </address>
+<p>In <a href="./category/misc.html">misc</a>. </p>
+<p>tags: <a href="./tag/awari.html">awari</a> <a href="./tag/basic.html">BASIC</a> <a href="./tag/porting.html">porting</a> </p>
+</footer><!-- /.post-info -->      <p>I&#8217;ve sorted out the <span class="caps">BASIC</span> version of Awari I&#8217;m porting into the &#8216;draw the board&#8217;
+routine, the &#8216;make a move&#8217; routine and the &#8216;incomprehensible <span class="caps">AI</span>&#8217; routine. The <span class="caps">AI</span>
+seems to first sow from the first nonempty pit, then makes some weird comparison
+and modifies a&nbsp;value:</p>
+<div class="highlight"><pre>860 FOR I=0 TO N-1:IF F(N)*6+K=INT(F(I)/6^(7-C)+.1) THEN Q=Q-2
+</pre></div>
+
+
+<p>The reason for that is fairly inscrutable. F is some array, and the program
+claims to have a learning mechanism to improve the <span class="caps">AI</span>, so I suspect this is that
+mechanism, but I&#8217;m not at all sure how it&#8217;s meant to work. I think I&#8217;ll have to
+make a flow chart or something to decipher this thing. This would be easier if
+the variables had meaningful names. I remember once, when I was first learning
+to program, I thought that using meaningful names was a big waste of time, since
+after all the code should be pretty self-evident, right? A second look at my
+code after some weeks disabused me of that notion, and this serves to reinforce
+that: code should be self-evident, but it won&#8217;t be if you don&#8217;t work at&nbsp;it.</p>
+<p>Oh well. With any luck, I&#8217;ll be able to sort this out with an hour or so of
+concerted effort–it&#8217;s just that reading <span class="caps">BASIC</span> is giving me a headache and I
+haven&#8217;t yet put in the requisite time. I must&nbsp;persevere!</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
