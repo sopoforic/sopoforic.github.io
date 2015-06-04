@@ -6,7 +6,8 @@ AUTHOR = u'Tracy Poff'
 SITENAME = u'Sleepy Coding'
 THEME = u'notmyidea'
 SITEURL = u'https://sopoforic.github.io'
-OUTPUT_PATH = u'C:\\Users\\Tracy\\Dropbox\\Public\\blogs\\sopoforic\\'
+OUTPUT_PATH = u'output'
+STATIC_PATHS = [u'images']
 TYPOGRIFY = True
 
 PATH = 'content'
