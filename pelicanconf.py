@@ -9,7 +9,7 @@ SITEURL = u'https://sopoforic.github.io'
 OUTPUT_PATH = u'output'
 STATIC_PATHS = [u'images', u'extra/favicon.ico']
 EXTRA_PATH_METADATA = {
-    u'extra/favicon.ico': {u'path': u'favicon.ico'}
+    u'extra\\favicon.ico': {u'path': u'favicon.ico'}
 }
 TYPOGRIFY = True
 
