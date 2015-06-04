@@ -20,7 +20,7 @@ frequencies and use that), creating some kind of status display, and additional
 nice things (score? list of words you made in that session? difficulty levels?
 the possibilities are&amp;nbsp;endless!)&lt;/p&gt;
 &lt;p&gt;Edit: and a screenshot for&amp;nbsp;posterity.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="WordsPy screenshot" src="{filename}/images/snap0391.png" /&gt;&lt;/p&gt;</summary><category term="wordspy"></category></entry><entry><title>WordsPy, again</title><link href="https://sopoforic.github.io/wordspy-again.html" rel="alternate"></link><updated>2010-05-16T13:10:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2010-05-16:wordspy-again.html</id><summary type="html">&lt;p&gt;Well, the bad news is that wordspy still does nothing other than scroll new
+&lt;p&gt;&lt;img alt="WordsPy screenshot" src="https://sopoforic.github.io/images/snap0391.png" /&gt;&lt;/p&gt;</summary><category term="wordspy"></category></entry><entry><title>WordsPy, again</title><link href="https://sopoforic.github.io/wordspy-again.html" rel="alternate"></link><updated>2010-05-16T13:10:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2010-05-16:wordspy-again.html</id><summary type="html">&lt;p&gt;Well, the bad news is that wordspy still does nothing other than scroll new
 lines onto the screen. The good news is that it does it in a better&amp;nbsp;way.&lt;/p&gt;
 &lt;p&gt;In order to deal with letters dropping (due to letters below them being removed)
 at the same time as a new line was scrolling up, it was necessary to re-engineer
