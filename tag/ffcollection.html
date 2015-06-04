@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>Sleepy Coding - python</title>
+        <title>Sleepy Coding - ffcollection</title>
         <link rel="stylesheet" href="../theme/css/main.css" />
         <link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
 
@@ -23,7 +23,44 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../ffcollection-progress.html">ffcollection&nbsp;progress</a></h1>
+                    <h1 class="entry-title"><a href="../ffcollection-update.html">ffcollection&nbsp;update</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2011-09-21T20:06:00-04:00">
+                Published: Wed 21 September 2011
+        </abbr>
+		<br />
+        <abbr class="modified" title="2011-09-21T20:06:00-04:00">
+                Updated: Wed 21 September 2011
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="../author/tracy-poff.html">Tracy Poff</a>
+        </address>
+<p>In <a href="../category/misc.html">misc</a>. </p>
+<p>tags: <a href="../tag/ffcollection.html">ffcollection</a> </p>
+</footer><!-- /.post-info --><p>Somehow, I didn&#8217;t have the source code for ffcollection under version control.
+No idea how I managed that, since it&#8217;s usually the first thing I do. Stranger
+still that I didn&#8217;t notice I wasn&#8217;t occasionally committing&#8212;I don&#8217;t use any
+kind of automatic committing tool, so I&#8217;m usually typing &#8216;hg commit&#8217; after
+pretty much any little change. Version numbers are free, after all. Anyway, I
+remedied that, and made some more progress. I need to make some minor changes to
+the database schema, and the whole thing needs some serious refactoring, but
+it&#8217;s coming along pretty nicely. Certainly it&#8217;s useful for me. Now, if only I
+could make an interface that wasn&#8217;t horrible, I&#8217;d be pretty happy with things.
+Well, some&nbsp;day.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="../ffcollection-progress.html" rel="bookmark"
+                           title="Permalink to ffcollection progress">ffcollection&nbsp;progress</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2011-07-06T05:29:00-04:00">
                 Published: Wed 06 July 2011
@@ -38,22 +75,13 @@
         </address>
 <p>In <a href="../category/misc.html">misc</a>. </p>
 <p>tags: <a href="../tag/ffcollection.html">ffcollection</a> <a href="../tag/python.html">python</a> </p>
-</footer><!-- /.post-info --><p>I mentioned previously that I was working on a fanfiction database. Well, time
+</footer><!-- /.post-info -->                <p>I mentioned previously that I was working on a fanfiction database. Well, time
 for an update: it’s in a functional state, though quite basic. I can feed it a
 FanFiction.Net <span class="caps">ID</span> and it will download the fanfic and put it in the database
-with some very basic metadata (author, <span class="caps">ID</span>, summary). Most recently, I’ve hacked
-together an <span class="caps">HTTP</span> server using <code>http.server</code> so that I can accept commands over
-<span class="caps">HTTP</span>. Currently, the only command it accepts is ‘add the fanfic at this <span class="caps">URL</span>’,
-and it just responds with a status page and a copy of the form to add the fic to
-favoritestracker. I really should use something a little more powerful than just
-<code>http.server.BaseHTTPRequestHandler</code> for this&#8212;I really ought to create a
-full-fledged web interface, instead of just a commands-over-http hack. But, for
-the moment, that’s what I’ve&nbsp;got.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+with some very basic metadata ...</p>
+                <a class="readmore" href="../ffcollection-progress.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -82,35 +110,6 @@ definitely specify the revision I want to tag, because I keep making stupid
 mistakes, tagging the wrong&nbsp;revisions.</p>
 <p>That said, new project ...</p>
                 <a class="readmore" href="../lately.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="../wordspy-again.html" rel="bookmark"
-                           title="Permalink to WordsPy, again">WordsPy,&nbsp;again</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2010-05-16T13:10:00-04:00">
-                Published: Sun 16 May 2010
-        </abbr>
-		<br />
-        <abbr class="modified" title="2010-05-16T13:10:00-04:00">
-                Updated: Sun 16 May 2010
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="../author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>In <a href="../category/misc.html">misc</a>. </p>
-<p>tags: <a href="../tag/wordspy.html">wordspy</a> <a href="../tag/python.html">python</a> </p>
-</footer><!-- /.post-info -->                <p>Well, the bad news is that wordspy still does nothing other than scroll new
-lines onto the screen. The good news is that it does it in a better&nbsp;way.</p>
-<p>In order to deal with letters dropping (due to letters below them being removed)
-at the same time as a ...</p>
-                <a class="readmore" href="../wordspy-again.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->

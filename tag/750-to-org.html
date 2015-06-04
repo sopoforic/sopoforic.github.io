@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>Sleepy Coding - python</title>
+        <title>Sleepy Coding - 750-to-org</title>
         <link rel="stylesheet" href="../theme/css/main.css" />
         <link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
 
@@ -23,32 +23,29 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../ffcollection-progress.html">ffcollection&nbsp;progress</a></h1>
+                    <h1 class="entry-title"><a href="../750-to-org-v02.html">750-to-org,&nbsp;v0.2</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2011-07-06T05:29:00-04:00">
-                Published: Wed 06 July 2011
+        <abbr class="published" title="2011-06-19T15:09:00-04:00">
+                Published: Sun 19 June 2011
         </abbr>
 		<br />
-        <abbr class="modified" title="2011-07-06T05:29:00-04:00">
-                Updated: Wed 06 July 2011
+        <abbr class="modified" title="2011-06-19T15:09:00-04:00">
+                Updated: Sun 19 June 2011
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="../author/tracy-poff.html">Tracy Poff</a>
         </address>
 <p>In <a href="../category/misc.html">misc</a>. </p>
-<p>tags: <a href="../tag/ffcollection.html">ffcollection</a> <a href="../tag/python.html">python</a> </p>
-</footer><!-- /.post-info --><p>I mentioned previously that I was working on a fanfiction database. Well, time
-for an update: it’s in a functional state, though quite basic. I can feed it a
-FanFiction.Net <span class="caps">ID</span> and it will download the fanfic and put it in the database
-with some very basic metadata (author, <span class="caps">ID</span>, summary). Most recently, I’ve hacked
-together an <span class="caps">HTTP</span> server using <code>http.server</code> so that I can accept commands over
-<span class="caps">HTTP</span>. Currently, the only command it accepts is ‘add the fanfic at this <span class="caps">URL</span>’,
-and it just responds with a status page and a copy of the form to add the fic to
-favoritestracker. I really should use something a little more powerful than just
-<code>http.server.BaseHTTPRequestHandler</code> for this&#8212;I really ought to create a
-full-fledged web interface, instead of just a commands-over-http hack. But, for
-the moment, that’s what I’ve&nbsp;got.</p>                </article>
+<p>tags: <a href="../tag/750-to-org.html">750-to-org</a> </p>
+</footer><!-- /.post-info --><p>I did a little cleanup on the code for 750-to-org, so I went ahead and called it
+0.2. I did some more testing, so unless 750 Words does something quite
+unexpected, 750-to-org should just&nbsp;work.</p>
+<p>I should probably set 750-to-org up so you can give it filenames as arguments,
+but other than that, I can’t think of much else I’d want it to do. I could have
+it verify that it’s putting entries in the right places, in case the exports are
+processed out of order, but that just seems like more work than is necessary.
+Unless someone complains about it, I’m just going to leave&nbsp;it.</p>                </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
@@ -82,35 +79,6 @@ definitely specify the revision I want to tag, because I keep making stupid
 mistakes, tagging the wrong&nbsp;revisions.</p>
 <p>That said, new project ...</p>
                 <a class="readmore" href="../lately.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="../wordspy-again.html" rel="bookmark"
-                           title="Permalink to WordsPy, again">WordsPy,&nbsp;again</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2010-05-16T13:10:00-04:00">
-                Published: Sun 16 May 2010
-        </abbr>
-		<br />
-        <abbr class="modified" title="2010-05-16T13:10:00-04:00">
-                Updated: Sun 16 May 2010
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="../author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>In <a href="../category/misc.html">misc</a>. </p>
-<p>tags: <a href="../tag/wordspy.html">wordspy</a> <a href="../tag/python.html">python</a> </p>
-</footer><!-- /.post-info -->                <p>Well, the bad news is that wordspy still does nothing other than scroll new
-lines onto the screen. The good news is that it does it in a better&nbsp;way.</p>
-<p>In order to deal with letters dropping (due to letters below them being removed)
-at the same time as a ...</p>
-                <a class="readmore" href="../wordspy-again.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->

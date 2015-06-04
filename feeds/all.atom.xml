@@ -5,7 +5,83 @@ be much more maintainable and useful with each of the parser modules taken
 separately than it would be with them all jammed together pretending to be
 plugins for some yet-unwritten master program. If I want to write some wrapper
 around them all later, they&amp;#8217;ll perfectly well support it, but until then, all
-the plugin stuff is just an extra mess&amp;#8212;&lt;span class="caps"&gt;YAGNI&lt;/span&gt;.&lt;/p&gt;</summary><category term="cgrr"></category><category term="github"></category></entry><entry><title>WordsPy Milestone</title><link href="https://sopoforic.github.io/wordspy-milestone.html" rel="alternate"></link><updated>2010-05-16T16:48:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2010-05-16:wordspy-milestone.html</id><summary type="html">&lt;p&gt;As of the most recent revision (r18:6453f11b96e6), WordsPy functions as a (bad)
+the plugin stuff is just an extra mess&amp;#8212;&lt;span class="caps"&gt;YAGNI&lt;/span&gt;.&lt;/p&gt;</summary><category term="cgrr"></category><category term="github"></category></entry><entry><title>Lessons in Efficiency</title><link href="https://sopoforic.github.io/lessons-in-efficiency.html" rel="alternate"></link><updated>2012-08-17T00:52:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2012-08-17:lessons-in-efficiency.html</id><summary type="html">&lt;p&gt;I was working on &lt;a href="http://projecteuler.net/problem=92"&gt;Project Euler problem 92&lt;/a&gt;,
+and having a great deal of trouble making my program run fast enough. I’m aware
+of a trick that can be used to reduce the problem space, but I thought that with
+only ten million numbers to check, it should be possible to do it
+straightforwardly and just check them all, as long as I wasn’t too inefficient
+doing&amp;nbsp;it.&lt;/p&gt;
+&lt;p&gt;My first successful version took about three minutes to run–much too slow. I
+eliminated a duplicate call to an expensive function, which brought me down to
+about two minutes, and at length I managed to reduce the runtime down to about
+thirty seconds–much better, though still very slow. I tried some alternate
+techniques and just couldn’t make it go any quicker while still using a brute
+force&amp;nbsp;approach.&lt;/p&gt;
+&lt;p&gt;Now, there’s one important thing I haven’t mentioned: on the Windows &lt;span class="caps"&gt;PC&lt;/span&gt; I’m
+using for development, the version of gcc included with the Haskell Platform
+doesn’t work. I can’t figure out why, but it makes it impossible to compile
+Haskell programs, so I’ve just been running them in the interpreter. Well, that
+gives away the ending to this anecdote: I copied the program to a (much slower)
+Linux &lt;span class="caps"&gt;PC&lt;/span&gt; and compiled it, and it ran in about five seconds. Even my first, very
+inefficient attempt would have been fast enough to satisfy the one minute rule.
+But I learned a bit by trying to make the interpreted version fast enough to&amp;nbsp;pass.&lt;/p&gt;
+&lt;p&gt;Lessons:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Squaring a number with (n^2) is significantly slower than doing it with (n *&amp;nbsp;n).&lt;/li&gt;
+&lt;li&gt;Arrays are faster to access than even fairly small&amp;nbsp;lists.&lt;/li&gt;
+&lt;li&gt;It’s faster to compose several functions and then map them to a list than to
+repeatedly map individual&amp;nbsp;functions.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Of course, these apply to programs run through the interpreter–it’s quite
+possible that at least the first of these might not hold if the program is
+compiled. Maybe I’ll test it, some&amp;nbsp;time.&lt;/p&gt;</summary><category term="Haskell"></category><category term="Project Euler"></category></entry><entry><title>Learning Haskell</title><link href="https://sopoforic.github.io/learning-haskell.html" rel="alternate"></link><updated>2012-08-13T07:53:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2012-08-13:learning-haskell.html</id><summary type="html">&lt;p&gt;I&amp;#8217;ve been learning Haskell (following &lt;a href="http://learnyouahaskell.com/"&gt;Learn You a Haskell for Great
+Good!&lt;/a&gt;) and, although it&amp;#8217;s been fairly
+mind-bending at times, I think I&amp;#8217;m progressing well enough. I still need to
+learn the idiomatic ways to do things&amp;#8212;I guess I&amp;#8217;m still &amp;#8216;writing Python in
+Haskell&amp;#8217;–but I&amp;#8217;m generally not too lost on what to do. Although since I&amp;#8217;m
+currently using Haskell to solve Project Euler problems, I may be solving only
+problems which are conducive to a functional&amp;nbsp;approach.&lt;/p&gt;</summary><category term="Haskell"></category></entry><entry><title>ffcollection update</title><link href="https://sopoforic.github.io/ffcollection-update.html" rel="alternate"></link><updated>2011-09-21T20:06:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2011-09-21:ffcollection-update.html</id><summary type="html">&lt;p&gt;Somehow, I didn&amp;#8217;t have the source code for ffcollection under version control.
+No idea how I managed that, since it&amp;#8217;s usually the first thing I do. Stranger
+still that I didn&amp;#8217;t notice I wasn&amp;#8217;t occasionally committing&amp;#8212;I don&amp;#8217;t use any
+kind of automatic committing tool, so I&amp;#8217;m usually typing &amp;#8216;hg commit&amp;#8217; after
+pretty much any little change. Version numbers are free, after all. Anyway, I
+remedied that, and made some more progress. I need to make some minor changes to
+the database schema, and the whole thing needs some serious refactoring, but
+it&amp;#8217;s coming along pretty nicely. Certainly it&amp;#8217;s useful for me. Now, if only I
+could make an interface that wasn&amp;#8217;t horrible, I&amp;#8217;d be pretty happy with things.
+Well, some&amp;nbsp;day.&lt;/p&gt;</summary><category term="ffcollection"></category></entry><entry><title>ffcollection progress</title><link href="https://sopoforic.github.io/ffcollection-progress.html" rel="alternate"></link><updated>2011-07-06T05:29:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2011-07-06:ffcollection-progress.html</id><summary type="html">&lt;p&gt;I mentioned previously that I was working on a fanfiction database. Well, time
+for an update: it’s in a functional state, though quite basic. I can feed it a
+FanFiction.Net &lt;span class="caps"&gt;ID&lt;/span&gt; and it will download the fanfic and put it in the database
+with some very basic metadata (author, &lt;span class="caps"&gt;ID&lt;/span&gt;, summary). Most recently, I’ve hacked
+together an &lt;span class="caps"&gt;HTTP&lt;/span&gt; server using &lt;code&gt;http.server&lt;/code&gt; so that I can accept commands over
+&lt;span class="caps"&gt;HTTP&lt;/span&gt;. Currently, the only command it accepts is ‘add the fanfic at this &lt;span class="caps"&gt;URL&lt;/span&gt;’,
+and it just responds with a status page and a copy of the form to add the fic to
+favoritestracker. I really should use something a little more powerful than just
+&lt;code&gt;http.server.BaseHTTPRequestHandler&lt;/code&gt; for this&amp;#8212;I really ought to create a
+full-fledged web interface, instead of just a commands-over-http hack. But, for
+the moment, that’s what I’ve&amp;nbsp;got.&lt;/p&gt;</summary><category term="ffcollection"></category><category term="python"></category></entry><entry><title>750-to-org, v0.2</title><link href="https://sopoforic.github.io/750-to-org-v02.html" rel="alternate"></link><updated>2011-06-19T15:09:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2011-06-19:750-to-org-v02.html</id><summary type="html">&lt;p&gt;I did a little cleanup on the code for 750-to-org, so I went ahead and called it
+0.2. I did some more testing, so unless 750 Words does something quite
+unexpected, 750-to-org should just&amp;nbsp;work.&lt;/p&gt;
+&lt;p&gt;I should probably set 750-to-org up so you can give it filenames as arguments,
+but other than that, I can’t think of much else I’d want it to do. I could have
+it verify that it’s putting entries in the right places, in case the exports are
+processed out of order, but that just seems like more work than is necessary.
+Unless someone complains about it, I’m just going to leave&amp;nbsp;it.&lt;/p&gt;</summary><category term="750-to-org"></category></entry><entry><title>Lately</title><link href="https://sopoforic.github.io/lately.html" rel="alternate"></link><updated>2011-06-18T20:45:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2011-06-18:lately.html</id><summary type="html">&lt;p&gt;I&amp;#8217;ve neglected this blog, which I really shouldn&amp;#8217;t have done.&amp;nbsp;Well:&lt;/p&gt;
+&lt;p&gt;I must reiterate what I said in my last post: when adding tags, I should
+definitely specify the revision I want to tag, because I keep making stupid
+mistakes, tagging the wrong&amp;nbsp;revisions.&lt;/p&gt;
+&lt;p&gt;That said, new project:
+&lt;a href="https://bitbucket.org/sopoforic/750-to-org/overview"&gt;750-to-org&lt;/a&gt;. It&amp;#8217;s just a
+little python script to convert my 750 Words exports into a suitable format for
+emacs org-mode. Nothing special, but I wanted it, so I figured I&amp;#8217;d put it out
+there in case anyone else might have a use for it. I did learn a little more
+about datetime by doing it, too. I doubt I&amp;#8217;ll ever remember the meanings of the
+tokens for strftime, but at least I know it exists, now. It&amp;#8217;s much cleaner that
+the way I was going to produce the date&amp;nbsp;strings.&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ve got a python/sqlalchemy fanfiction database thing I&amp;#8217;m making for my
+personal use, but it&amp;#8217;s far from being in a fit state for public consumption.
+More on that later,&amp;nbsp;perhaps.&lt;/p&gt;</summary><category term="mercurial"></category><category term="python"></category><category term="750-to-org"></category><category term="ffcollection"></category></entry><entry><title>Wasted Revisions</title><link href="https://sopoforic.github.io/wasted-revisions.html" rel="alternate"></link><updated>2010-08-27T23:00:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2010-08-27:wasted-revisions.html</id><summary type="html">&lt;p&gt;I just wasted half a dozen revisions trying to tag a release. Perhaps it’d be
+better to just always specify the revision you’re tagging, just to avoid that&amp;nbsp;problem.&lt;/p&gt;</summary><category term="mercurial"></category></entry><entry><title>WordsPy Milestone</title><link href="https://sopoforic.github.io/wordspy-milestone.html" rel="alternate"></link><updated>2010-05-16T16:48:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2010-05-16:wordspy-milestone.html</id><summary type="html">&lt;p&gt;As of the most recent revision (r18:6453f11b96e6), WordsPy functions as a (bad)
 game. The dictionary is hooked up, and it only lets you remove letters if they
 form a word in the dictionary (That’s a rule. Games have rules. Ergo, game.&amp;nbsp;Right?).&lt;/p&gt;
 &lt;p&gt;Other&amp;nbsp;features:&lt;/p&gt;
