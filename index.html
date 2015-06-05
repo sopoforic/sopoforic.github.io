@@ -23,7 +23,54 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="./cgrr-transferred.html"><span class="caps">CGRR</span> transferred to&nbsp;github</a></h1>
+                    <h1 class="entry-title"><a href="./new-project-cgrr-gamecube.html">New project:&nbsp;cgrr-gamecube</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-06-05T13:35:04-04:00">
+                Published: Fri 05 June 2015
+        </abbr>
+		<br />
+        <abbr class="modified" title="2015-06-05T13:35:04-04:00">
+                Updated: Fri 05 June 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
+        </address>
+<p>In <a href="./category/misc.html">misc</a>. </p>
+<p>tags: <a href="./tag/cgrr.html">cgrr</a> <a href="./tag/gamecube.html">gamecube</a> </p>
+</footer><!-- /.post-info --><p>After about six hours of work, I&#8217;ve completed an initial release of a new
+project: <a href="https://github.com/sopoforic/cgrr-gamecube">cgrr-gamecube</a>. At the moment, it is able to parse GameCube <span class="caps">GCI</span>
+file headers, plus decode the banner from the <span class="caps">GCI</span> file (if it&#8217;s in <span class="caps">CI8</span>&nbsp;format).</p>
+<p>It also supports writing the <span class="caps">GCI</span> files back out, but only modifications to the
+header are supported. That means no editing the banner, since it&#8217;s stored in the
+save data blocks, and not the header. In the future, I intend to add functions
+specifically for replacing the&nbsp;banner.</p>
+<p>Decoding the banner was something of a pain. The <span class="caps">CI8</span> image format isn&#8217;t very
+complicated, I suppose. It&#8217;s a 16bpp paletted format with 5 bits per channel
+plus one transparency bit, with the image stored as a series of 8x4 pixel tiles
+(documentation forthcoming&#8212;I used <a href="http://www.surugi.com/projects/gcifaq.html">this page</a>, myself). Not complicated, but
+annoying to work with, since I had to first rewrite the colors to a more usable
+format, and second reorder the image data so it wasn&#8217;t all tiles. Though in
+retrospect I suppose I could have actually decoded the image as tiles and then
+pasted the tiles into a new image in the right positions. Not sure which would
+have been&nbsp;better.</p>
+<p>Anyway, everything went pretty smoothly, my dislike of the image format&nbsp;aside.</p>
+<p>I think I may put together a frontend so I can extract <span class="caps">GCI</span> files rapidly, to
+support my (potential) future efforts in decoding GameCube save files. One more
+item for the todo list, I&nbsp;suppose.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="./cgrr-transferred.html" rel="bookmark"
+                           title="Permalink to CGRR transferred to github"><span class="caps">CGRR</span> transferred to&nbsp;github</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2015-06-01T11:57:31-04:00">
                 Published: Mon 01 June 2015
@@ -38,18 +85,13 @@
         </address>
 <p>In <a href="./category/misc.html">misc</a>. </p>
 <p>tags: <a href="./tag/cgrr.html">cgrr</a> <a href="./tag/github.html">github</a> </p>
-</footer><!-- /.post-info --><p>After many months of procrastination, I&#8217;ve finally split up my cgrr project and
+</footer><!-- /.post-info -->                <p>After many months of procrastination, I&#8217;ve finally split up my cgrr project and
 transferred it to github. It took quite a while, but in the end I think it will
 be much more maintainable and useful with each of the parser modules taken
-separately than it would be with them all jammed together pretending to be
-plugins for some yet-unwritten master program. If I want to write some wrapper
-around them all later, they&#8217;ll perfectly well support it, but until then, all
-the plugin stuff is just an extra mess&#8212;<span class="caps">YAGNI</span>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+separately than it would be with ...</p>
+                <a class="readmore" href="./cgrr-transferred.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -282,35 +324,6 @@ form a word in the dictionary (That’s a rule. Games have rules. Ergo, game.&nb
 <ul>
 <li>Selected letters are&nbsp;highlighted ...</li></ul>
                 <a class="readmore" href="./wordspy-milestone.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="./wordspy-again.html" rel="bookmark"
-                           title="Permalink to WordsPy, again">WordsPy,&nbsp;again</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2010-05-16T13:10:00-04:00">
-                Published: Sun 16 May 2010
-        </abbr>
-		<br />
-        <abbr class="modified" title="2010-05-16T13:10:00-04:00">
-                Updated: Sun 16 May 2010
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>In <a href="./category/misc.html">misc</a>. </p>
-<p>tags: <a href="./tag/wordspy.html">wordspy</a> <a href="./tag/python.html">python</a> </p>
-</footer><!-- /.post-info -->                <p>Well, the bad news is that wordspy still does nothing other than scroll new
-lines onto the screen. The good news is that it does it in a better&nbsp;way.</p>
-<p>In order to deal with letters dropping (due to letters below them being removed)
-at the same time as a ...</p>
-                <a class="readmore" href="./wordspy-again.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->
