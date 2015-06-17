@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Sleepy Coding - games</title>
+        <link rel="stylesheet" href="../theme/css/main.css" />
+        <link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="../index.html">Sleepy Coding </a></h1>
+                <nav><ul>
+                    <li><a href="../pages/about-me.html">About</a></li>
+                    <li><a href="../pages/projects.html">Projects</a></li>
+                    <li><a href="../category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="../assembly.html">Assembly</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-06-17T15:20:56-04:00">
+                Published: Wed 17 June 2015
+        </abbr>
+		<br />
+        <abbr class="modified" title="2015-06-17T15:20:56-04:00">
+                Updated: Wed 17 June 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="../author/tracy-poff.html">Tracy Poff</a>
+        </address>
+<p>In <a href="../category/misc.html">misc</a>. </p>
+<p>tags: <a href="../tag/assembly.html">assembly</a> <a href="../tag/games.html">games</a> </p>
+</footer><!-- /.post-info --><p>Recently, I saw a new game from Zachtronics, <a href="http://www.zachtronics.com/tis-100/"><span class="caps">TIS</span>-100</a>, which was released
+<a href="http://store.steampowered.com/app/370360/">on Steam</a> as an early access title on the first of June. In some ways,
+calling it a game is overstating it: it&#8217;s basically just a collection of
+programming problems with an interface. The catch is that you&#8217;re programming in
+an assembly language on a virtual machine with unusual architecture. Problems
+beyond the simplest will generally require you to take advantage of parallelism
+(which is the primary distinguishing feature of the <span class="caps">VM</span>) to solve, which leads to
+some rather different solutions for traditional problems. It&#8217;s neat, and I
+suggest checking it&nbsp;out.</p>
+<p>Obviously, a game like that has a rather limited target audience. Case in point:
+I have previously created my own little <span class="caps">VM</span> with a fake assembly language to play
+with. The game is clearly made just for me, but how many others are likely to be
+similarly interested? About 11,000 so far, <a href="http://steamspy.com/app/370360">apparently</a>.</p>
+<p>I had good fun playing the game, which reminded me that I&#8217;ve been meaning to get
+better at assembly. I&#8217;ve made some (very) simple programs in x86 assembly
+before, but I could really use some more practice and study. I <a href="http://gameboy.mongenel.com/asmschool.html">looked into</a>
+learning a little Z80 assembly for the Game Boy, which dovetails nicely with my
+interest in video games, and even built a little test <span class="caps">ROM</span>, but ultimately it
+seemed more useful to study something I&#8217;m a bit more likely to use. So, I&#8217;ve
+been reading <a href="http://download-mirror.savannah.gnu.org/releases/pgubook/ProgrammingGroundUp-1-0-booksize.pdf">Programming from the Ground Up</a>, which teaches Linux x86
+assembly. It&#8217;s a little old, and could seriously use some proofreading, but it&#8217;s
+a decent&nbsp;resource.</p>
+<p>One error to note here: in Chapter 4, on page 63, there is a lovely diagram
+indicating the current state of the stack at a certain point during the
+execution of the code. Lovely, but wrong. It has the order of the &#8220;Base Number&#8221;
+and &#8220;Power&#8221; reversed. When I first saw it, the reversed order made me think that
+the top of the stack was at the top of the diagram, when in fact it is not. I
+worked it out, of course, but it did cause me to do some double- and
+triple-checking of the code to be sure. Caveat&nbsp;lector.</p>
+<p>As for what purpose I&#8217;ll eventually put this to&#8230; I&#8217;ve got some ambitions to
+write an emulator, and I hope to transfer this knowledge to other platforms. In
+particular, I&#8217;m interested in looking at C64 assembly. It&#8217;d be nice to look at
+some of those old games with a better idea of what&#8217;s going on! For now, though
+it&#8217;s just learning for the sake of learning. I&#8217;m a way off from doing anything
+very interesting with&nbsp;it.</p>                </article>
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Sleepy Coding</title><link href="https://sopoforic.github.io/" rel="alternate"></link><link href="https://sopoforic.github.io/feeds/misc.atom.xml" rel="self"></link><id>https://sopoforic.github.io/</id><updated>2015-06-08T17:01:41-04:00</updated><entry><title>Writing for Android</title><link href="https://sopoforic.github.io/writing-for-android.html" rel="alternate"></link><updated>2015-06-08T17:01:41-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2015-06-08:writing-for-android.html</id><summary type="html">&lt;p&gt;The last few days, I&amp;#8217;ve been looking into writing apps for android. I found a
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Sleepy Coding</title><link href="https://sopoforic.github.io/" rel="alternate"></link><link href="https://sopoforic.github.io/feeds/misc.atom.xml" rel="self"></link><id>https://sopoforic.github.io/</id><updated>2015-06-17T15:21:00-04:00</updated><entry><title>Assembly</title><link href="https://sopoforic.github.io/assembly.html" rel="alternate"></link><updated>2015-06-17T15:20:56-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2015-06-17:assembly.html</id><summary type="html">&lt;p&gt;Recently, I saw a new game from Zachtronics, &lt;a href="http://www.zachtronics.com/tis-100/"&gt;&lt;span class="caps"&gt;TIS&lt;/span&gt;-100&lt;/a&gt;, which was released
+&lt;a href="http://store.steampowered.com/app/370360/"&gt;on Steam&lt;/a&gt; as an early access title on the first of June. In some ways,
+calling it a game is overstating it: it&amp;#8217;s basically just a collection of
+programming problems with an interface. The catch is that you&amp;#8217;re programming in
+an assembly language on a virtual machine with unusual architecture. Problems
+beyond the simplest will generally require you to take advantage of parallelism
+(which is the primary distinguishing feature of the &lt;span class="caps"&gt;VM&lt;/span&gt;) to solve, which leads to
+some rather different solutions for traditional problems. It&amp;#8217;s neat, and I
+suggest checking it&amp;nbsp;out.&lt;/p&gt;
+&lt;p&gt;Obviously, a game like that has a rather limited target audience. Case in point:
+I have previously created my own little &lt;span class="caps"&gt;VM&lt;/span&gt; with a fake assembly language to play
+with. The game is clearly made just for me, but how many others are likely to be
+similarly interested? About 11,000 so far, &lt;a href="http://steamspy.com/app/370360"&gt;apparently&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I had good fun playing the game, which reminded me that I&amp;#8217;ve been meaning to get
+better at assembly. I&amp;#8217;ve made some (very) simple programs in x86 assembly
+before, but I could really use some more practice and study. I &lt;a href="http://gameboy.mongenel.com/asmschool.html"&gt;looked into&lt;/a&gt;
+learning a little Z80 assembly for the Game Boy, which dovetails nicely with my
+interest in video games, and even built a little test &lt;span class="caps"&gt;ROM&lt;/span&gt;, but ultimately it
+seemed more useful to study something I&amp;#8217;m a bit more likely to use. So, I&amp;#8217;ve
+been reading &lt;a href="http://download-mirror.savannah.gnu.org/releases/pgubook/ProgrammingGroundUp-1-0-booksize.pdf"&gt;Programming from the Ground Up&lt;/a&gt;, which teaches Linux x86
+assembly. It&amp;#8217;s a little old, and could seriously use some proofreading, but it&amp;#8217;s
+a decent&amp;nbsp;resource.&lt;/p&gt;
+&lt;p&gt;One error to note here: in Chapter 4, on page 63, there is a lovely diagram
+indicating the current state of the stack at a certain point during the
+execution of the code. Lovely, but wrong. It has the order of the &amp;#8220;Base Number&amp;#8221;
+and &amp;#8220;Power&amp;#8221; reversed. When I first saw it, the reversed order made me think that
+the top of the stack was at the top of the diagram, when in fact it is not. I
+worked it out, of course, but it did cause me to do some double- and
+triple-checking of the code to be sure. Caveat&amp;nbsp;lector.&lt;/p&gt;
+&lt;p&gt;As for what purpose I&amp;#8217;ll eventually put this to&amp;#8230; I&amp;#8217;ve got some ambitions to
+write an emulator, and I hope to transfer this knowledge to other platforms. In
+particular, I&amp;#8217;m interested in looking at C64 assembly. It&amp;#8217;d be nice to look at
+some of those old games with a better idea of what&amp;#8217;s going on! For now, though
+it&amp;#8217;s just learning for the sake of learning. I&amp;#8217;m a way off from doing anything
+very interesting with&amp;nbsp;it.&lt;/p&gt;</summary><category term="assembly"></category><category term="games"></category></entry><entry><title>Writing for Android</title><link href="https://sopoforic.github.io/writing-for-android.html" rel="alternate"></link><updated>2015-06-17T15:21:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2015-06-08:writing-for-android.html</id><summary type="html">&lt;p&gt;The last few days, I&amp;#8217;ve been looking into writing apps for android. I found a
 framework, &lt;a href="http://kivy.org/#home"&gt;Kivy&lt;/a&gt;, that would let me write in python, which seemed like it&amp;#8217;d
 be&amp;nbsp;nice.&lt;/p&gt;
 &lt;p&gt;Results are&amp;nbsp;mixed.&lt;/p&gt;

@@ -23,14 +23,76 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../writing-for-android.html">Writing for&nbsp;Android</a></h1>
+                    <h1 class="entry-title"><a href="../assembly.html">Assembly</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-06-17T15:20:56-04:00">
+                Published: Wed 17 June 2015
+        </abbr>
+		<br />
+        <abbr class="modified" title="2015-06-17T15:20:56-04:00">
+                Updated: Wed 17 June 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="../author/tracy-poff.html">Tracy Poff</a>
+        </address>
+<p>In <a href="../category/misc.html">misc</a>. </p>
+<p>tags: <a href="../tag/assembly.html">assembly</a> <a href="../tag/games.html">games</a> </p>
+</footer><!-- /.post-info --><p>Recently, I saw a new game from Zachtronics, <a href="http://www.zachtronics.com/tis-100/"><span class="caps">TIS</span>-100</a>, which was released
+<a href="http://store.steampowered.com/app/370360/">on Steam</a> as an early access title on the first of June. In some ways,
+calling it a game is overstating it: it&#8217;s basically just a collection of
+programming problems with an interface. The catch is that you&#8217;re programming in
+an assembly language on a virtual machine with unusual architecture. Problems
+beyond the simplest will generally require you to take advantage of parallelism
+(which is the primary distinguishing feature of the <span class="caps">VM</span>) to solve, which leads to
+some rather different solutions for traditional problems. It&#8217;s neat, and I
+suggest checking it&nbsp;out.</p>
+<p>Obviously, a game like that has a rather limited target audience. Case in point:
+I have previously created my own little <span class="caps">VM</span> with a fake assembly language to play
+with. The game is clearly made just for me, but how many others are likely to be
+similarly interested? About 11,000 so far, <a href="http://steamspy.com/app/370360">apparently</a>.</p>
+<p>I had good fun playing the game, which reminded me that I&#8217;ve been meaning to get
+better at assembly. I&#8217;ve made some (very) simple programs in x86 assembly
+before, but I could really use some more practice and study. I <a href="http://gameboy.mongenel.com/asmschool.html">looked into</a>
+learning a little Z80 assembly for the Game Boy, which dovetails nicely with my
+interest in video games, and even built a little test <span class="caps">ROM</span>, but ultimately it
+seemed more useful to study something I&#8217;m a bit more likely to use. So, I&#8217;ve
+been reading <a href="http://download-mirror.savannah.gnu.org/releases/pgubook/ProgrammingGroundUp-1-0-booksize.pdf">Programming from the Ground Up</a>, which teaches Linux x86
+assembly. It&#8217;s a little old, and could seriously use some proofreading, but it&#8217;s
+a decent&nbsp;resource.</p>
+<p>One error to note here: in Chapter 4, on page 63, there is a lovely diagram
+indicating the current state of the stack at a certain point during the
+execution of the code. Lovely, but wrong. It has the order of the &#8220;Base Number&#8221;
+and &#8220;Power&#8221; reversed. When I first saw it, the reversed order made me think that
+the top of the stack was at the top of the diagram, when in fact it is not. I
+worked it out, of course, but it did cause me to do some double- and
+triple-checking of the code to be sure. Caveat&nbsp;lector.</p>
+<p>As for what purpose I&#8217;ll eventually put this to&#8230; I&#8217;ve got some ambitions to
+write an emulator, and I hope to transfer this knowledge to other platforms. In
+particular, I&#8217;m interested in looking at C64 assembly. It&#8217;d be nice to look at
+some of those old games with a better idea of what&#8217;s going on! For now, though
+it&#8217;s just learning for the sake of learning. I&#8217;m a way off from doing anything
+very interesting with&nbsp;it.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="../writing-for-android.html" rel="bookmark"
+                           title="Permalink to Writing for Android">Writing for&nbsp;Android</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2015-06-08T17:01:41-04:00">
                 Published: Mon 08 June 2015
         </abbr>
 		<br />
-        <abbr class="modified" title="2015-06-08T17:01:41-04:00">
-                Updated: Mon 08 June 2015
+        <abbr class="modified" title="2015-06-17T15:21:00-04:00">
+                Updated: Wed 17 June 2015
         </abbr>
 
         <address class="vcard author">
@@ -38,23 +100,15 @@
         </address>
 <p>In <a href="../category/misc.html">misc</a>. </p>
 <p>tags: <a href="../tag/kivy.html">kivy</a> <a href="../tag/android.html">android</a> </p>
-</footer><!-- /.post-info --><p>The last few days, I&#8217;ve been looking into writing apps for android. I found a
+</footer><!-- /.post-info -->                <p>The last few days, I&#8217;ve been looking into writing apps for android. I found a
 framework, <a href="http://kivy.org/#home">Kivy</a>, that would let me write in python, which seemed like it&#8217;d
 be&nbsp;nice.</p>
 <p>Results are&nbsp;mixed.</p>
 <p>After some hours, I have indeed successfully created an android app. However,
-the process was painful and tedious and I remembered partway through how much I
-hate writing user interfaces, as I discovered that practically all of the coding
-time was spent on the <span class="caps">UI</span>. My lack of familiarity with the framework led to some
-truly awful code, which I&#8217;ve slowly been refactoring. A thousand lines it should
-not take for a simple database&nbsp;app.</p>
-<p>On the plus side, the app does seem to be useful and serving its purpose, which
-is more than I can say for a lot of what I code, so&#8230; I&#8217;d call this a minor&nbsp;success.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+the process was ...</p>
+                <a class="readmore" href="../writing-for-android.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -287,33 +341,6 @@ definitely specify the revision I want to tag, because I keep making stupid
 mistakes, tagging the wrong&nbsp;revisions.</p>
 <p>That said, new project ...</p>
                 <a class="readmore" href="../lately.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="../wasted-revisions.html" rel="bookmark"
-                           title="Permalink to Wasted Revisions">Wasted&nbsp;Revisions</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2010-08-27T23:00:00-04:00">
-                Published: Fri 27 August 2010
-        </abbr>
-		<br />
-        <abbr class="modified" title="2010-08-27T23:00:00-04:00">
-                Updated: Fri 27 August 2010
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="../author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>In <a href="../category/misc.html">misc</a>. </p>
-<p>tags: <a href="../tag/mercurial.html">mercurial</a> </p>
-</footer><!-- /.post-info -->                <p>I just wasted half a dozen revisions trying to tag a release. Perhaps it’d be
-better to just always specify the revision you’re tagging, just to avoid that&nbsp;problem.</p>
-                <a class="readmore" href="../wasted-revisions.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->
