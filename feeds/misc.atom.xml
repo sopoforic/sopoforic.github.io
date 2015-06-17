@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Sleepy Coding</title><link href="https://sopoforic.github.io/" rel="alternate"></link><link href="https://sopoforic.github.io/feeds/misc.atom.xml" rel="self"></link><id>https://sopoforic.github.io/</id><updated>2015-06-05T13:35:04-04:00</updated><entry><title>New project: cgrr-gamecube</title><link href="https://sopoforic.github.io/new-project-cgrr-gamecube.html" rel="alternate"></link><updated>2015-06-05T13:35:04-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2015-06-05:new-project-cgrr-gamecube.html</id><summary type="html">&lt;p&gt;After about six hours of work, I&amp;#8217;ve completed an initial release of a new
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Sleepy Coding</title><link href="https://sopoforic.github.io/" rel="alternate"></link><link href="https://sopoforic.github.io/feeds/misc.atom.xml" rel="self"></link><id>https://sopoforic.github.io/</id><updated>2015-06-08T17:01:41-04:00</updated><entry><title>Writing for Android</title><link href="https://sopoforic.github.io/writing-for-android.html" rel="alternate"></link><updated>2015-06-08T17:01:41-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2015-06-08:writing-for-android.html</id><summary type="html">&lt;p&gt;The last few days, I&amp;#8217;ve been looking into writing apps for android. I found a
+framework, &lt;a href="http://kivy.org/#home"&gt;Kivy&lt;/a&gt;, that would let me write in python, which seemed like it&amp;#8217;d
+be&amp;nbsp;nice.&lt;/p&gt;
+&lt;p&gt;Results are&amp;nbsp;mixed.&lt;/p&gt;
+&lt;p&gt;After some hours, I have indeed successfully created an android app. However,
+the process was painful and tedious and I remembered partway through how much I
+hate writing user interfaces, as I discovered that practically all of the coding
+time was spent on the &lt;span class="caps"&gt;UI&lt;/span&gt;. My lack of familiarity with the framework led to some
+truly awful code, which I&amp;#8217;ve slowly been refactoring. A thousand lines it should
+not take for a simple database&amp;nbsp;app.&lt;/p&gt;
+&lt;p&gt;On the plus side, the app does seem to be useful and serving its purpose, which
+is more than I can say for a lot of what I code, so&amp;#8230; I&amp;#8217;d call this a minor&amp;nbsp;success.&lt;/p&gt;</summary><category term="kivy"></category><category term="android"></category></entry><entry><title>New project: cgrr-gamecube</title><link href="https://sopoforic.github.io/new-project-cgrr-gamecube.html" rel="alternate"></link><updated>2015-06-05T13:35:04-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2015-06-05:new-project-cgrr-gamecube.html</id><summary type="html">&lt;p&gt;After about six hours of work, I&amp;#8217;ve completed an initial release of a new
 project: &lt;a href="https://github.com/sopoforic/cgrr-gamecube"&gt;cgrr-gamecube&lt;/a&gt;. At the moment, it is able to parse GameCube &lt;span class="caps"&gt;GCI&lt;/span&gt;
 file headers, plus decode the banner from the &lt;span class="caps"&gt;GCI&lt;/span&gt; file (if it&amp;#8217;s in &lt;span class="caps"&gt;CI8&lt;/span&gt;&amp;nbsp;format).&lt;/p&gt;
 &lt;p&gt;It also supports writing the &lt;span class="caps"&gt;GCI&lt;/span&gt; files back out, but only modifications to the
