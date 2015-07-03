@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Sleepy Coding</title><link href="https://sopoforic.github.io/" rel="alternate"></link><link href="https://sopoforic.github.io/feeds/all.atom.xml" rel="self"></link><id>https://sopoforic.github.io/</id><updated>2015-06-17T15:21:00-04:00</updated><entry><title>Assembly</title><link href="https://sopoforic.github.io/assembly.html" rel="alternate"></link><updated>2015-06-17T15:20:56-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2015-06-17:assembly.html</id><summary type="html">&lt;p&gt;Recently, I saw a new game from Zachtronics, &lt;a href="http://www.zachtronics.com/tis-100/"&gt;&lt;span class="caps"&gt;TIS&lt;/span&gt;-100&lt;/a&gt;, which was released
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Sleepy Coding</title><link href="https://sopoforic.github.io/" rel="alternate"></link><link href="https://sopoforic.github.io/feeds/all.atom.xml" rel="self"></link><id>https://sopoforic.github.io/</id><updated>2015-07-02T23:03:14-04:00</updated><entry><title>Status Update: 2015-07-02 23:03:14</title><link href="https://sopoforic.github.io/status-update-2015-07-02-230314.html" rel="alternate"></link><updated>2015-07-02T23:03:14-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2015-07-02:status-update-2015-07-02-230314.html</id><summary type="html">&lt;p&gt;Status&amp;nbsp;update.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Project&lt;/th&gt;
+&lt;th align="right"&gt;Status&lt;/th&gt;
+&lt;th&gt;Notes&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Books to sort&lt;/td&gt;
+&lt;td align="right"&gt;3140&lt;/td&gt;
+&lt;td&gt;Rapid progress lately.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;span class="caps"&gt;LT&lt;/span&gt; imported&lt;/td&gt;
+&lt;td align="right"&gt;1689&lt;/td&gt;
+&lt;td&gt;No progress lately.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;span class="caps"&gt;TMFT&lt;/span&gt;&lt;/td&gt;
+&lt;td align="right"&gt;73&lt;/td&gt;
+&lt;td&gt;About a third done.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</summary><category term="personal"></category></entry><entry><title>2015-06-24 18:14:22</title><link href="https://sopoforic.github.io/2015-06-24-181422.html" rel="alternate"></link><updated>2015-06-24T18:14:22-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2015-06-24:2015-06-24-181422.html</id><summary type="html"></summary><category term=""></category></entry><entry><title>2015-06-24 17:26:51</title><link href="https://sopoforic.github.io/2015-06-24-172651.html" rel="alternate"></link><updated>2015-06-24T17:26:51-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2015-06-24:2015-06-24-172651.html</id><summary type="html"></summary><category term=""></category></entry><entry><title>Assembly</title><link href="https://sopoforic.github.io/assembly.html" rel="alternate"></link><updated>2015-06-17T15:20:56-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2015-06-17:assembly.html</id><summary type="html">&lt;p&gt;Recently, I saw a new game from Zachtronics, &lt;a href="http://www.zachtronics.com/tis-100/"&gt;&lt;span class="caps"&gt;TIS&lt;/span&gt;-100&lt;/a&gt;, which was released
 &lt;a href="http://store.steampowered.com/app/370360/"&gt;on Steam&lt;/a&gt; as an early access title on the first of June. In some ways,
 calling it a game is overstating it: it&amp;#8217;s basically just a collection of
 programming problems with an interface. The catch is that you&amp;#8217;re programming in
