@@ -1,42 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="utf-8" />
-        <title>Sleepy Coding</title>
-        <link rel="stylesheet" href="./theme/css/main.css" />
-        <link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-</head>
+		<title>Sleepy Coding</title>
+		<meta name="description" content="">
+		<meta name="author" content="Tracy Poff">
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="./index.html">Sleepy Coding </a></h1>
-                <nav><ul>
-                    <li><a href="./pages/about-me.html">About</a></li>
-                    <li><a href="./pages/projects.html">Projects</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+		<link rel="stylesheet" href="./theme/css/foundation.css" />
+		<link rel="stylesheet" href="./theme/css/pygment/monokai.css" />
+		<link rel="stylesheet" href="./theme/css/custom.css" />
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="./flask-markdown-bug.html">Flask-Markdown&nbsp;bug</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2015-10-07T08:01:59-04:00">
-                Published: Wed 07 October 2015
-        </abbr>
-		<br />
-        <abbr class="modified" title="2015-10-07T08:01:59-04:00">
-                Updated: Wed 07 October 2015
-        </abbr>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="./tag/quoted-forsooth.html">quoted forsooth</a> <a href="./tag/flask-markdown.html">flask-markdown</a> </p>
-</footer><!-- /.post-info --><p>I encountered a mysterious bug in Flask-Markdown: footnotes in one document were polluting others. I noticed footnotes being duplicated in a markdown-formatted sidebar, and then I found them showing up on new pages&nbsp;altogether.</p>
+		<script src="./theme/js/modernizr.js"></script>
+
+		<!-- Feeds -->
+		<link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
+
+
+		<!-- mathjax config similar to math.stackexchange -->
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax: {
+				inlineMath: [ ['$', '$'] ],
+				displayMath: [ ['$$', '$$']],
+				processEscapes: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+			},
+			messageStyle: "none",
+			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+		});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+	<body>
+		<div class="off-canvas-wrap">
+			<div class="inner-wrap">
+				<!-- mobile top bar to activate nav -->
+				<nav class="tab-bar show-for-small">
+					<section class="left-small">
+						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+					</section>
+
+					<section class="middle tab-bar-section">
+						<h1 class="title">Sleepy&nbsp;Coding</h1>
+					</section>
+				</nav>
+
+				<!-- mobile side bar nav -->
+				<aside class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<li><a href=".">Home</a></li>
+						<li><label>Categories</label></li>
+							<li ><a href="./category/misc.html">misc</a></li>
+
+						<li><label>Places</label></li>
+							<li><a href="http://getpelican.com/">Pelican</a></li>
+							<li><a href="http://python.org/">Python.org</a></li>
+							<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+
+
+
+						<li><label>Links</label></li>
+							<li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+					</ul>	
+				</aside>
+
+				<!-- top bar nav -->
+				<nav class="top-bar hide-for-small-only" data-topbar>
+					<ul class="title-area">
+						<li class="name">
+							<h1><a href="./">Sleepy Coding</a></h1>
+						</li>
+					</ul>
+
+					<section class="top-bar-section">
+						<ul class="left">
+								<li ><a href="./category/misc.html">misc</a></li>
+						</ul>
+					</section>
+				</nav>
+
+				<!-- Main Page Content and Sidebar -->
+				<section class="main-section">
+					<div class="row">
+						<!-- Main Content -->
+						<div class="medium-9 small-12 columns" role="content">
+
+<article>
+	<h3><a href="./flask-markdown-bug.html">Flask-Markdown&nbsp;bug</a></h3>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> in <a href="./category/misc.html">misc</a> on Wed 07 October 2015. Tags: <a href="./tag/quoted-forsooth.html">quoted forsooth</a>, <a href="./tag/flask-markdown.html">flask-markdown</a>, </h6>
+	<p>I encountered a mysterious bug in Flask-Markdown: footnotes in one document were polluting others. I noticed footnotes being duplicated in a markdown-formatted sidebar, and then I found them showing up on new pages&nbsp;altogether.</p>
 <p>The (approximate) cause was obvious: markdown was keeping state between different&nbsp;renders.</p>
 <p>It turns out that Python-Markdown allows you to instantiate a renderer with options set and reuse that, if you choose, and Flask-Markdown takes advantage of this. However, when using Python-Markdown in that way, you need to <code>reset()</code> the instance between&nbsp;renders.</p>
 <p>Solution: change line 69 of Flask-Markdown&#8217;s markdown.py&nbsp;from:</p>
@@ -50,89 +106,33 @@
 
 
 <p>Simple.</p>
-<p>Unfortunately, it looks like the maintainer of Flask-Markdown hasn&#8217;t been active on github in quite a while, so this problem may&nbsp;persist.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="./building-a-better-mousetrap.html" rel="bookmark"
-                           title="Permalink to Building a Better Mousetrap">Building a Better&nbsp;Mousetrap</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2015-10-06T08:54:55-04:00">
-                Published: Tue 06 October 2015
-        </abbr>
-		<br />
-        <abbr class="modified" title="2015-10-06T08:54:55-04:00">
-                Updated: Tue 06 October 2015
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="./tag/python.html">python</a> <a href="./tag/quoted-forsooth.html">quoted forsooth</a> </p>
-</footer><!-- /.post-info -->                <p>All of my public projects have been suffering, lately (not that I&#8217;ve ever been the most constant of writers), because I&#8217;ve been working in the background on a tool to aid me in my&nbsp;research.</p>
-<p>Some background: Until now, I&#8217;ve been collecting my copious notes in <a href="http://wikidpad.sourceforge.net/">wikidPad ...</a></p>
-                <a class="readmore" href="./building-a-better-mousetrap.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="./beautifulsoup.html" rel="bookmark"
-                           title="Permalink to BeautifulSoup">BeautifulSoup</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2015-09-15T13:30:24-04:00">
-                Published: Tue 15 September 2015
-        </abbr>
-		<br />
-        <abbr class="modified" title="2015-09-15T13:30:24-04:00">
-                Updated: Tue 15 September 2015
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="./tag/.html"></a> </p>
-</footer><!-- /.post-info -->                <p>BeautifulSoup is really excellent. I should have started using it ages ago. In
+<p>Unfortunately, it looks like the maintainer of Flask-Markdown hasn&#8217;t been active on github in quite a while, so this problem may&nbsp;persist.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="./building-a-better-mousetrap.html">Building a Better&nbsp;Mousetrap</a></h3>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> in <a href="./category/misc.html">misc</a> on Tue 06 October 2015. Tags: <a href="./tag/python.html">python</a>, <a href="./tag/quoted-forsooth.html">quoted forsooth</a>, </h6>
+	<p>All of my public projects have been suffering, lately (not that I&#8217;ve ever been the most constant of writers), because I&#8217;ve been working in the background on a tool to aid me in my&nbsp;research.</p>
+<p>Some background: Until now, I&#8217;ve been collecting my copious notes in <a href="http://wikidpad.sourceforge.net/">wikidPad</a>, a very nice personal wiki application. If all you need is a text-based notebook with some simple formatting and organizational capabilities, it&#8217;s great. I recommend it to everyone. My needs are a bit more extreme, though. I&#8217;ve currently got notes on about eighteen hundred individual items, along with pages of organizational and planning information. Making use of all the data I have stored in wikidPad was getting to be impossible, and, worse still, some of my notes were scattered in different locations elsewhere due to my needing features not supported by&nbsp;wikidPad.</p>
+<p>I&#8217;ve tested the various available research notebook tools (Docear, Zotero, Mendeley, ReadCube, Evernote, OneNote, &#8230;) but most are heavily oriented toward research artifacts being PDFs (does no one use photographs, or recorded interviews, or anything? just PDFs?), and none had remotely powerful enough metadata and reporting&nbsp;capabilities.</p>
+<p>So, I finally bit the bullet and created my own tool. It&#8217;s ugly and user-unfriendly right now, but for my purposes it&#8217;s already more useful than wikidPad, and I continue adding features as needs arise. The benefit of using custom-built software is that I can readily make any required modifications. If I want to see all of my screenshots of character selection screens for games released between 1987 and 1996, ordered by the name of the developer, with games I&#8217;ve never reviewed highlighted in green, I can have that in a couple of minutes. Television episodes about gambling written by people born before 1960? People who starred in movies from the nineties based on games released in the eighties? Games I haven&#8217;t beaten developed by defunct companies? Any desired query can be constructed in a few minutes, as long as the information is there. And a lack of information was never my&nbsp;problem.</p>
+<p>I don&#8217;t know if anyone else would find this useful. The lack of tools that did even remotely what I want seems to indicate that my needs are a bit idiosyncratic. I&#8217;ll probably release the code once I&#8217;ve got it in a less embarrassing state, all the&nbsp;same.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="./beautifulsoup.html">BeautifulSoup</a></h3>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> in <a href="./category/misc.html">misc</a> on Tue 15 September 2015. Tags: <a href="./tag/.html"></a>, </h6>
+	<p>BeautifulSoup is really excellent. I should have started using it ages ago. In
 probably less than an hour, I turned my custom-built horrible, fragile,
 regex monstrosity of a parser into a much more robust and, more importantly,
 understandable scraper with half as many lines of&nbsp;code.</p>
-<p>The lesson, as it ...</p>
-                <a class="readmore" href="./beautifulsoup.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="./status-update-2015-07-02-230314.html" rel="bookmark"
-                           title="Permalink to Status Update: 2015-07-02 23:03:14">Status Update: 2015-07-02&nbsp;23:03:14</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2015-07-02T23:03:14-04:00">
-                Published: Thu 02 July 2015
-        </abbr>
-		<br />
-        <abbr class="modified" title="2015-07-02T23:03:14-04:00">
-                Updated: Thu 02 July 2015
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="./tag/personal.html">personal</a> </p>
-</footer><!-- /.post-info -->                <p>Status&nbsp;update.</p>
+<p>The lesson, as it often is, is to use the right tool for the&nbsp;job.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="./status-update-2015-07-02-230314.html">Status Update: 2015-07-02&nbsp;23:03:14</a></h3>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> in <a href="./category/misc.html">misc</a> on Thu 02 July 2015. Tags: <a href="./tag/personal.html">personal</a>, </h6>
+	<p>Status&nbsp;update.</p>
 <table>
 <thead>
 <tr>
@@ -159,212 +159,234 @@ understandable scraper with half as many lines of&nbsp;code.</p>
 </tr>
 </tbody>
 </table>
-                <a class="readmore" href="./status-update-2015-07-02-230314.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="./assembly.html" rel="bookmark"
-                           title="Permalink to Assembly">Assembly</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2015-06-17T15:20:56-04:00">
-                Published: Wed 17 June 2015
-        </abbr>
-		<br />
-        <abbr class="modified" title="2015-06-17T15:20:56-04:00">
-                Updated: Wed 17 June 2015
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="./tag/assembly.html">assembly</a> <a href="./tag/games.html">games</a> </p>
-</footer><!-- /.post-info -->                <p>Recently, I saw a new game from Zachtronics, <a href="http://www.zachtronics.com/tis-100/"><span class="caps">TIS</span>-100</a>, which was released
+</article>
+<hr />
+<article>
+	<h3><a href="./assembly.html">Assembly</a></h3>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> in <a href="./category/misc.html">misc</a> on Wed 17 June 2015. Tags: <a href="./tag/assembly.html">assembly</a>, <a href="./tag/games.html">games</a>, </h6>
+	<p>Recently, I saw a new game from Zachtronics, <a href="http://www.zachtronics.com/tis-100/"><span class="caps">TIS</span>-100</a>, which was released
 <a href="http://store.steampowered.com/app/370360/">on Steam</a> as an early access title on the first of June. In some ways,
 calling it a game is overstating it: it&#8217;s basically just a collection of
-programming problems with an interface. The catch is ...</p>
-                <a class="readmore" href="./assembly.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="./writing-for-android.html" rel="bookmark"
-                           title="Permalink to Writing for Android">Writing for&nbsp;Android</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2015-06-08T17:01:41-04:00">
-                Published: Mon 08 June 2015
-        </abbr>
-		<br />
-        <abbr class="modified" title="2015-06-17T15:21:00-04:00">
-                Updated: Wed 17 June 2015
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="./tag/kivy.html">kivy</a> <a href="./tag/android.html">android</a> </p>
-</footer><!-- /.post-info -->                <p>The last few days, I&#8217;ve been looking into writing apps for android. I found a
+programming problems with an interface. The catch is that you&#8217;re programming in
+an assembly language on a virtual machine with unusual architecture. Problems
+beyond the simplest will generally require you to take advantage of parallelism
+(which is the primary distinguishing feature of the <span class="caps">VM</span>) to solve, which leads to
+some rather different solutions for traditional problems. It&#8217;s neat, and I
+suggest checking it&nbsp;out.</p>
+<p>Obviously, a game like that has a rather limited target audience. Case in point:
+I have previously created my own little <span class="caps">VM</span> with a fake assembly language to play
+with. The game is clearly made just for me, but how many others are likely to be
+similarly interested? About 11,000 so far, <a href="http://steamspy.com/app/370360">apparently</a>.</p>
+<p>I had good fun playing the game, which reminded me that I&#8217;ve been meaning to get
+better at assembly. I&#8217;ve made some (very) simple programs in x86 assembly
+before, but I could really use some more practice and study. I <a href="http://gameboy.mongenel.com/asmschool.html">looked into</a>
+learning a little Z80 assembly for the Game Boy, which dovetails nicely with my
+interest in video games, and even built a little test <span class="caps">ROM</span>, but ultimately it
+seemed more useful to study something I&#8217;m a bit more likely to use. So, I&#8217;ve
+been reading <a href="http://download-mirror.savannah.gnu.org/releases/pgubook/ProgrammingGroundUp-1-0-booksize.pdf">Programming from the Ground Up</a>, which teaches Linux x86
+assembly. It&#8217;s a little old, and could seriously use some proofreading, but it&#8217;s
+a decent&nbsp;resource.</p>
+<p>One error to note here: in Chapter 4, on page 63, there is a lovely diagram
+indicating the current state of the stack at a certain point during the
+execution of the code. Lovely, but wrong. It has the order of the &#8220;Base Number&#8221;
+and &#8220;Power&#8221; reversed. When I first saw it, the reversed order made me think that
+the top of the stack was at the top of the diagram, when in fact it is not. I
+worked it out, of course, but it did cause me to do some double- and
+triple-checking of the code to be sure. Caveat&nbsp;lector.</p>
+<p>As for what purpose I&#8217;ll eventually put this to&#8230; I&#8217;ve got some ambitions to
+write an emulator, and I hope to transfer this knowledge to other platforms. In
+particular, I&#8217;m interested in looking at C64 assembly. It&#8217;d be nice to look at
+some of those old games with a better idea of what&#8217;s going on! For now, though
+it&#8217;s just learning for the sake of learning. I&#8217;m a way off from doing anything
+very interesting with&nbsp;it.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="./writing-for-android.html">Writing for&nbsp;Android</a></h3>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> in <a href="./category/misc.html">misc</a> on Mon 08 June 2015. Tags: <a href="./tag/kivy.html">kivy</a>, <a href="./tag/android.html">android</a>, </h6>
+	<p>The last few days, I&#8217;ve been looking into writing apps for android. I found a
 framework, <a href="http://kivy.org/#home">Kivy</a>, that would let me write in python, which seemed like it&#8217;d
 be&nbsp;nice.</p>
 <p>Results are&nbsp;mixed.</p>
 <p>After some hours, I have indeed successfully created an android app. However,
-the process was ...</p>
-                <a class="readmore" href="./writing-for-android.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="./new-project-cgrr-gamecube.html" rel="bookmark"
-                           title="Permalink to New project: cgrr-gamecube">New project:&nbsp;cgrr-gamecube</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2015-06-05T13:35:04-04:00">
-                Published: Fri 05 June 2015
-        </abbr>
-		<br />
-        <abbr class="modified" title="2015-06-05T13:35:04-04:00">
-                Updated: Fri 05 June 2015
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="./tag/cgrr.html">cgrr</a> <a href="./tag/gamecube.html">gamecube</a> </p>
-</footer><!-- /.post-info -->                <p>After about six hours of work, I&#8217;ve completed an initial release of a new
+the process was painful and tedious and I remembered partway through how much I
+hate writing user interfaces, as I discovered that practically all of the coding
+time was spent on the <span class="caps">UI</span>. My lack of familiarity with the framework led to some
+truly awful code, which I&#8217;ve slowly been refactoring. A thousand lines it should
+not take for a simple database&nbsp;app.</p>
+<p>On the plus side, the app does seem to be useful and serving its purpose, which
+is more than I can say for a lot of what I code, so&#8230; I&#8217;d call this a minor&nbsp;success.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="./new-project-cgrr-gamecube.html">New project:&nbsp;cgrr-gamecube</a></h3>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> in <a href="./category/misc.html">misc</a> on Fri 05 June 2015. Tags: <a href="./tag/cgrr.html">cgrr</a>, <a href="./tag/gamecube.html">gamecube</a>, </h6>
+	<p>After about six hours of work, I&#8217;ve completed an initial release of a new
 project: <a href="https://github.com/sopoforic/cgrr-gamecube">cgrr-gamecube</a>. At the moment, it is able to parse GameCube <span class="caps">GCI</span>
 file headers, plus decode the banner from the <span class="caps">GCI</span> file (if it&#8217;s in <span class="caps">CI8</span>&nbsp;format).</p>
-<p>It also supports writing the <span class="caps">GCI</span> files ...</p>
-                <a class="readmore" href="./new-project-cgrr-gamecube.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="./cgrr-transferred.html" rel="bookmark"
-                           title="Permalink to CGRR transferred to github"><span class="caps">CGRR</span> transferred to&nbsp;github</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2015-06-01T11:57:31-04:00">
-                Published: Mon 01 June 2015
-        </abbr>
-		<br />
-        <abbr class="modified" title="2015-06-01T11:57:31-04:00">
-                Updated: Mon 01 June 2015
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="./tag/cgrr.html">cgrr</a> <a href="./tag/github.html">github</a> </p>
-</footer><!-- /.post-info -->                <p>After many months of procrastination, I&#8217;ve finally split up my cgrr project and
+<p>It also supports writing the <span class="caps">GCI</span> files back out, but only modifications to the
+header are supported. That means no editing the banner, since it&#8217;s stored in the
+save data blocks, and not the header. In the future, I intend to add functions
+specifically for replacing the&nbsp;banner.</p>
+<p>Decoding the banner was something of a pain. The <span class="caps">CI8</span> image format isn&#8217;t very
+complicated, I suppose. It&#8217;s a 16bpp paletted format with 5 bits per channel
+plus one transparency bit, with the image stored as a series of 8x4 pixel tiles
+(documentation forthcoming&#8212;I used <a href="http://www.surugi.com/projects/gcifaq.html">this page</a>, myself). Not complicated, but
+annoying to work with, since I had to first rewrite the colors to a more usable
+format, and second reorder the image data so it wasn&#8217;t all tiles. Though in
+retrospect I suppose I could have actually decoded the image as tiles and then
+pasted the tiles into a new image in the right positions. Not sure which would
+have been&nbsp;better.</p>
+<p>Anyway, everything went pretty smoothly, my dislike of the image format&nbsp;aside.</p>
+<p>I think I may put together a frontend so I can extract <span class="caps">GCI</span> files rapidly, to
+support my (potential) future efforts in decoding GameCube save files. One more
+item for the todo list, I&nbsp;suppose.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="./cgrr-transferred.html"><span class="caps">CGRR</span> transferred to&nbsp;github</a></h3>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> in <a href="./category/misc.html">misc</a> on Mon 01 June 2015. Tags: <a href="./tag/cgrr.html">cgrr</a>, <a href="./tag/github.html">github</a>, </h6>
+	<p>After many months of procrastination, I&#8217;ve finally split up my cgrr project and
 transferred it to github. It took quite a while, but in the end I think it will
 be much more maintainable and useful with each of the parser modules taken
-separately than it would be with ...</p>
-                <a class="readmore" href="./cgrr-transferred.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="./lessons-in-efficiency.html" rel="bookmark"
-                           title="Permalink to Lessons in Efficiency">Lessons in&nbsp;Efficiency</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2012-08-17T00:52:00-04:00">
-                Published: Fri 17 August 2012
-        </abbr>
-		<br />
-        <abbr class="modified" title="2012-08-17T00:52:00-04:00">
-                Updated: Fri 17 August 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="./tag/haskell.html">Haskell</a> <a href="./tag/project-euler.html">Project Euler</a> </p>
-</footer><!-- /.post-info -->                <p>I was working on <a href="http://projecteuler.net/problem=92">Project Euler problem 92</a>,
+separately than it would be with them all jammed together pretending to be
+plugins for some yet-unwritten master program. If I want to write some wrapper
+around them all later, they&#8217;ll perfectly well support it, but until then, all
+the plugin stuff is just an extra mess&#8212;<span class="caps">YAGNI</span>.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="./lessons-in-efficiency.html">Lessons in&nbsp;Efficiency</a></h3>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> in <a href="./category/misc.html">misc</a> on Fri 17 August 2012. Tags: <a href="./tag/haskell.html">Haskell</a>, <a href="./tag/project-euler.html">Project Euler</a>, </h6>
+	<p>I was working on <a href="http://projecteuler.net/problem=92">Project Euler problem 92</a>,
 and having a great deal of trouble making my program run fast enough. I’m aware
 of a trick that can be used to reduce the problem space, but I thought that with
-only ten million numbers to check, it should be ...</p>
-                <a class="readmore" href="./lessons-in-efficiency.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="./learning-haskell.html" rel="bookmark"
-                           title="Permalink to Learning Haskell">Learning&nbsp;Haskell</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2012-08-13T07:53:00-04:00">
-                Published: Mon 13 August 2012
-        </abbr>
-		<br />
-        <abbr class="modified" title="2012-08-13T07:53:00-04:00">
-                Updated: Mon 13 August 2012
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="./tag/haskell.html">Haskell</a> </p>
-</footer><!-- /.post-info -->                <p>I&#8217;ve been learning Haskell (following <a href="http://learnyouahaskell.com/">Learn You a Haskell for Great
+only ten million numbers to check, it should be possible to do it
+straightforwardly and just check them all, as long as I wasn’t too inefficient
+doing&nbsp;it.</p>
+<p>My first successful version took about three minutes to run–much too slow. I
+eliminated a duplicate call to an expensive function, which brought me down to
+about two minutes, and at length I managed to reduce the runtime down to about
+thirty seconds–much better, though still very slow. I tried some alternate
+techniques and just couldn’t make it go any quicker while still using a brute
+force&nbsp;approach.</p>
+<p>Now, there’s one important thing I haven’t mentioned: on the Windows <span class="caps">PC</span> I’m
+using for development, the version of gcc included with the Haskell Platform
+doesn’t work. I can’t figure out why, but it makes it impossible to compile
+Haskell programs, so I’ve just been running them in the interpreter. Well, that
+gives away the ending to this anecdote: I copied the program to a (much slower)
+Linux <span class="caps">PC</span> and compiled it, and it ran in about five seconds. Even my first, very
+inefficient attempt would have been fast enough to satisfy the one minute rule.
+But I learned a bit by trying to make the interpreted version fast enough to&nbsp;pass.</p>
+<p>Lessons:</p>
+<ol>
+<li>Squaring a number with (n^2) is significantly slower than doing it with (n *&nbsp;n).</li>
+<li>Arrays are faster to access than even fairly small&nbsp;lists.</li>
+<li>It’s faster to compose several functions and then map them to a list than to
+repeatedly map individual&nbsp;functions.</li>
+</ol>
+<p>Of course, these apply to programs run through the interpreter–it’s quite
+possible that at least the first of these might not hold if the program is
+compiled. Maybe I’ll test it, some&nbsp;time.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="./learning-haskell.html">Learning&nbsp;Haskell</a></h3>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> in <a href="./category/misc.html">misc</a> on Mon 13 August 2012. Tags: <a href="./tag/haskell.html">Haskell</a>, </h6>
+	<p>I&#8217;ve been learning Haskell (following <a href="http://learnyouahaskell.com/">Learn You a Haskell for Great
 Good!</a>) and, although it&#8217;s been fairly
 mind-bending at times, I think I&#8217;m progressing well enough. I still need to
 learn the idiomatic ways to do things&#8212;I guess I&#8217;m still &#8216;writing Python in
-Haskell&#8217;–but ...</p>
-                <a class="readmore" href="./learning-haskell.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-<p class="paginator">
-    Page 1 / 3
-        <a href="./index2.html">&raquo;</a>
-</p>
-                </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+Haskell&#8217;–but I&#8217;m generally not too lost on what to do. Although since I&#8217;m
+currently using Haskell to solve Project Euler problems, I may be solving only
+problems which are conducive to a functional&nbsp;approach.</p>
+</article>
+<hr />
 
-                            <li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+<div class="row">
+	<div class="small-12 columns text-center">
+		<div class="pagination-centered">
+			<ul class="pagination">
+				<li class="arrow unavailable"><a href="#">&larr; Previous</a></li>
+				<li class="current"><a href="./index.html">1</a></li>
+				<li class=""><a href="./index2.html">2</a></li>
+				<li class=""><a href="./index3.html">3</a></li>
+				<li class="arrow"><a href="./index2.html">Next &rarr;</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+						</div>
+						<!-- End Main Content -->
+						<!-- Sidebar -->
+						<aside class="medium-3 hide-for-small-only columns">
+							<div class="panel">
+								<h5>Places</h5>
+								<ul class="side-nav">
+									<li><a href="http://getpelican.com/">Pelican</a></li>
+									<li><a href="http://python.org/">Python.org</a></li>
+									<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+								</ul>
+							</div>
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+							<div class="panel">
+								<h5>Tags</h5>
+								<ul class="tag-cloud">
+									<li><a href="/tag/project-euler/" class="tag-4">Project Euler</a></li>
+									<li><a href="/tag/mercurial/" class="tag-2">mercurial</a></li>
+									<li><a href="/tag/javascript/" class="tag-4">javascript</a></li>
+									<li><a href="/tag/gamecube/" class="tag-4">gamecube</a></li>
+									<li><a href="/tag/basic/" class="tag-2">BASIC</a></li>
+									<li><a href="/tag/greasemonkey/" class="tag-4">greasemonkey</a></li>
+									<li><a href="/tag/assembly/" class="tag-4">assembly</a></li>
+									<li><a href="/tag/github/" class="tag-4">github</a></li>
+									<li><a href="/tag/wordspy/" class="tag-1">wordspy</a></li>
+									<li><a href="/tag/quoted-forsooth/" class="tag-2">quoted forsooth</a></li>
+									<li><a href="/tag/haskell/" class="tag-2">Haskell</a></li>
+									<li><a href="/tag/flask-markdown/" class="tag-4">flask-markdown</a></li>
+									<li><a href="/tag/python/" class="tag-1">python</a></li>
+									<li><a href="/tag//" class="tag-4"></a></li>
+									<li><a href="/tag/750-to-org/" class="tag-2">750-to-org</a></li>
+									<li><a href="/tag/porting/" class="tag-2">porting</a></li>
+									<li><a href="/tag/ffcollection/" class="tag-1">ffcollection</a></li>
+									<li><a href="/tag/awari/" class="tag-2">awari</a></li>
+									<li><a href="/tag/personal/" class="tag-4">personal</a></li>
+									<li><a href="/tag/kivy/" class="tag-4">kivy</a></li>
+									<li><a href="/tag/android/" class="tag-4">android</a></li>
+									<li><a href="/tag/games/" class="tag-4">games</a></li>
+									<li><a href="/tag/cgrr/" class="tag-2">cgrr</a></li>
+									<li><a href="/tag/autofill-ebay/" class="tag-4">autofill-ebay</a></li>
+								</ul>
+							</div>
 
-</body>
+
+							<div class="panel">
+								<h5>Links</h5>
+								<ul class="side-nav">
+									<li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+								</ul>
+							</div>
+						</aside>
+						<!-- End Sidebar -->
+					</div>
+
+					<!-- Footer -->
+					<footer class="row">
+						<div class="medium-9 small-12">
+							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
+						</div>
+					</footer>
+					<!-- End Footer -->
+				</section>
+				<a class="exit-off-canvas"></a>
+			</div><!--off-canvas inner-->
+		</div><!--off-canvas wrap-->
+
+		<script src="./theme/js/jquery.js"></script>
+		<script src="./theme/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
 </html>

@@ -1,42 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="utf-8" />
-        <title>Sleepy Coding - assembly</title>
-        <link rel="stylesheet" href="../theme/css/main.css" />
-        <link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-</head>
+		<title>Sleepy Coding</title>
+		<meta name="description" content="">
+		<meta name="author" content="Tracy Poff">
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="../index.html">Sleepy Coding </a></h1>
-                <nav><ul>
-                    <li><a href="../pages/about-me.html">About</a></li>
-                    <li><a href="../pages/projects.html">Projects</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+		<link rel="stylesheet" href="../theme/css/foundation.css" />
+		<link rel="stylesheet" href="../theme/css/pygment/monokai.css" />
+		<link rel="stylesheet" href="../theme/css/custom.css" />
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="../assembly.html">Assembly</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2015-06-17T15:20:56-04:00">
-                Published: Wed 17 June 2015
-        </abbr>
-		<br />
-        <abbr class="modified" title="2015-06-17T15:20:56-04:00">
-                Updated: Wed 17 June 2015
-        </abbr>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="../author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="../tag/assembly.html">assembly</a> <a href="../tag/games.html">games</a> </p>
-</footer><!-- /.post-info --><p>Recently, I saw a new game from Zachtronics, <a href="http://www.zachtronics.com/tis-100/"><span class="caps">TIS</span>-100</a>, which was released
+		<script src="../theme/js/modernizr.js"></script>
+
+		<!-- Feeds -->
+		<link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
+
+
+		<!-- mathjax config similar to math.stackexchange -->
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax: {
+				inlineMath: [ ['$', '$'] ],
+				displayMath: [ ['$$', '$$']],
+				processEscapes: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+			},
+			messageStyle: "none",
+			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+		});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+	<body>
+		<div class="off-canvas-wrap">
+			<div class="inner-wrap">
+				<!-- mobile top bar to activate nav -->
+				<nav class="tab-bar show-for-small">
+					<section class="left-small">
+						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+					</section>
+
+					<section class="middle tab-bar-section">
+						<h1 class="title">Sleepy&nbsp;Coding</h1>
+					</section>
+				</nav>
+
+				<!-- mobile side bar nav -->
+				<aside class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<li><a href="..">Home</a></li>
+						<li><label>Categories</label></li>
+							<li ><a href="../category/misc.html">misc</a></li>
+
+						<li><label>Places</label></li>
+							<li><a href="http://getpelican.com/">Pelican</a></li>
+							<li><a href="http://python.org/">Python.org</a></li>
+							<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+
+
+
+						<li><label>Links</label></li>
+							<li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+					</ul>	
+				</aside>
+
+				<!-- top bar nav -->
+				<nav class="top-bar hide-for-small-only" data-topbar>
+					<ul class="title-area">
+						<li class="name">
+							<h1><a href="../">Sleepy Coding</a></h1>
+						</li>
+					</ul>
+
+					<section class="top-bar-section">
+						<ul class="left">
+								<li ><a href="../category/misc.html">misc</a></li>
+						</ul>
+					</section>
+				</nav>
+
+				<!-- Main Page Content and Sidebar -->
+				<section class="main-section">
+					<div class="row">
+						<!-- Main Content -->
+						<div class="medium-9 small-12 columns" role="content">
+							<div class="row">
+								<div class="small-12 columns">
+									<h2>Posts Tagged With 'assembly'</h2>
+								</div>
+							</div>
+
+<article>
+	<h3><a href="../assembly.html">Assembly</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Wed 17 June 2015. Tags: <a href="../tag/assembly.html">assembly</a>, <a href="../tag/games.html">games</a>, </h6>
+	<p>Recently, I saw a new game from Zachtronics, <a href="http://www.zachtronics.com/tis-100/"><span class="caps">TIS</span>-100</a>, which was released
 <a href="http://store.steampowered.com/app/370360/">on Steam</a> as an early access title on the first of June. In some ways,
 calling it a game is overstating it: it&#8217;s basically just a collection of
 programming problems with an interface. The catch is that you&#8217;re programming in
@@ -70,37 +131,81 @@ write an emulator, and I hope to transfer this knowledge to other platforms. In
 particular, I&#8217;m interested in looking at C64 assembly. It&#8217;d be nice to look at
 some of those old games with a better idea of what&#8217;s going on! For now, though
 it&#8217;s just learning for the sake of learning. I&#8217;m a way off from doing anything
-very interesting with&nbsp;it.</p>                </article>
-<p class="paginator">
-    Page 1 / 1
-</p>
-            </aside><!-- /#featured -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+very interesting with&nbsp;it.</p>
+</article>
+<hr />
 
-                            <li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+						</div>
+						<!-- End Main Content -->
+						<!-- Sidebar -->
+						<aside class="medium-3 hide-for-small-only columns">
+							<div class="panel">
+								<h5>Places</h5>
+								<ul class="side-nav">
+									<li><a href="http://getpelican.com/">Pelican</a></li>
+									<li><a href="http://python.org/">Python.org</a></li>
+									<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+								</ul>
+							</div>
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+							<div class="panel">
+								<h5>Tags</h5>
+								<ul class="tag-cloud">
+									<li><a href="/tag/project-euler/" class="tag-4">Project Euler</a></li>
+									<li><a href="/tag/mercurial/" class="tag-2">mercurial</a></li>
+									<li><a href="/tag/javascript/" class="tag-4">javascript</a></li>
+									<li><a href="/tag/gamecube/" class="tag-4">gamecube</a></li>
+									<li><a href="/tag/basic/" class="tag-2">BASIC</a></li>
+									<li><a href="/tag/greasemonkey/" class="tag-4">greasemonkey</a></li>
+									<li><a href="/tag/assembly/" class="tag-4">assembly</a></li>
+									<li><a href="/tag/github/" class="tag-4">github</a></li>
+									<li><a href="/tag/wordspy/" class="tag-1">wordspy</a></li>
+									<li><a href="/tag/quoted-forsooth/" class="tag-2">quoted forsooth</a></li>
+									<li><a href="/tag/haskell/" class="tag-2">Haskell</a></li>
+									<li><a href="/tag/flask-markdown/" class="tag-4">flask-markdown</a></li>
+									<li><a href="/tag/python/" class="tag-1">python</a></li>
+									<li><a href="/tag//" class="tag-4"></a></li>
+									<li><a href="/tag/750-to-org/" class="tag-2">750-to-org</a></li>
+									<li><a href="/tag/porting/" class="tag-2">porting</a></li>
+									<li><a href="/tag/ffcollection/" class="tag-1">ffcollection</a></li>
+									<li><a href="/tag/awari/" class="tag-2">awari</a></li>
+									<li><a href="/tag/personal/" class="tag-4">personal</a></li>
+									<li><a href="/tag/kivy/" class="tag-4">kivy</a></li>
+									<li><a href="/tag/android/" class="tag-4">android</a></li>
+									<li><a href="/tag/games/" class="tag-4">games</a></li>
+									<li><a href="/tag/cgrr/" class="tag-2">cgrr</a></li>
+									<li><a href="/tag/autofill-ebay/" class="tag-4">autofill-ebay</a></li>
+								</ul>
+							</div>
 
-</body>
+
+							<div class="panel">
+								<h5>Links</h5>
+								<ul class="side-nav">
+									<li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+								</ul>
+							</div>
+						</aside>
+						<!-- End Sidebar -->
+					</div>
+
+					<!-- Footer -->
+					<footer class="row">
+						<div class="medium-9 small-12">
+							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
+						</div>
+					</footer>
+					<!-- End Footer -->
+				</section>
+				<a class="exit-off-canvas"></a>
+			</div><!--off-canvas inner-->
+		</div><!--off-canvas wrap-->
+
+		<script src="../theme/js/jquery.js"></script>
+		<script src="../theme/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
 </html>

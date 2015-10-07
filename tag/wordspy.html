@@ -1,42 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="utf-8" />
-        <title>Sleepy Coding - wordspy</title>
-        <link rel="stylesheet" href="../theme/css/main.css" />
-        <link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-</head>
+		<title>Sleepy Coding</title>
+		<meta name="description" content="">
+		<meta name="author" content="Tracy Poff">
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="../index.html">Sleepy Coding </a></h1>
-                <nav><ul>
-                    <li><a href="../pages/about-me.html">About</a></li>
-                    <li><a href="../pages/projects.html">Projects</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+		<link rel="stylesheet" href="../theme/css/foundation.css" />
+		<link rel="stylesheet" href="../theme/css/pygment/monokai.css" />
+		<link rel="stylesheet" href="../theme/css/custom.css" />
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="../wordspy-milestone.html">WordsPy&nbsp;Milestone</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2010-05-16T16:48:00-04:00">
-                Published: Sun 16 May 2010
-        </abbr>
-		<br />
-        <abbr class="modified" title="2010-05-16T16:48:00-04:00">
-                Updated: Sun 16 May 2010
-        </abbr>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="../author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="../tag/wordspy.html">wordspy</a> </p>
-</footer><!-- /.post-info --><p>As of the most recent revision (r18:6453f11b96e6), WordsPy functions as a (bad)
+		<script src="../theme/js/modernizr.js"></script>
+
+		<!-- Feeds -->
+		<link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
+
+
+		<!-- mathjax config similar to math.stackexchange -->
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax: {
+				inlineMath: [ ['$', '$'] ],
+				displayMath: [ ['$$', '$$']],
+				processEscapes: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+			},
+			messageStyle: "none",
+			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+		});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+	<body>
+		<div class="off-canvas-wrap">
+			<div class="inner-wrap">
+				<!-- mobile top bar to activate nav -->
+				<nav class="tab-bar show-for-small">
+					<section class="left-small">
+						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+					</section>
+
+					<section class="middle tab-bar-section">
+						<h1 class="title">Sleepy&nbsp;Coding</h1>
+					</section>
+				</nav>
+
+				<!-- mobile side bar nav -->
+				<aside class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<li><a href="..">Home</a></li>
+						<li><label>Categories</label></li>
+							<li ><a href="../category/misc.html">misc</a></li>
+
+						<li><label>Places</label></li>
+							<li><a href="http://getpelican.com/">Pelican</a></li>
+							<li><a href="http://python.org/">Python.org</a></li>
+							<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+
+
+
+						<li><label>Links</label></li>
+							<li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+					</ul>	
+				</aside>
+
+				<!-- top bar nav -->
+				<nav class="top-bar hide-for-small-only" data-topbar>
+					<ul class="title-area">
+						<li class="name">
+							<h1><a href="../">Sleepy Coding</a></h1>
+						</li>
+					</ul>
+
+					<section class="top-bar-section">
+						<ul class="left">
+								<li ><a href="../category/misc.html">misc</a></li>
+						</ul>
+					</section>
+				</nav>
+
+				<!-- Main Page Content and Sidebar -->
+				<section class="main-section">
+					<div class="row">
+						<!-- Main Content -->
+						<div class="medium-9 small-12 columns" role="content">
+							<div class="row">
+								<div class="small-12 columns">
+									<h2>Posts Tagged With 'wordspy'</h2>
+								</div>
+							</div>
+
+<article>
+	<h3><a href="../wordspy-milestone.html">WordsPy&nbsp;Milestone</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 16 May 2010. Tags: <a href="../tag/wordspy.html">wordspy</a>, </h6>
+	<p>As of the most recent revision (r18:6453f11b96e6), WordsPy functions as a (bad)
 game. The dictionary is hooked up, and it only lets you remove letters if they
 form a word in the dictionary (That’s a rule. Games have rules. Ergo, game.&nbsp;Right?).</p>
 <p>Other&nbsp;features:</p>
@@ -51,99 +112,125 @@ frequencies and use that), creating some kind of status display, and additional
 nice things (score? list of words you made in that session? difficulty levels?
 the possibilities are&nbsp;endless!)</p>
 <p>Edit: and a screenshot for&nbsp;posterity.</p>
-<p><img alt="WordsPy screenshot" src="../images/snap0391.png" /></p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="../wordspy-again.html" rel="bookmark"
-                           title="Permalink to WordsPy, again">WordsPy,&nbsp;again</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2010-05-16T13:10:00-04:00">
-                Published: Sun 16 May 2010
-        </abbr>
-		<br />
-        <abbr class="modified" title="2010-05-16T13:10:00-04:00">
-                Updated: Sun 16 May 2010
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="../author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="../tag/wordspy.html">wordspy</a> <a href="../tag/python.html">python</a> </p>
-</footer><!-- /.post-info -->                <p>Well, the bad news is that wordspy still does nothing other than scroll new
+<p><img alt="WordsPy screenshot" src="../images/snap0391.png" /></p>
+</article>
+<hr />
+<article>
+	<h3><a href="../wordspy-again.html">WordsPy,&nbsp;again</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 16 May 2010. Tags: <a href="../tag/wordspy.html">wordspy</a>, <a href="../tag/python.html">python</a>, </h6>
+	<p>Well, the bad news is that wordspy still does nothing other than scroll new
 lines onto the screen. The good news is that it does it in a better&nbsp;way.</p>
 <p>In order to deal with letters dropping (due to letters below them being removed)
-at the same time as a ...</p>
-                <a class="readmore" href="../wordspy-again.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
+at the same time as a new line was scrolling up, it was necessary to re-engineer
+the whole thing. Now letters store their current location, and it’s modified
+whenever necessary by the newlinescroll and drop actions. This does have some
+other benefits, too. For example, it simplifies drawing the new line onto the
+screen somewhat. Before, I was&nbsp;doing:</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">Game</span><span class="o">.</span><span class="n">letters</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="mi">64</span><span class="o">*</span><span class="n">col</span><span class="p">,</span> <span class="mi">481</span><span class="p">))</span>
+</pre></div>
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="../new-project-wordspy.html" rel="bookmark"
-                           title="Permalink to New Project: WordsPy">New Project:&nbsp;WordsPy</a></h1>
-                </header>
 
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2010-05-15T09:09:00-04:00">
-                Published: Sat 15 May 2010
-        </abbr>
-		<br />
-        <abbr class="modified" title="2010-05-15T09:09:00-04:00">
-                Updated: Sat 15 May 2010
-        </abbr>
+<p>Now, since I initialize the letters with their location, I can just&nbsp;do:</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">Game</span><span class="o">.</span><span class="n">letters</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">letter</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="n">letter</span><span class="o">.</span><span class="n">rect</span><span class="p">)</span>
+</pre></div>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="../author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="../tag/wordspy.html">wordspy</a> </p>
-</footer><!-- /.post-info -->                <p>I found that I wanted to play Word Zap/Word Jolt/Bookworm/whatever word
+
+<p>Which is rather more&nbsp;readable.</p>
+<p>Lesson learned, though: don’t forget to empty the dirty rectangles list after
+updating the screen. Once it grows to 64 items or so, it noticeably slows down
+the game. I’m fairly sure it shouldn’t contain more than a dozen or so items
+under normal usage, but I’ll have to remember to keep an eye on&nbsp;it.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="../new-project-wordspy.html">New Project:&nbsp;WordsPy</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sat 15 May 2010. Tags: <a href="../tag/wordspy.html">wordspy</a>, </h6>
+	<p>I found that I wanted to play Word Zap/Word Jolt/Bookworm/whatever word
 construction game, but I didn’t seem to have one on hand, and <a href="http://www.popcap.com/games/free/bookworm">the version of
 Bookworm I found</a> was far from
-satisfying. So, I did what anyone would do: set out to make my&nbsp;own ...</p>
-                <a class="readmore" href="../new-project-wordspy.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-<p class="paginator">
-    Page 1 / 1
-</p>
-                </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+satisfying. So, I did what anyone would do: set out to make my&nbsp;own.</p>
+<p>I’ve been wanting to learn to use pygame for a while, and this seemed like a
+good opportunity. I’ve had my fair share of trouble so far, but I think I’m
+beginning to get a handle on how to use it. It’s
+<a href="http://bitbucket.org/sopoforic/wordspy">here</a> for now, though it’s not playable
+yet&#8212;it only generates the letters and scrolls them onto the screen. Still, it’s
+a&nbsp;start.</p>
+</article>
+<hr />
 
-                            <li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+						</div>
+						<!-- End Main Content -->
+						<!-- Sidebar -->
+						<aside class="medium-3 hide-for-small-only columns">
+							<div class="panel">
+								<h5>Places</h5>
+								<ul class="side-nav">
+									<li><a href="http://getpelican.com/">Pelican</a></li>
+									<li><a href="http://python.org/">Python.org</a></li>
+									<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+								</ul>
+							</div>
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+							<div class="panel">
+								<h5>Tags</h5>
+								<ul class="tag-cloud">
+									<li><a href="/tag/project-euler/" class="tag-4">Project Euler</a></li>
+									<li><a href="/tag/mercurial/" class="tag-2">mercurial</a></li>
+									<li><a href="/tag/javascript/" class="tag-4">javascript</a></li>
+									<li><a href="/tag/gamecube/" class="tag-4">gamecube</a></li>
+									<li><a href="/tag/basic/" class="tag-2">BASIC</a></li>
+									<li><a href="/tag/greasemonkey/" class="tag-4">greasemonkey</a></li>
+									<li><a href="/tag/assembly/" class="tag-4">assembly</a></li>
+									<li><a href="/tag/github/" class="tag-4">github</a></li>
+									<li><a href="/tag/wordspy/" class="tag-1">wordspy</a></li>
+									<li><a href="/tag/quoted-forsooth/" class="tag-2">quoted forsooth</a></li>
+									<li><a href="/tag/haskell/" class="tag-2">Haskell</a></li>
+									<li><a href="/tag/flask-markdown/" class="tag-4">flask-markdown</a></li>
+									<li><a href="/tag/python/" class="tag-1">python</a></li>
+									<li><a href="/tag//" class="tag-4"></a></li>
+									<li><a href="/tag/750-to-org/" class="tag-2">750-to-org</a></li>
+									<li><a href="/tag/porting/" class="tag-2">porting</a></li>
+									<li><a href="/tag/ffcollection/" class="tag-1">ffcollection</a></li>
+									<li><a href="/tag/awari/" class="tag-2">awari</a></li>
+									<li><a href="/tag/personal/" class="tag-4">personal</a></li>
+									<li><a href="/tag/kivy/" class="tag-4">kivy</a></li>
+									<li><a href="/tag/android/" class="tag-4">android</a></li>
+									<li><a href="/tag/games/" class="tag-4">games</a></li>
+									<li><a href="/tag/cgrr/" class="tag-2">cgrr</a></li>
+									<li><a href="/tag/autofill-ebay/" class="tag-4">autofill-ebay</a></li>
+								</ul>
+							</div>
 
-</body>
+
+							<div class="panel">
+								<h5>Links</h5>
+								<ul class="side-nav">
+									<li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+								</ul>
+							</div>
+						</aside>
+						<!-- End Sidebar -->
+					</div>
+
+					<!-- Footer -->
+					<footer class="row">
+						<div class="medium-9 small-12">
+							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
+						</div>
+					</footer>
+					<!-- End Footer -->
+				</section>
+				<a class="exit-off-canvas"></a>
+			</div><!--off-canvas inner-->
+		</div><!--off-canvas wrap-->
+
+		<script src="../theme/js/jquery.js"></script>
+		<script src="../theme/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
 </html>
