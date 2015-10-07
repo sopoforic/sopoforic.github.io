@@ -21,3 +21,7 @@ I can be found in several places online.
 ## Blogs, etc.
 
 * [This Very Blog](https://sopoforic.github.io/)
+
+## Badges
+
+* [![Project Euler Badge](https://projecteuler.net/profile/tpoff.png)](https://projecteuler.net/)
