@@ -22,7 +22,103 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="./status-update-2015-07-02-230314.html">Status Update: 2015-07-02&nbsp;23:03:14</a></h1>
+                    <h1 class="entry-title"><a href="./flask-markdown-bug.html">Flask-Markdown&nbsp;bug</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-10-07T08:01:59-04:00">
+                Published: Wed 07 October 2015
+        </abbr>
+		<br />
+        <abbr class="modified" title="2015-10-07T08:01:59-04:00">
+                Updated: Wed 07 October 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
+        </address>
+<p>tags: <a href="./tag/quoted-forsooth.html">quoted forsooth</a> <a href="./tag/flask-markdown.html">flask-markdown</a> </p>
+</footer><!-- /.post-info --><p>I encountered a mysterious bug in Flask-Markdown: footnotes in one document were polluting others. I noticed footnotes being duplicated in a markdown-formatted sidebar, and then I found them showing up on new pages&nbsp;altogether.</p>
+<p>The (approximate) cause was obvious: markdown was keeping state between different&nbsp;renders.</p>
+<p>It turns out that Python-Markdown allows you to instantiate a renderer with options set and reuse that, if you choose, and Flask-Markdown takes advantage of this. However, when using Python-Markdown in that way, you need to <code>reset()</code> the instance between&nbsp;renders.</p>
+<p>Solution: change line 69 of Flask-Markdown&#8217;s markdown.py&nbsp;from:</p>
+<div class="highlight"><pre>        <span class="k">return</span> <span class="n">Markup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_instance</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">stream</span><span class="p">))</span>
+</pre></div>
+
+
+<p>to</p>
+<div class="highlight"><pre>        <span class="k">return</span> <span class="n">Markup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_instance</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">stream</span><span class="p">))</span>
+</pre></div>
+
+
+<p>Simple.</p>
+<p>Unfortunately, it looks like the maintainer of Flask-Markdown hasn&#8217;t been active on github in quite a while, so this problem may&nbsp;persist.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="./building-a-better-mousetrap.html" rel="bookmark"
+                           title="Permalink to Building a Better Mousetrap">Building a Better&nbsp;Mousetrap</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-10-06T08:54:55-04:00">
+                Published: Tue 06 October 2015
+        </abbr>
+		<br />
+        <abbr class="modified" title="2015-10-06T08:54:55-04:00">
+                Updated: Tue 06 October 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
+        </address>
+<p>tags: <a href="./tag/python.html">python</a> <a href="./tag/quoted-forsooth.html">quoted forsooth</a> </p>
+</footer><!-- /.post-info -->                <p>All of my public projects have been suffering, lately (not that I&#8217;ve ever been the most constant of writers), because I&#8217;ve been working in the background on a tool to aid me in my&nbsp;research.</p>
+<p>Some background: Until now, I&#8217;ve been collecting my copious notes in <a href="http://wikidpad.sourceforge.net/">wikidPad ...</a></p>
+                <a class="readmore" href="./building-a-better-mousetrap.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="./beautifulsoup.html" rel="bookmark"
+                           title="Permalink to BeautifulSoup">BeautifulSoup</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-09-15T13:30:24-04:00">
+                Published: Tue 15 September 2015
+        </abbr>
+		<br />
+        <abbr class="modified" title="2015-09-15T13:30:24-04:00">
+                Updated: Tue 15 September 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
+        </address>
+<p>tags: <a href="./tag/.html"></a> </p>
+</footer><!-- /.post-info -->                <p>BeautifulSoup is really excellent. I should have started using it ages ago. In
+probably less than an hour, I turned my custom-built horrible, fragile,
+regex monstrosity of a parser into a much more robust and, more importantly,
+understandable scraper with half as many lines of&nbsp;code.</p>
+<p>The lesson, as it ...</p>
+                <a class="readmore" href="./beautifulsoup.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="./status-update-2015-07-02-230314.html" rel="bookmark"
+                           title="Permalink to Status Update: 2015-07-02 23:03:14">Status Update: 2015-07-02&nbsp;23:03:14</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2015-07-02T23:03:14-04:00">
                 Published: Thu 02 July 2015
@@ -36,7 +132,7 @@
                 By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
         </address>
 <p>tags: <a href="./tag/personal.html">personal</a> </p>
-</footer><!-- /.post-info --><p>Status&nbsp;update.</p>
+</footer><!-- /.post-info -->                <p>Status&nbsp;update.</p>
 <table>
 <thead>
 <tr>
@@ -62,12 +158,10 @@
 <td>About a third done.</td>
 </tr>
 </tbody>
-</table>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</table>
+                <a class="readmore" href="./status-update-2015-07-02-230314.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -239,93 +333,9 @@ Haskell&#8217;–but ...</p>
                 <a class="readmore" href="./learning-haskell.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="./ffcollection-update.html" rel="bookmark"
-                           title="Permalink to ffcollection update">ffcollection&nbsp;update</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2011-09-21T20:06:00-04:00">
-                Published: Wed 21 September 2011
-        </abbr>
-		<br />
-        <abbr class="modified" title="2011-09-21T20:06:00-04:00">
-                Updated: Wed 21 September 2011
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="./tag/ffcollection.html">ffcollection</a> </p>
-</footer><!-- /.post-info -->                <p>Somehow, I didn&#8217;t have the source code for ffcollection under version control.
-No idea how I managed that, since it&#8217;s usually the first thing I do. Stranger
-still that I didn&#8217;t notice I wasn&#8217;t occasionally committing&#8212;I don&#8217;t use any
-kind of automatic committing tool ...</p>
-                <a class="readmore" href="./ffcollection-update.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="./ffcollection-progress.html" rel="bookmark"
-                           title="Permalink to ffcollection progress">ffcollection&nbsp;progress</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2011-07-06T05:29:00-04:00">
-                Published: Wed 06 July 2011
-        </abbr>
-		<br />
-        <abbr class="modified" title="2011-07-06T05:29:00-04:00">
-                Updated: Wed 06 July 2011
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="./tag/ffcollection.html">ffcollection</a> <a href="./tag/python.html">python</a> </p>
-</footer><!-- /.post-info -->                <p>I mentioned previously that I was working on a fanfiction database. Well, time
-for an update: it’s in a functional state, though quite basic. I can feed it a
-FanFiction.Net <span class="caps">ID</span> and it will download the fanfic and put it in the database
-with some very basic metadata ...</p>
-                <a class="readmore" href="./ffcollection-progress.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="./750-to-org-v02.html" rel="bookmark"
-                           title="Permalink to 750-to-org, v0.2">750-to-org,&nbsp;v0.2</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2011-06-19T15:09:00-04:00">
-                Published: Sun 19 June 2011
-        </abbr>
-		<br />
-        <abbr class="modified" title="2011-06-19T15:09:00-04:00">
-                Updated: Sun 19 June 2011
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/tracy-poff.html">Tracy Poff</a>
-        </address>
-<p>tags: <a href="./tag/750-to-org.html">750-to-org</a> </p>
-</footer><!-- /.post-info -->                <p>I did a little cleanup on the code for 750-to-org, so I went ahead and called it
-0.2. I did some more testing, so unless 750 Words does something quite
-unexpected, 750-to-org should just&nbsp;work.</p>
-<p>I should probably set 750-to-org up so you can give it filenames as arguments ...</p>
-                <a class="readmore" href="./750-to-org-v02.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
                 </ol><!-- /#posts-list -->
 <p class="paginator">
-    Page 1 / 2
+    Page 1 / 3
         <a href="./index2.html">&raquo;</a>
 </p>
                 </section><!-- /#content -->

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>Sleepy Coding - </title>
+        <title>Sleepy Coding - flask-markdown</title>
         <link rel="stylesheet" href="../theme/css/main.css" />
         <link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
 
@@ -22,25 +22,35 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../beautifulsoup.html">BeautifulSoup</a></h1>
+                    <h1 class="entry-title"><a href="../flask-markdown-bug.html">Flask-Markdown&nbsp;bug</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2015-09-15T13:30:24-04:00">
-                Published: Tue 15 September 2015
+        <abbr class="published" title="2015-10-07T08:01:59-04:00">
+                Published: Wed 07 October 2015
         </abbr>
 		<br />
-        <abbr class="modified" title="2015-09-15T13:30:24-04:00">
-                Updated: Tue 15 September 2015
+        <abbr class="modified" title="2015-10-07T08:01:59-04:00">
+                Updated: Wed 07 October 2015
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="../author/tracy-poff.html">Tracy Poff</a>
         </address>
-<p>tags: <a href="../tag/.html"></a> </p>
-</footer><!-- /.post-info --><p>BeautifulSoup is really excellent. I should have started using it ages ago. In
-probably less than an hour, I turned my custom-built horrible, fragile,
-regex monstrosity of a parser into a much more robust and, more importantly,
-understandable scraper with half as many lines of&nbsp;code.</p>
-<p>The lesson, as it often is, is to use the right tool for the&nbsp;job.</p>                </article>
+<p>tags: <a href="../tag/quoted-forsooth.html">quoted forsooth</a> <a href="../tag/flask-markdown.html">flask-markdown</a> </p>
+</footer><!-- /.post-info --><p>I encountered a mysterious bug in Flask-Markdown: footnotes in one document were polluting others. I noticed footnotes being duplicated in a markdown-formatted sidebar, and then I found them showing up on new pages&nbsp;altogether.</p>
+<p>The (approximate) cause was obvious: markdown was keeping state between different&nbsp;renders.</p>
+<p>It turns out that Python-Markdown allows you to instantiate a renderer with options set and reuse that, if you choose, and Flask-Markdown takes advantage of this. However, when using Python-Markdown in that way, you need to <code>reset()</code> the instance between&nbsp;renders.</p>
+<p>Solution: change line 69 of Flask-Markdown&#8217;s markdown.py&nbsp;from:</p>
+<div class="highlight"><pre>        <span class="k">return</span> <span class="n">Markup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_instance</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">stream</span><span class="p">))</span>
+</pre></div>
+
+
+<p>to</p>
+<div class="highlight"><pre>        <span class="k">return</span> <span class="n">Markup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_instance</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">stream</span><span class="p">))</span>
+</pre></div>
+
+
+<p>Simple.</p>
+<p>Unfortunately, it looks like the maintainer of Flask-Markdown hasn&#8217;t been active on github in quite a while, so this problem may&nbsp;persist.</p>                </article>
 <p class="paginator">
     Page 1 / 1
 </p>

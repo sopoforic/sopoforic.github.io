@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Sleepy Coding - quoted forsooth</title>
+        <link rel="stylesheet" href="../theme/css/main.css" />
+        <link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="../index.html">Sleepy Coding </a></h1>
+                <nav><ul>
+                    <li><a href="../pages/about-me.html">About</a></li>
+                    <li><a href="../pages/projects.html">Projects</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="../flask-markdown-bug.html">Flask-Markdown&nbsp;bug</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-10-07T08:01:59-04:00">
+                Published: Wed 07 October 2015
+        </abbr>
+		<br />
+        <abbr class="modified" title="2015-10-07T08:01:59-04:00">
+                Updated: Wed 07 October 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="../author/tracy-poff.html">Tracy Poff</a>
+        </address>
+<p>tags: <a href="../tag/quoted-forsooth.html">quoted forsooth</a> <a href="../tag/flask-markdown.html">flask-markdown</a> </p>
+</footer><!-- /.post-info --><p>I encountered a mysterious bug in Flask-Markdown: footnotes in one document were polluting others. I noticed footnotes being duplicated in a markdown-formatted sidebar, and then I found them showing up on new pages&nbsp;altogether.</p>
+<p>The (approximate) cause was obvious: markdown was keeping state between different&nbsp;renders.</p>
+<p>It turns out that Python-Markdown allows you to instantiate a renderer with options set and reuse that, if you choose, and Flask-Markdown takes advantage of this. However, when using Python-Markdown in that way, you need to <code>reset()</code> the instance between&nbsp;renders.</p>
+<p>Solution: change line 69 of Flask-Markdown&#8217;s markdown.py&nbsp;from:</p>
+<div class="highlight"><pre>        <span class="k">return</span> <span class="n">Markup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_instance</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">stream</span><span class="p">))</span>
+</pre></div>
+
+
+<p>to</p>
+<div class="highlight"><pre>        <span class="k">return</span> <span class="n">Markup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_instance</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">stream</span><span class="p">))</span>
+</pre></div>
+
+
+<p>Simple.</p>
+<p>Unfortunately, it looks like the maintainer of Flask-Markdown hasn&#8217;t been active on github in quite a while, so this problem may&nbsp;persist.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="../building-a-better-mousetrap.html" rel="bookmark"
+                           title="Permalink to Building a Better Mousetrap">Building a Better&nbsp;Mousetrap</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-10-06T08:54:55-04:00">
+                Published: Tue 06 October 2015
+        </abbr>
+		<br />
+        <abbr class="modified" title="2015-10-06T08:54:55-04:00">
+                Updated: Tue 06 October 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="../author/tracy-poff.html">Tracy Poff</a>
+        </address>
+<p>tags: <a href="../tag/python.html">python</a> <a href="../tag/quoted-forsooth.html">quoted forsooth</a> </p>
+</footer><!-- /.post-info -->                <p>All of my public projects have been suffering, lately (not that I&#8217;ve ever been the most constant of writers), because I&#8217;ve been working in the background on a tool to aid me in my&nbsp;research.</p>
+<p>Some background: Until now, I&#8217;ve been collecting my copious notes in <a href="http://wikidpad.sourceforge.net/">wikidPad ...</a></p>
+                <a class="readmore" href="../building-a-better-mousetrap.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
