@@ -27,10 +27,14 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
+MENUITEMS = [
+                ('About', 'pages/about-me.html'),
+                ('Projects', 'pages/projects.html'),
+            ]
+
 # Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),)
+# LINKS = (('Pelican', 'http://getpelican.com/'),
+#          ('Jinja2', 'http://jinja.pocoo.org/'),)
 
 # Social widget
 SOCIAL = (('@TracyPoff', 'https://twitter.com/TracyPoff'),)
