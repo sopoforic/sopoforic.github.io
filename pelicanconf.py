@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Tracy Poff'
 SITENAME = u'Sleepy Coding'
-THEME = u'notmyidea'
+THEME= 'foundation-default-colours'
+FOUNDATION_FRONT_PAGE_FULL_ARTICLES = True
 SITEURL = u'https://sopoforic.github.io'
 OUTPUT_PATH = u'output'
 STATIC_PATHS = [u'images', u'extra/favicon.ico']
