@@ -7,6 +7,14 @@ Authors: Tracy Poff
 
 Since my projects are scattered about, here I'll collect a few of them.
 
+# Current projects
+
+[Gemstash](https://github.com/sopoforic/gemstash)
+:    A server-free memcached replacement.
+
+[Quoted Forsooth](https://github.com/sopoforic/quoted-forsooth)
+:    A personal wiki/database. Presently of use mostly just to me.
+
 ## CGRR
 
 Broadly speaking, the purpose of this is to decode various file formats, in
@@ -45,7 +53,7 @@ subprojects that use a common library, each typically supporting a single game.
 [![Build Status](https://travis-ci.org/sopoforic/cgrr-megapede.svg?branch=master)](https://travis-ci.org/sopoforic/cgrr-megapede)
 [![Code Health](https://landscape.io/github/sopoforic/cgrr-megapede/master/landscape.svg?style=flat)](https://landscape.io/github/sopoforic/cgrr-megapede/master)
 
-## Other projects
+# Other projects
 
 [750-to-org](https://github.com/sopoforic/750-to-org)
 :    A script that takes monthly export files from 750 words and converts them
