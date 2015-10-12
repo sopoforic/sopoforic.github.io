@@ -91,6 +91,374 @@
 						<div class="medium-9 small-12 columns" role="content">
 
 <article>
+	<h3><a href="../interlude-modifying-saves.html">Interlude: Modifying&nbsp;Saves</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Mon 02 September 2013. Tags: <a href="../tag/dot-hack.html">dot hack</a>, </h6>
+	<p>I wrote last time that I was going to modify a save in order to test what range of values was acceptable. Time to get to work on that. Well, actually, time to continue&nbsp;work.</p>
+<p>I&#8217;ve written a program that can extract information from the saves and (in principle) write it back to them. I&#8217;ve been using Ross Ridge&#8217;s mymc utility to get the save file off the memory card. It seemed pretty convenient, since mymc is written in python, as is my program (inventively called &#8220;dothacksaveparser.py&#8221;). I figured that when it came time to actually modify files, I&#8217;d just import mymc do my magic, and problem&nbsp;solved.</p>
+<p>It was not to&nbsp;be.</p>
+<p>First, mymc is an interactive program, and there&#8217;s no easy way to use it as a library&#8212;in fact, if you try to import it, it&#8217;ll just kill your program. Bad. There important initialization stuff done in the main function, so I can&#8217;t just just wrap it all in if <strong>name</strong> == &#8220;<strong>main</strong>&#8220;, either. Maybe I&#8217;ll eventually get it sorted out into a more useful form, but for now, importing is&nbsp;out.</p>
+<p>No problem, I though, I can just run the thing and have take its input from stdin and print to stdout, and it&#8217;ll be pretty much the same thing. So I try it. And&#8230; I&#8217;m getting files of the wrong&nbsp;size.</p>
+<p>The save files for .hack//Infection are 34096 bytes. Somehow, when I had the files output to stdout, a hundred or so bytes were getting added. Mysterious. I compare the files, and notice that they look pretty similar, but misaligned. In fact, there are extraneous 0x0D bytes added throughout. A little closer look reveals that each extra 0x0D occurs before a 0x0A that was in the original file. Now, those are some low bytes&#8230; control codes&#8230; I look it up, and, indeed, python is adding a carriage return before each &#8216;line feed&#8217;. Of course, since it&#8217;s a binary file, there aren&#8217;t actually any line feeds, but&#8230; there you have&nbsp;it.</p>
+<p>Some research revealed the right solution to that problem,&nbsp;though:</p>
+<div class="highlight"><pre><span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">&quot;win32&quot;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">msvcrt</span>
+    <span class="n">msvcrt</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span> <span class="n">os</span><span class="o">.</span><span class="n">O_BINARY</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Useful snippet of&nbsp;code.</p>
+<p>So, problem solved&#8230; almost there. Now I can read the files in, and I know how to calculate the checksum and export the files again. One problem: the function for adding files to a memory card will not accept input from stdin. Why not? Why can I get files extracted to stdout but not added from&nbsp;stdin?</p>
+<p>Fine. I&#8217;ll write the files to disk so that they can be&nbsp;added.</p>
+<p>I do all that, and it&#8217;s time for a test. No modifications. Just read the file in and spit it back out. And&#8230; failure. Bizarrely, a huge number of bytes have been modified in the memory card file, but I can&#8217;t see why. Executing the same commands manually works fine. What&#8217;s happening? I try again, and&#8230; it works. Let it be known that the worst words to hear are &#8220;intermittent error&#8221;. I have no clue what went wrong the first time. I&#8217;m going to hope that it was&#8230; I don&#8217;t know&#8230; solar&nbsp;flares.</p>
+<p>Anyway, this story&#8217;s drawing to a close. Having a successful test on unmodified files, what&#8217;s left is to try a simple modification. How about giving Kite <span class="caps">15000GP</span>?</p>
+<p><img alt=".hack//Infection lots of money" src="../images/dhi-money-0032.jpg" /></p>
+<p>I&#8217;m rich. As Kite is my witness, I&#8217;ll never go hungry&nbsp;again!</p>
+</article>
+<hr />
+<article>
+	<h3><a href="../saves-0031-0032-taking-inventory-part-1.html">Saves 0031-0032: Taking Inventory, part&nbsp;1</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Mon 02 September 2013. Tags: <a href="../tag/dot-hack.html">dot hack</a>, </h6>
+	<p>Offset 0x004B changed from 03 to 04. That&#8217;s probably the quantity of fortune wire Kite has. The question at the moment is whether fortune wire is always stored at that offset or whether it&#8217;s tied to some other value that marks it as fortune&nbsp;wire.</p>
+<p>Offset 0x687E changed from <span class="caps">FF</span> to 00. Not sure what that&#8217;s&nbsp;about.</p>
+<p>Offset 0x749C changed from E8 to <span class="caps">DE</span>. Now, the one after that is 03, and 0x03E8 is 1000 in decimal, and 0x03DE is 990. I&#8217;d say I&#8217;ve found where money is stored. I&#8217;m guessing it&#8217;s a 32-bit value, too, but it may not be&#8212;or maybe there&#8217;s a maximum enforced elsewhere. For now, though, I&#8217;m going with&nbsp;it.</p>
+<p>Now, as for that mysterious 0x687E&#8230; I did accidentally speak to a person running around town. Didn&#8217;t actually hit &#8216;talk&#8217; or &#8216;trade&#8217;, but I did open up that menu. Maybe it&#8217;s tracking who I&#8217;ve spoken to? Easy way to test that. Load save 0030, buy some fortune wire without talking to anyone, save again: save&nbsp;0032.</p>
+<p>And&#8230; oh dear. Lots of changes in the region I guessed to be stats and/or inventory. I&#8217;ll be ignoring those, for now. 0x687E is indeed still <span class="caps">FF</span> in the new save, so I&#8217;m going to tentatively assume I was right about that&nbsp;one.</p>
+<p>So, I was going to test out what the money limit was, but when I made a modification, the game told me the save file was corrupt. After some careful checking, I&#8217;m thinking that there&#8217;s a checksum&nbsp;somewhere.</p>
+<p>&#8230;and I just wasted an hour that I didn&#8217;t have to waste. There is indeed a checksum. There&#8217;s a file <span class="caps">BASLUS</span>-<span class="caps">20267DOTHACK</span> in the save directory on the memory card, which I believed to contain the checksum. I was right about this. However, I was wrong about exactly what the checksum was. In these files, I found four bytes changing from save to save. I naturally assumed I was looking at a 32-bit checksum. However, it didn&#8217;t seem to be a simple accumulator-based checksum, nor a <span class="caps">CRC</span>-32. So, I now suspected it was either a custom checksum (why?) or they were only performing the sum on part of the file. This was looking like a big&nbsp;undertaking.</p>
+<p>After a while, I noticed that when I was playing around with that file, modifying what I thought to be the checksum, I was getting weird behavior. Particularly, I noticed that the clock for how long the save had been played was&nbsp;different.</p>
+<p>Ah-ha!</p>
+<p>Two of those bytes were actually from the clock. It&#8217;s only a 16-bit checksum&#8212;a simple accumulator. Now that I know it, I can calculate the appropriate checksum for my modified file and insert&nbsp;it.</p>
+<p>That&#8217;ll have to wait for next time, though. I&#8217;ve had quite enough save file hacking for one&nbsp;night.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="../saves-0025-0030-welcome-to-the-world.html">Saves 0025-0030: Welcome to The&nbsp;World</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 01 September 2013. Tags: <a href="../tag/dot-hack.html">dot hack</a>, </h6>
+	<p>Okay, enough preliminaries. Time to log in to The World. We&#8217;re treated to a shot of Kite appearing in Mac Anu, meeting up with&nbsp;Orca.</p>
+<p>Got Orca&#8217;s member address. Entered Bursting Passed Over Aqua Field. Killed some stuff. Plot&nbsp;happens!</p>
+<p>Okay, new save (0025). Diff&nbsp;them&#8230;</p>
+<p>Oh! So many changes! Where to&nbsp;begin?</p>
+<p>Previously, the section after the user and character names was just a repeating string of <span class="caps">FFFFFF00</span>. Now, there&#8217;s another byte pattern repeating throughout that&nbsp;section:</p>
+<div class="highlight"><pre>00 00 0A 05 03 00 0A 05 04 00 0A 05 05 00 0A 05
+01 00 0D 05 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+</pre></div>
+
+
+<p>That repeats several&nbsp;times.</p>
+<p>A byte at 0x0D37. has change from 00 to 01. Starting at 0x12B8, lots of 4-byte sections have changed from <span class="caps">FFFFFF00</span> to something else. The last one is at 0x1DB8-0x1DBB. Just after that, a couple of 4-byte sections changed from 00000000 to something else. At 0x1E7A, two bytes change from 0000 to 0401. There&#8217;s a region from 0x1EC4 to 0x2193 that was previously filled with <span class="caps">FF</span>. Now, it&#8217;s got some other stuff scattered about. There are 1-byte changes at 0x2220, 0x2224, and 0x226A. Two bytes change at 0x246A-0x246B. One byte at 0x421C. One at 0x4FE5. Four bytes at 0x523C and two at&nbsp;0x5278.</p>
+<p>&#8230;</p>
+<p>Well, the point is that there are lots of changes. There&#8217;s no way I can possibly understand them all by just looking at this one&nbsp;diff.</p>
+<p>That said, I can probably sort out at least one thing: more mail. I had a new unread mail when I saved, so let&#8217;s look at the area where the previous mail was&#8212;0x23A4. Previously, it was 02 when the mail was unread, and 04 when the mail was read. Now, there&#8217;s a byte changed up above here: 0x226A has changed from 00 to 02. I&#8217;m guessing that byte represents the new email. Save 0026: I&#8217;m&nbsp;right.</p>
+<p>Also, given that the two bytes before that one are 04, I&#8217;m guessing those represented the other two emails that I read before making the first&nbsp;save.</p>
+<p>Okay, try to log in to The World again&#8230; all servers are down for maintenance. Well, let&#8217;s go ahead and make save 0027, just to see what happens&#8230; ah, two bytes changed: 0x2944 changed from 00 to 07, and 0x5548 changed from 01 to 03.&nbsp;Why?</p>
+<p>Anyway, &#8220;I should post on the Board about Yasuhiko.&#8221; Okay, message posted, and I have new mail. First, though: save&nbsp;0028.</p>
+<p>Several changes. One at 0x226B&#8212;that&#8217;ll be the new mail. Two bytes at 0x246B-0x246C&#8212;don&#8217;t know about this one. 0x2944 changed from 07 to 03. Given its location, that should be the post I made to the board, I&#8217;m thinking. Also, 0x5548 changed from 03 to 33. Don&#8217;t know what that one does, either. Some kind of flag, I&nbsp;guess.</p>
+<p>That email, it&#8217;s from &#8220;Au]$&#8221;. How mysterious. Save 0029. And now I see tha the email at 0x226B shows up as read, and the byte at 0x5548 has changed from 33 to 73. That&#8217;s surely tracking the state of the game. It&#8217;s taken on five different values, so&nbsp;far.</p>
+<p>Well, let&#8217;s log in to The World, again. Ah, there&#8217;s BlackRose, behaving suspiciously. Well, first order of business: save&nbsp;0030.</p>
+<p>So many changes! There are lots of small changes between 0x13F8 and 0x1E3A. Given the location, I&#8217;m guessing those are related to BlackRose&#8212;either inventory or stats, or maybe both. The ones that changed before probably belonged to Kite and&nbsp;Orca.</p>
+<p>0x5548 changed again, to F3. A couple of other bytes changed near there, too: 0x554F-0x5550 changed from 0000 to C015. 0x54F8 changed from 01 to 00. 27 bytes changed starting at 0x81B4, and 15 starting at&nbsp;0x81E4.</p>
+<p>Whew! There have been a lot of changes, and I don&#8217;t think I&#8217;ve really deciphered much more, yet, but I&#8217;m now in a position to figure out where the player&#8217;s inventory is stored. That&#8217;ll probably be a big endeavour, though, so I&#8217;m going to take a break,&nbsp;here.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="../interlude-memory-map.html">Interlude: Memory&nbsp;Map</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Thu 29 August 2013. Tags: <a href="../tag/dot-hack.html">dot hack</a>, </h6>
+	<p>A tiny break from actually mapping out memory to post my current memory map. Mostly empty, but Rome wasn&#8217;t built in a day,&nbsp;right?</p>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0000-000D</td>
+<td>Character name</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td>0018-0029</td>
+<td>User name</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td>2236</td>
+<td>Desktop Image</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td>23A4</td>
+<td>Reading the email &#8220;Version Update&#8221; changed this from 02 to 04</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td>2864-2867</td>
+<td>News</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td>2889</td>
+<td>News</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td>28E4-28F7</td>
+<td>Board</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td>2914-2917</td>
+<td>Board</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td>2E54-2E55</td>
+<td>Board</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="caps">2EB4</span>-<span class="caps">2EB5</span></td>
+<td>Board</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="caps">2EE4</span></td>
+<td>Board</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td>2F14</td>
+<td>Board</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td>32D4-32D8</td>
+<td>Board</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td>3304-3307</td>
+<td>Board</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td>3334-333C</td>
+<td>Board</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td>3364-3366</td>
+<td>Board</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td>3394-3395</td>
+<td>Board</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td>3484-348A</td>
+<td>Board</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+<tr>
+<td>5507</td>
+<td>??? Changed from 80 to C0 when starting The World</td>
+</tr>
+<tr>
+<td>8400-8403</td>
+<td>Time played in 1/60 second resolution</td>
+</tr>
+<tr>
+<td><em><span class="caps">UNKNOWN</span></em></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>There&#8217;s probably lots of padding in there, and it&#8217;s probable that the section with the board posts in it is used for nothing else. If everything works the way it looks like it does, so far, then I&#8217;ve got a general idea of what about a quarter of the save file is for. Not too bad. The next few saves will probably give me a picture of how character stats and inventory are stored, so that should be another big chunk of it.&nbsp;Progress!</p>
+</article>
+<hr />
+<article>
+	<h3><a href="../saves-0011-0024-almost-there.html">Saves 0011-0024: Almost&nbsp;There</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Thu 29 August 2013. Tags: <a href="../tag/dot-hack.html">dot hack</a>, </h6>
+	<p>Enough of the desktop. Time to play some games! Almost, anyway. If you enter The World&#8217;s main menu, then close it and save (0011) without doing anything else, 0x5507 changes from 0x80 to 0xC0. What does it mean, exactly? Not&nbsp;sure.</p>
+<p>Before entering The World itself, we can read posts on the board, which can also add items to the keyword list. Time for some diffs&nbsp;(0012-0016)&#8230;</p>
+<p>The first thread, &#8220;System Explanation&#8221; seems to map to a 20 byte region from 0x28E4 to 0x28F7. Problem: there are only nineteen posts. Somewhere in the middle, and extra byte got changed, but I&#8217;m not sure where. Well, I can come back to it later. Anyway, like the news items, these start as 0x01 and change to 0x03 when you read&nbsp;them.</p>
+<p>Might as well map out the other threads on the board, while I&#8217;m at it&nbsp;(0017-0024)&#8230;</p>
+<p>Okay, results time. They all follow the same pattern as above. Worthy of notice: each thread&#8217;s posts begin at 0x???4 (e.g. 0x2914) and continue from there. I&#8217;m guessing there will be quite a few padding bytes in&nbsp;there.</p>
+<p>Based on what I know so far, I&#8217;m guessing that the region from about 0x2864 to about 0x40E3 is reserved for flags like that. I know for sure that there&#8217;s a mail item flag at 0x2864 and a board post at 0x348A, but the region is zeroes up to 0x40E3, so that looks like an upper bound. Of course, that&#8217;s far more bytes than would be needed for this kind of thing, so it&#8217;s possible that there&#8217;s other stuff in there,&nbsp;too.</p>
+<p>I think that really is everything you can do before playing the game. Next time: The&nbsp;World!</p>
+</article>
+<hr />
+<article>
+	<h3><a href="../saves-0003-0010-before-the-beginning.html">Saves 0003-0010: Before the&nbsp;Beginning</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Wed 28 August 2013. Tags: <a href="../tag/dot-hack.html">dot hack</a>, </h6>
+	<p>I was forced to read some email before making the first save, but not all of it. New diff: read the final&nbsp;email.</p>
+<p><img alt=".hack//Infection reading email" src="../images/dhi-mail-0003.jpg" /></p>
+<p>Diff the files, ignore the time being different, and there&#8217;s a change in only a single byte: 0x23A4 changes from 02 to 04. Hmm. This&#8217;ll have to wait until I&#8217;ve got more emails, I think. Incidentally, that&#8217;s a lonely number in a sea of zeros. Probably this region will be filled in as events happen&#8212;maybe it&#8217;s a region for flags like reading email and news items. Speaking of news, why not check out&nbsp;that?</p>
+<p><img alt=".hack//Infection reading news" src="../images/dhi-news-0004.jpg" /></p>
+<p>Read the top news item, diff the saves&#8230; another single byte change. 0x2864 changes from 0x01 to&nbsp;0x03.</p>
+<p>Read the second news item, diff the saves&#8230; one byte, again. 0x2865 changes from 0x01 to&nbsp;0x03.</p>
+<p>Now, I&#8217;m not superstitious, but I think I&#8217;m seeing a pattern, here. Have a look at this region of the&nbsp;file:</p>
+<div class="highlight"><pre>Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+00002860  FF FF FF FF 03 03 01 01 00 00 00 00 00 00 00 00  ÿÿÿÿ............
+00002870  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+00002880  00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00  ................
+00002890  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+000028A0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+000028B0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+000028C0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+000028D0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+000028E0  00 00 00 00 01 01 01 01 01 01 01 01 01 01 01 01  ................
+000028F0  01 01 01 01 01 01 01 01 00 00 00 00 00 00 00 00  ................
+00002900  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+00002910  00 00 00 00 01 01 01 01 00 00 00 00 00 00 00 00  ................
+</pre></div>
+
+
+<p>Above, it&#8217;s all 0xFF for a while, and below, it&#8217;s all 0x00 for a while. Reading news items flipped a bit on 0x2864 and 0x2865. I&#8217;ve got three unread news items left, and 0x2866 and 0x2867 are both 0x01, but I was hoping for three in a row. However, 0x2889 is also 0x01, and it&#8217;s pretty nearby, so my guess is that reading these three news items will switch all three of those to 0x03. Time for some&nbsp;testing&#8230;</p>
+<p>Yep! The three bytes I predicted changed, in order, when reading the news items. My guess is that 0x01 means the news item is visible, and 0x03 means it&#8217;s been read. Probably the bytes between these are for other news&nbsp;items.</p>
+<p>What else is there to explore? The Desktop Image can be changed, here, so let&#8217;s check that. Changing from Orange Blossom to Red Eye to Blue Moon causes 0x2236 to change from 0x31 to 0x32 to 0x33,&nbsp;respectively.</p>
+<p>That&#8217;s pretty much all there is to be seen, before actually logging in to The World and starting the game proper. About 0.2% done mapping the save file. Isn&#8217;t it&nbsp;rewarding?</p>
+</article>
+<hr />
+<article>
+	<h3><a href="../lets-hacking-saves-0001-and-0002.html">Let&#8217;s hacking! Saves 0001 and&nbsp;0002.</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 25 August 2013. Tags: <a href="../tag/dot-hack.html">dot hack</a>, </h6>
+	<p>New project: learn to reverse engineer file formats. Specimen:&nbsp;.hack//Infection.</p>
+<p><img alt=".hack//Infection title screen" src="../images/dhi-title.jpg" /></p>
+<p>I picked up a tool that extracts files from <span class="caps">PS2</span> memory cards. Cheating? Maybe a little. I&#8217;ll worry about that&nbsp;later.</p>
+<p>The first thing to do is start a new game for experimental&nbsp;purposes.</p>
+<p><img alt=".hack//Infection name entry" src="../images/dhi-name.jpg" /></p>
+<p>I&#8217;ve filled in names with the maximum possible length so that I can tell exactly much room is dedicated to them in the save&nbsp;file.</p>
+<p>I&#8217;m forced to read some of the emails before saving, but&nbsp;then&#8230;</p>
+<p><img alt=".hack//Infection save 1" src="../images/dhi-save-0001.jpg" /></p>
+<p>Three minutes, thirty-seven seconds. Saving in slot 1, before I&#8217;ve ever entered the game for the first time. Let&#8217;s see what that save file looks&nbsp;like.</p>
+<div class="highlight"><pre>00000000  4B 69 74 65 30 31 32 33 34 35 36 37 38 39 00 00  Kite0123456789..
+00000010  00 00 00 00 00 00 00 00 48 61 63 6B 65 72 30 31  ........Hacker01
+00000020  32 33 34 35 36 37 38 39 30 31 00 00 00 00 00 00  2345678901......
+</pre></div>
+
+
+<p>Well, there are the names I put in, right at the beginning. The character&#8217;s name is stored in 0x0000-0x000D, and the player&#8217;s name is stored in&nbsp;0x0018-0x0029.</p>
+<p>There&#8217;s not much else that we&#8217;ll be able to find from just one save, I guess, but we can take a stab at finding where the time is stored. Let&#8217;s just wait a few seconds, then make another&nbsp;save.</p>
+<p><img alt=".hack//Infection save 2" src="../images/dhi-save-0002.jpg" /></p>
+<p>Great. Extract the save again and compare the&nbsp;two&#8230;</p>
+<div class="highlight"><pre>Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+00008400  F7 32 00 00 40 00 10 00 80 00 00 08 00 01 40 00  ÷2..@...€.....@.
+</pre></div>
+
+
+<p>vs.</p>
+<div class="highlight"><pre>Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+00008400  29 38 00 00 40 00 10 00 80 00 00 08 00 01 40 00  )8..@...€.....@.
+</pre></div>
+
+
+<p>Just two bytes differ. The <span class="caps">PS2</span> is little-endian, so we should read those as 0x3829 and 0x32F7. They differ by 1330, in decimal. 1330? The time should differ by 22 seconds. Hmm. Divide by 22, and let&#8217;s see what we get: 60.454545&#8230;. I deduce that the time is stored with 1/60 of a second&nbsp;resolution.</p>
+<p>They can&#8217;t be storing the time in two bytes&#8212;that&#8217;s only enough for about 18 minutes. Three bytes would be enough for about 77 hours, but I imagine they want to be able to track at least 99 hours, so I&#8217;ll go out on a limb and assume that they&#8217;re storing the time as an ordinary 32-bit integer. So, time is stored in&nbsp;0x8400-0x8403.</p>
+<p>Hacking session 1 complete, I figure. That&#8217;s 4 bytes for the time, 14 bytes for the character name, and 18 bytes for the user name. 36 bytes down, 34060 to&nbsp;go.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="../lessons-in-efficiency.html">Lessons in&nbsp;Efficiency</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Fri 17 August 2012. Tags: <a href="../tag/haskell.html">Haskell</a>, <a href="../tag/project-euler.html">Project Euler</a>, </h6>
+	<p>I was working on <a href="http://projecteuler.net/problem=92">Project Euler problem 92</a>,
+and having a great deal of trouble making my program run fast enough. I’m aware
+of a trick that can be used to reduce the problem space, but I thought that with
+only ten million numbers to check, it should be possible to do it
+straightforwardly and just check them all, as long as I wasn’t too inefficient
+doing&nbsp;it.</p>
+<p>My first successful version took about three minutes to run–much too slow. I
+eliminated a duplicate call to an expensive function, which brought me down to
+about two minutes, and at length I managed to reduce the runtime down to about
+thirty seconds–much better, though still very slow. I tried some alternate
+techniques and just couldn’t make it go any quicker while still using a brute
+force&nbsp;approach.</p>
+<p>Now, there’s one important thing I haven’t mentioned: on the Windows <span class="caps">PC</span> I’m
+using for development, the version of gcc included with the Haskell Platform
+doesn’t work. I can’t figure out why, but it makes it impossible to compile
+Haskell programs, so I’ve just been running them in the interpreter. Well, that
+gives away the ending to this anecdote: I copied the program to a (much slower)
+Linux <span class="caps">PC</span> and compiled it, and it ran in about five seconds. Even my first, very
+inefficient attempt would have been fast enough to satisfy the one minute rule.
+But I learned a bit by trying to make the interpreted version fast enough to&nbsp;pass.</p>
+<p>Lessons:</p>
+<ol>
+<li>Squaring a number with (n^2) is significantly slower than doing it with (n *&nbsp;n).</li>
+<li>Arrays are faster to access than even fairly small&nbsp;lists.</li>
+<li>It’s faster to compose several functions and then map them to a list than to
+repeatedly map individual&nbsp;functions.</li>
+</ol>
+<p>Of course, these apply to programs run through the interpreter–it’s quite
+possible that at least the first of these might not hold if the program is
+compiled. Maybe I’ll test it, some&nbsp;time.</p>
+</article>
+<hr />
+<article>
 	<h3><a href="../learning-haskell.html">Learning&nbsp;Haskell</a></h3>
 	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Mon 13 August 2012. Tags: <a href="../tag/haskell.html">Haskell</a>, </h6>
 	<p>I&#8217;ve been learning Haskell (following <a href="http://learnyouahaskell.com/">Learn You a Haskell for Great
@@ -117,156 +485,6 @@ could make an interface that wasn&#8217;t horrible, I&#8217;d be pretty happy wi
 Well, some&nbsp;day.</p>
 </article>
 <hr />
-<article>
-	<h3><a href="../ffcollection-progress.html">ffcollection&nbsp;progress</a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Wed 06 July 2011. Tags: <a href="../tag/ffcollection.html">ffcollection</a>, <a href="../tag/python.html">python</a>, </h6>
-	<p>I mentioned previously that I was working on a fanfiction database. Well, time
-for an update: it’s in a functional state, though quite basic. I can feed it a
-FanFiction.Net <span class="caps">ID</span> and it will download the fanfic and put it in the database
-with some very basic metadata (author, <span class="caps">ID</span>, summary). Most recently, I’ve hacked
-together an <span class="caps">HTTP</span> server using <code>http.server</code> so that I can accept commands over
-<span class="caps">HTTP</span>. Currently, the only command it accepts is ‘add the fanfic at this <span class="caps">URL</span>’,
-and it just responds with a status page and a copy of the form to add the fic to
-favoritestracker. I really should use something a little more powerful than just
-<code>http.server.BaseHTTPRequestHandler</code> for this&#8212;I really ought to create a
-full-fledged web interface, instead of just a commands-over-http hack. But, for
-the moment, that’s what I’ve&nbsp;got.</p>
-</article>
-<hr />
-<article>
-	<h3><a href="../750-to-org-v02.html">750-to-org,&nbsp;v0.2</a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 19 June 2011. Tags: <a href="../tag/750-to-org.html">750-to-org</a>, </h6>
-	<p>I did a little cleanup on the code for 750-to-org, so I went ahead and called it
-0.2. I did some more testing, so unless 750 Words does something quite
-unexpected, 750-to-org should just&nbsp;work.</p>
-<p>I should probably set 750-to-org up so you can give it filenames as arguments,
-but other than that, I can’t think of much else I’d want it to do. I could have
-it verify that it’s putting entries in the right places, in case the exports are
-processed out of order, but that just seems like more work than is necessary.
-Unless someone complains about it, I’m just going to leave&nbsp;it.</p>
-</article>
-<hr />
-<article>
-	<h3><a href="../lately.html">Lately</a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sat 18 June 2011. Tags: <a href="../tag/mercurial.html">mercurial</a>, <a href="../tag/python.html">python</a>, <a href="../tag/750-to-org.html">750-to-org</a>, <a href="../tag/ffcollection.html">ffcollection</a>, </h6>
-	<p>I&#8217;ve neglected this blog, which I really shouldn&#8217;t have done.&nbsp;Well:</p>
-<p>I must reiterate what I said in my last post: when adding tags, I should
-definitely specify the revision I want to tag, because I keep making stupid
-mistakes, tagging the wrong&nbsp;revisions.</p>
-<p>That said, new project:
-<a href="https://bitbucket.org/sopoforic/750-to-org/overview">750-to-org</a>. It&#8217;s just a
-little python script to convert my 750 Words exports into a suitable format for
-emacs org-mode. Nothing special, but I wanted it, so I figured I&#8217;d put it out
-there in case anyone else might have a use for it. I did learn a little more
-about datetime by doing it, too. I doubt I&#8217;ll ever remember the meanings of the
-tokens for strftime, but at least I know it exists, now. It&#8217;s much cleaner that
-the way I was going to produce the date&nbsp;strings.</p>
-<p>I&#8217;ve got a python/sqlalchemy fanfiction database thing I&#8217;m making for my
-personal use, but it&#8217;s far from being in a fit state for public consumption.
-More on that later,&nbsp;perhaps.</p>
-</article>
-<hr />
-<article>
-	<h3><a href="../wasted-revisions.html">Wasted&nbsp;Revisions</a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Fri 27 August 2010. Tags: <a href="../tag/mercurial.html">mercurial</a>, </h6>
-	<p>I just wasted half a dozen revisions trying to tag a release. Perhaps it’d be
-better to just always specify the revision you’re tagging, just to avoid that&nbsp;problem.</p>
-</article>
-<hr />
-<article>
-	<h3><a href="../wordspy-milestone.html">WordsPy&nbsp;Milestone</a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 16 May 2010. Tags: <a href="../tag/wordspy.html">wordspy</a>, </h6>
-	<p>As of the most recent revision (r18:6453f11b96e6), WordsPy functions as a (bad)
-game. The dictionary is hooked up, and it only lets you remove letters if they
-form a word in the dictionary (That’s a rule. Games have rules. Ergo, game.&nbsp;Right?).</p>
-<p>Other&nbsp;features:</p>
-<ul>
-<li>Selected letters are&nbsp;highlighted</li>
-<li>Backspace&nbsp;support</li>
-<li>Nonstop key-pressing&nbsp;action!</li>
-</ul>
-<p>Next steps will be arranging it so the letter generator provides useful letters
-rather than just random ones (probably just analyze the dictionary for letter
-frequencies and use that), creating some kind of status display, and additional
-nice things (score? list of words you made in that session? difficulty levels?
-the possibilities are&nbsp;endless!)</p>
-<p>Edit: and a screenshot for&nbsp;posterity.</p>
-<p><img alt="WordsPy screenshot" src="../images/snap0391.png" /></p>
-</article>
-<hr />
-<article>
-	<h3><a href="../wordspy-again.html">WordsPy,&nbsp;again</a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 16 May 2010. Tags: <a href="../tag/wordspy.html">wordspy</a>, <a href="../tag/python.html">python</a>, </h6>
-	<p>Well, the bad news is that wordspy still does nothing other than scroll new
-lines onto the screen. The good news is that it does it in a better&nbsp;way.</p>
-<p>In order to deal with letters dropping (due to letters below them being removed)
-at the same time as a new line was scrolling up, it was necessary to re-engineer
-the whole thing. Now letters store their current location, and it’s modified
-whenever necessary by the newlinescroll and drop actions. This does have some
-other benefits, too. For example, it simplifies drawing the new line onto the
-screen somewhat. Before, I was&nbsp;doing:</p>
-<div class="highlight"><pre><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">Game</span><span class="o">.</span><span class="n">letters</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="mi">64</span><span class="o">*</span><span class="n">col</span><span class="p">,</span> <span class="mi">481</span><span class="p">))</span>
-</pre></div>
-
-
-<p>Now, since I initialize the letters with their location, I can just&nbsp;do:</p>
-<div class="highlight"><pre><span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">Game</span><span class="o">.</span><span class="n">letters</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span>
-    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">letter</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="n">letter</span><span class="o">.</span><span class="n">rect</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Which is rather more&nbsp;readable.</p>
-<p>Lesson learned, though: don’t forget to empty the dirty rectangles list after
-updating the screen. Once it grows to 64 items or so, it noticeably slows down
-the game. I’m fairly sure it shouldn’t contain more than a dozen or so items
-under normal usage, but I’ll have to remember to keep an eye on&nbsp;it.</p>
-</article>
-<hr />
-<article>
-	<h3><a href="../new-project-wordspy.html">New Project:&nbsp;WordsPy</a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sat 15 May 2010. Tags: <a href="../tag/wordspy.html">wordspy</a>, </h6>
-	<p>I found that I wanted to play Word Zap/Word Jolt/Bookworm/whatever word
-construction game, but I didn’t seem to have one on hand, and <a href="http://www.popcap.com/games/free/bookworm">the version of
-Bookworm I found</a> was far from
-satisfying. So, I did what anyone would do: set out to make my&nbsp;own.</p>
-<p>I’ve been wanting to learn to use pygame for a while, and this seemed like a
-good opportunity. I’ve had my fair share of trouble so far, but I think I’m
-beginning to get a handle on how to use it. It’s
-<a href="http://bitbucket.org/sopoforic/wordspy">here</a> for now, though it’s not playable
-yet&#8212;it only generates the letters and scrolls them onto the screen. Still, it’s
-a&nbsp;start.</p>
-</article>
-<hr />
-<article>
-	<h3><a href="../arrays-for-fun-and-profit.html">Arrays for Fun and&nbsp;Profit</a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 21 February 2010. Tags: <a href="../tag/autofill-ebay.html">autofill-ebay</a>, <a href="../tag/javascript.html">javascript</a>, <a href="../tag/greasemonkey.html">greasemonkey</a>, </h6>
-	<p>My greasemonkey script for filling in a bid on eBay started out fairly horrible,
-referencing element IDs that seemed to differ based on the phase of the moon.
-It was terribly difficult to maintain and did not function&nbsp;well.</p>
-<p>Epiphany: I discovered an element <span class="caps">ID</span> I could safely use that seems constant.
-Also, discovered that <code>document.getElementsByName</code> seems to work in (at least
-recent versions of) firefox&#8212;wasn’t there some recommendation against using that
-a while back? My knowledge of javascript is poor. Anyway, between those two, it
-became much simpler to maintain the script, and it worked much better, to&nbsp;boot.</p>
-<p>Epiphany the second (third?): Javascript arrays let you do <code>array.push(value)</code>,
-so now I push the patterns into an array, which means I can divide them up by
-language and add new ones without worrying about which index the new pattern
-should use. Super. Now adding a new currency/language pair is as simple as
-adding a single line pushing the pattern into the&nbsp;array.</p>
-<p>Unfortunately, I can’t safely (for my paranoid definition of safe) just run the
-regex on the whole document–if a sneaky auctioneer inserted “Enter <span class="caps">US</span> $500.00 or
-more” in the auction description, and the auction was actually in another
-currency, then the English/<span class="caps">USD</span> pattern would pick up that $500 text before the
-other-currency patterns ran, and the bid box would be filled with that value. Of
-course, the user would still have to click the button to place the bid, and then
-confirm it, but remember: paranoid. As long as eBay doesn’t decide to remove the
-table IDs or something, though, this shouldn’t be an&nbsp;issue.</p>
-<p>Next up is to try to get the script to work on the outbid pages that present
-themselves immediately after entering a bid that’s too low. Magic 8-Ball says:
-outlook&nbsp;good.</p>
-</article>
-<hr />
 
 <div class="row">
 	<div class="small-12 columns text-center">
@@ -288,31 +506,32 @@ outlook&nbsp;good.</p>
 						<aside class="medium-3 hide-for-small-only columns"><div class="panel">
 								<h5>Tags</h5>
 								<ul class="tag-cloud">
+									<li><a href="/tag/quoted-forsooth/" class="tag-3">quoted forsooth</a></li>
+									<li><a href="/tag/javascript/" class="tag-4">javascript</a></li>
+									<li><a href="/tag/dot-hack/" class="tag-1">dot hack</a></li>
+									<li><a href="/tag/personal/" class="tag-4">personal</a></li>
+									<li><a href="/tag/assembly/" class="tag-4">assembly</a></li>
+									<li><a href="/tag/games/" class="tag-4">games</a></li>
+									<li><a href="/tag/github/" class="tag-4">github</a></li>
+									<li><a href="/tag/flask-markdown/" class="tag-4">flask-markdown</a></li>
+									<li><a href="/tag/wordspy/" class="tag-2">wordspy</a></li>
+									<li><a href="/tag/750-to-org/" class="tag-3">750-to-org</a></li>
+									<li><a href="/tag/android/" class="tag-4">android</a></li>
+									<li><a href="/tag/mercurial/" class="tag-3">mercurial</a></li>
 									<li><a href="/tag/gamecube/" class="tag-4">gamecube</a></li>
 									<li><a href="/tag/kivy/" class="tag-4">kivy</a></li>
-									<li><a href="/tag/git/" class="tag-4">git</a></li>
-									<li><a href="/tag/personal/" class="tag-4">personal</a></li>
-									<li><a href="/tag/porting/" class="tag-2">porting</a></li>
-									<li><a href="/tag/greasemonkey/" class="tag-4">greasemonkey</a></li>
-									<li><a href="/tag/flask-markdown/" class="tag-4">flask-markdown</a></li>
-									<li><a href="/tag/python/" class="tag-1">python</a></li>
-									<li><a href="/tag/github/" class="tag-4">github</a></li>
-									<li><a href="/tag/mercurial/" class="tag-2">mercurial</a></li>
-									<li><a href="/tag/assembly/" class="tag-4">assembly</a></li>
-									<li><a href="/tag/quoted-forsooth/" class="tag-2">quoted forsooth</a></li>
-									<li><a href="/tag/android/" class="tag-4">android</a></li>
-									<li><a href="/tag/750-to-org/" class="tag-2">750-to-org</a></li>
-									<li><a href="/tag/awari/" class="tag-2">awari</a></li>
-									<li><a href="/tag/javascript/" class="tag-4">javascript</a></li>
+									<li><a href="/tag/porting/" class="tag-3">porting</a></li>
 									<li><a href="/tag/autofill-ebay/" class="tag-4">autofill-ebay</a></li>
+									<li><a href="/tag/awari/" class="tag-3">awari</a></li>
+									<li><a href="/tag/python/" class="tag-2">python</a></li>
+									<li><a href="/tag/basic/" class="tag-3">BASIC</a></li>
 									<li><a href="/tag/project-euler/" class="tag-4">Project Euler</a></li>
-									<li><a href="/tag/wordspy/" class="tag-1">wordspy</a></li>
-									<li><a href="/tag/haskell/" class="tag-2">Haskell</a></li>
+									<li><a href="/tag/ffcollection/" class="tag-2">ffcollection</a></li>
+									<li><a href="/tag/cgrr/" class="tag-3">cgrr</a></li>
+									<li><a href="/tag/git/" class="tag-4">git</a></li>
 									<li><a href="/tag//" class="tag-4"></a></li>
-									<li><a href="/tag/games/" class="tag-4">games</a></li>
-									<li><a href="/tag/basic/" class="tag-2">BASIC</a></li>
-									<li><a href="/tag/cgrr/" class="tag-2">cgrr</a></li>
-									<li><a href="/tag/ffcollection/" class="tag-1">ffcollection</a></li>
+									<li><a href="/tag/greasemonkey/" class="tag-4">greasemonkey</a></li>
+									<li><a href="/tag/haskell/" class="tag-3">Haskell</a></li>
 								</ul>
 							</div>
 

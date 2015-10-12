@@ -96,6 +96,156 @@
 							</div>
 
 <article>
+	<h3><a href="../ffcollection-progress.html">ffcollection&nbsp;progress</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Wed 06 July 2011. Tags: <a href="../tag/ffcollection.html">ffcollection</a>, <a href="../tag/python.html">python</a>, </h6>
+	<p>I mentioned previously that I was working on a fanfiction database. Well, time
+for an update: it’s in a functional state, though quite basic. I can feed it a
+FanFiction.Net <span class="caps">ID</span> and it will download the fanfic and put it in the database
+with some very basic metadata (author, <span class="caps">ID</span>, summary). Most recently, I’ve hacked
+together an <span class="caps">HTTP</span> server using <code>http.server</code> so that I can accept commands over
+<span class="caps">HTTP</span>. Currently, the only command it accepts is ‘add the fanfic at this <span class="caps">URL</span>’,
+and it just responds with a status page and a copy of the form to add the fic to
+favoritestracker. I really should use something a little more powerful than just
+<code>http.server.BaseHTTPRequestHandler</code> for this&#8212;I really ought to create a
+full-fledged web interface, instead of just a commands-over-http hack. But, for
+the moment, that’s what I’ve&nbsp;got.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="../750-to-org-v02.html">750-to-org,&nbsp;v0.2</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 19 June 2011. Tags: <a href="../tag/750-to-org.html">750-to-org</a>, </h6>
+	<p>I did a little cleanup on the code for 750-to-org, so I went ahead and called it
+0.2. I did some more testing, so unless 750 Words does something quite
+unexpected, 750-to-org should just&nbsp;work.</p>
+<p>I should probably set 750-to-org up so you can give it filenames as arguments,
+but other than that, I can’t think of much else I’d want it to do. I could have
+it verify that it’s putting entries in the right places, in case the exports are
+processed out of order, but that just seems like more work than is necessary.
+Unless someone complains about it, I’m just going to leave&nbsp;it.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="../lately.html">Lately</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sat 18 June 2011. Tags: <a href="../tag/mercurial.html">mercurial</a>, <a href="../tag/python.html">python</a>, <a href="../tag/750-to-org.html">750-to-org</a>, <a href="../tag/ffcollection.html">ffcollection</a>, </h6>
+	<p>I&#8217;ve neglected this blog, which I really shouldn&#8217;t have done.&nbsp;Well:</p>
+<p>I must reiterate what I said in my last post: when adding tags, I should
+definitely specify the revision I want to tag, because I keep making stupid
+mistakes, tagging the wrong&nbsp;revisions.</p>
+<p>That said, new project:
+<a href="https://bitbucket.org/sopoforic/750-to-org/overview">750-to-org</a>. It&#8217;s just a
+little python script to convert my 750 Words exports into a suitable format for
+emacs org-mode. Nothing special, but I wanted it, so I figured I&#8217;d put it out
+there in case anyone else might have a use for it. I did learn a little more
+about datetime by doing it, too. I doubt I&#8217;ll ever remember the meanings of the
+tokens for strftime, but at least I know it exists, now. It&#8217;s much cleaner that
+the way I was going to produce the date&nbsp;strings.</p>
+<p>I&#8217;ve got a python/sqlalchemy fanfiction database thing I&#8217;m making for my
+personal use, but it&#8217;s far from being in a fit state for public consumption.
+More on that later,&nbsp;perhaps.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="../wasted-revisions.html">Wasted&nbsp;Revisions</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Fri 27 August 2010. Tags: <a href="../tag/mercurial.html">mercurial</a>, </h6>
+	<p>I just wasted half a dozen revisions trying to tag a release. Perhaps it’d be
+better to just always specify the revision you’re tagging, just to avoid that&nbsp;problem.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="../wordspy-milestone.html">WordsPy&nbsp;Milestone</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 16 May 2010. Tags: <a href="../tag/wordspy.html">wordspy</a>, </h6>
+	<p>As of the most recent revision (r18:6453f11b96e6), WordsPy functions as a (bad)
+game. The dictionary is hooked up, and it only lets you remove letters if they
+form a word in the dictionary (That’s a rule. Games have rules. Ergo, game.&nbsp;Right?).</p>
+<p>Other&nbsp;features:</p>
+<ul>
+<li>Selected letters are&nbsp;highlighted</li>
+<li>Backspace&nbsp;support</li>
+<li>Nonstop key-pressing&nbsp;action!</li>
+</ul>
+<p>Next steps will be arranging it so the letter generator provides useful letters
+rather than just random ones (probably just analyze the dictionary for letter
+frequencies and use that), creating some kind of status display, and additional
+nice things (score? list of words you made in that session? difficulty levels?
+the possibilities are&nbsp;endless!)</p>
+<p>Edit: and a screenshot for&nbsp;posterity.</p>
+<p><img alt="WordsPy screenshot" src="../images/snap0391.png" /></p>
+</article>
+<hr />
+<article>
+	<h3><a href="../wordspy-again.html">WordsPy,&nbsp;again</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 16 May 2010. Tags: <a href="../tag/wordspy.html">wordspy</a>, <a href="../tag/python.html">python</a>, </h6>
+	<p>Well, the bad news is that wordspy still does nothing other than scroll new
+lines onto the screen. The good news is that it does it in a better&nbsp;way.</p>
+<p>In order to deal with letters dropping (due to letters below them being removed)
+at the same time as a new line was scrolling up, it was necessary to re-engineer
+the whole thing. Now letters store their current location, and it’s modified
+whenever necessary by the newlinescroll and drop actions. This does have some
+other benefits, too. For example, it simplifies drawing the new line onto the
+screen somewhat. Before, I was&nbsp;doing:</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">Game</span><span class="o">.</span><span class="n">letters</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="mi">64</span><span class="o">*</span><span class="n">col</span><span class="p">,</span> <span class="mi">481</span><span class="p">))</span>
+</pre></div>
+
+
+<p>Now, since I initialize the letters with their location, I can just&nbsp;do:</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">Game</span><span class="o">.</span><span class="n">letters</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">letter</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="n">letter</span><span class="o">.</span><span class="n">rect</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Which is rather more&nbsp;readable.</p>
+<p>Lesson learned, though: don’t forget to empty the dirty rectangles list after
+updating the screen. Once it grows to 64 items or so, it noticeably slows down
+the game. I’m fairly sure it shouldn’t contain more than a dozen or so items
+under normal usage, but I’ll have to remember to keep an eye on&nbsp;it.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="../new-project-wordspy.html">New Project:&nbsp;WordsPy</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sat 15 May 2010. Tags: <a href="../tag/wordspy.html">wordspy</a>, </h6>
+	<p>I found that I wanted to play Word Zap/Word Jolt/Bookworm/whatever word
+construction game, but I didn’t seem to have one on hand, and <a href="http://www.popcap.com/games/free/bookworm">the version of
+Bookworm I found</a> was far from
+satisfying. So, I did what anyone would do: set out to make my&nbsp;own.</p>
+<p>I’ve been wanting to learn to use pygame for a while, and this seemed like a
+good opportunity. I’ve had my fair share of trouble so far, but I think I’m
+beginning to get a handle on how to use it. It’s
+<a href="http://bitbucket.org/sopoforic/wordspy">here</a> for now, though it’s not playable
+yet&#8212;it only generates the letters and scrolls them onto the screen. Still, it’s
+a&nbsp;start.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="../arrays-for-fun-and-profit.html">Arrays for Fun and&nbsp;Profit</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 21 February 2010. Tags: <a href="../tag/autofill-ebay.html">autofill-ebay</a>, <a href="../tag/javascript.html">javascript</a>, <a href="../tag/greasemonkey.html">greasemonkey</a>, </h6>
+	<p>My greasemonkey script for filling in a bid on eBay started out fairly horrible,
+referencing element IDs that seemed to differ based on the phase of the moon.
+It was terribly difficult to maintain and did not function&nbsp;well.</p>
+<p>Epiphany: I discovered an element <span class="caps">ID</span> I could safely use that seems constant.
+Also, discovered that <code>document.getElementsByName</code> seems to work in (at least
+recent versions of) firefox&#8212;wasn’t there some recommendation against using that
+a while back? My knowledge of javascript is poor. Anyway, between those two, it
+became much simpler to maintain the script, and it worked much better, to&nbsp;boot.</p>
+<p>Epiphany the second (third?): Javascript arrays let you do <code>array.push(value)</code>,
+so now I push the patterns into an array, which means I can divide them up by
+language and add new ones without worrying about which index the new pattern
+should use. Super. Now adding a new currency/language pair is as simple as
+adding a single line pushing the pattern into the&nbsp;array.</p>
+<p>Unfortunately, I can’t safely (for my paranoid definition of safe) just run the
+regex on the whole document–if a sneaky auctioneer inserted “Enter <span class="caps">US</span> $500.00 or
+more” in the auction description, and the auction was actually in another
+currency, then the English/<span class="caps">USD</span> pattern would pick up that $500 text before the
+other-currency patterns ran, and the bid box would be filled with that value. Of
+course, the user would still have to click the button to place the bid, and then
+confirm it, but remember: paranoid. As long as eBay doesn’t decide to remove the
+table IDs or something, though, this shouldn’t be an&nbsp;issue.</p>
+<p>Next up is to try to get the script to work on the outbid pages that present
+themselves immediately after entering a bid that’s too low. Magic 8-Ball says:
+outlook&nbsp;good.</p>
+</article>
+<hr />
+<article>
 	<h3><a href="../awari-ai.html">Awari <span class="caps">AI</span></a></h3>
 	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 21 February 2010. Tags: <a href="../tag/awari.html">awari</a>, <a href="../tag/basic.html">BASIC</a>, <a href="../tag/porting.html">porting</a>, </h6>
 	<p>I&#8217;ve sorted out the <span class="caps">BASIC</span> version of Awari I&#8217;m porting into the &#8216;draw the board&#8217;
@@ -148,31 +298,32 @@ not familiar with.&nbsp;Fun!</p>
 						<aside class="medium-3 hide-for-small-only columns"><div class="panel">
 								<h5>Tags</h5>
 								<ul class="tag-cloud">
+									<li><a href="/tag/quoted-forsooth/" class="tag-3">quoted forsooth</a></li>
+									<li><a href="/tag/javascript/" class="tag-4">javascript</a></li>
+									<li><a href="/tag/dot-hack/" class="tag-1">dot hack</a></li>
+									<li><a href="/tag/personal/" class="tag-4">personal</a></li>
+									<li><a href="/tag/assembly/" class="tag-4">assembly</a></li>
+									<li><a href="/tag/games/" class="tag-4">games</a></li>
+									<li><a href="/tag/github/" class="tag-4">github</a></li>
+									<li><a href="/tag/flask-markdown/" class="tag-4">flask-markdown</a></li>
+									<li><a href="/tag/wordspy/" class="tag-2">wordspy</a></li>
+									<li><a href="/tag/750-to-org/" class="tag-3">750-to-org</a></li>
+									<li><a href="/tag/android/" class="tag-4">android</a></li>
+									<li><a href="/tag/mercurial/" class="tag-3">mercurial</a></li>
 									<li><a href="/tag/gamecube/" class="tag-4">gamecube</a></li>
 									<li><a href="/tag/kivy/" class="tag-4">kivy</a></li>
-									<li><a href="/tag/git/" class="tag-4">git</a></li>
-									<li><a href="/tag/personal/" class="tag-4">personal</a></li>
-									<li><a href="/tag/porting/" class="tag-2">porting</a></li>
-									<li><a href="/tag/greasemonkey/" class="tag-4">greasemonkey</a></li>
-									<li><a href="/tag/flask-markdown/" class="tag-4">flask-markdown</a></li>
-									<li><a href="/tag/python/" class="tag-1">python</a></li>
-									<li><a href="/tag/github/" class="tag-4">github</a></li>
-									<li><a href="/tag/mercurial/" class="tag-2">mercurial</a></li>
-									<li><a href="/tag/assembly/" class="tag-4">assembly</a></li>
-									<li><a href="/tag/quoted-forsooth/" class="tag-2">quoted forsooth</a></li>
-									<li><a href="/tag/android/" class="tag-4">android</a></li>
-									<li><a href="/tag/750-to-org/" class="tag-2">750-to-org</a></li>
-									<li><a href="/tag/awari/" class="tag-2">awari</a></li>
-									<li><a href="/tag/javascript/" class="tag-4">javascript</a></li>
+									<li><a href="/tag/porting/" class="tag-3">porting</a></li>
 									<li><a href="/tag/autofill-ebay/" class="tag-4">autofill-ebay</a></li>
+									<li><a href="/tag/awari/" class="tag-3">awari</a></li>
+									<li><a href="/tag/python/" class="tag-2">python</a></li>
+									<li><a href="/tag/basic/" class="tag-3">BASIC</a></li>
 									<li><a href="/tag/project-euler/" class="tag-4">Project Euler</a></li>
-									<li><a href="/tag/wordspy/" class="tag-1">wordspy</a></li>
-									<li><a href="/tag/haskell/" class="tag-2">Haskell</a></li>
+									<li><a href="/tag/ffcollection/" class="tag-2">ffcollection</a></li>
+									<li><a href="/tag/cgrr/" class="tag-3">cgrr</a></li>
+									<li><a href="/tag/git/" class="tag-4">git</a></li>
 									<li><a href="/tag//" class="tag-4"></a></li>
-									<li><a href="/tag/games/" class="tag-4">games</a></li>
-									<li><a href="/tag/basic/" class="tag-2">BASIC</a></li>
-									<li><a href="/tag/cgrr/" class="tag-2">cgrr</a></li>
-									<li><a href="/tag/ffcollection/" class="tag-1">ffcollection</a></li>
+									<li><a href="/tag/greasemonkey/" class="tag-4">greasemonkey</a></li>
+									<li><a href="/tag/haskell/" class="tag-3">Haskell</a></li>
 								</ul>
 							</div>
 

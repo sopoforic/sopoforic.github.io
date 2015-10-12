@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Sleepy Coding</title><link href="https://sopoforic.github.io/" rel="alternate"></link><link href="https://sopoforic.github.io/feeds/all.atom.xml" rel="self"></link><id>https://sopoforic.github.io/</id><updated>2015-10-12T12:43:20-04:00</updated><entry><title>git update-index —assume unchanged</title><link href="https://sopoforic.github.io/git-update-index-assume-unchanged.html" rel="alternate"></link><updated>2015-10-12T12:43:20-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2015-10-12:git-update-index-assume-unchanged.html</id><summary type="html">&lt;p&gt;Thanks to &lt;a href="http://stackoverflow.com/questions/3319479/git-can-i-commit-a-file-and-ignore-the-content-changes"&gt;this stackoverflow question&lt;/a&gt;, I&amp;#8217;ve learned a useful git&amp;nbsp;trick:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Sleepy Coding</title><link href="https://sopoforic.github.io/" rel="alternate"></link><link href="https://sopoforic.github.io/feeds/all.atom.xml" rel="self"></link><id>https://sopoforic.github.io/</id><updated>2015-10-12T16:40:32-04:00</updated><entry><title>git update-index —assume unchanged</title><link href="https://sopoforic.github.io/git-update-index-assume-unchanged.html" rel="alternate"></link><updated>2015-10-12T12:43:20-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2015-10-12:git-update-index-assume-unchanged.html</id><summary type="html">&lt;p&gt;Thanks to &lt;a href="http://stackoverflow.com/questions/3319479/git-can-i-commit-a-file-and-ignore-the-content-changes"&gt;this stackoverflow question&lt;/a&gt;, I&amp;#8217;ve learned a useful git&amp;nbsp;trick:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;git update-index &amp;#8212;assume-unchanged [&lt;file&gt; &amp;#8230;]&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -125,7 +125,301 @@ be much more maintainable and useful with each of the parser modules taken
 separately than it would be with them all jammed together pretending to be
 plugins for some yet-unwritten master program. If I want to write some wrapper
 around them all later, they&amp;#8217;ll perfectly well support it, but until then, all
-the plugin stuff is just an extra mess&amp;#8212;&lt;span class="caps"&gt;YAGNI&lt;/span&gt;.&lt;/p&gt;</summary><category term="cgrr"></category><category term="github"></category></entry><entry><title>Lessons in Efficiency</title><link href="https://sopoforic.github.io/lessons-in-efficiency.html" rel="alternate"></link><updated>2012-08-17T00:52:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2012-08-17:lessons-in-efficiency.html</id><summary type="html">&lt;p&gt;I was working on &lt;a href="http://projecteuler.net/problem=92"&gt;Project Euler problem 92&lt;/a&gt;,
+the plugin stuff is just an extra mess&amp;#8212;&lt;span class="caps"&gt;YAGNI&lt;/span&gt;.&lt;/p&gt;</summary><category term="cgrr"></category><category term="github"></category></entry><entry><title>Saves 0033-????: Taking Inventory, part 2</title><link href="https://sopoforic.github.io/saves-0033-taking-inventory-part-2.html" rel="alternate"></link><updated>2015-10-12T16:40:32-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2013-09-02:saves-0033-taking-inventory-part-2.html</id><summary type="html">&lt;p&gt;So, since I put quite a bit of work into it, let&amp;#8217;s use my new save file modification powers to find the max value for&amp;nbsp;money&amp;#8230;&lt;/p&gt;
+&lt;p&gt;After some testing, I&amp;#8217;m still not sure exactly what the max value is. 0x7FFFFFFF works, and so does 0x80000000, but some higher values (like 0xCFFFFFFF) don&amp;#8217;t work. They give you smaller amounts of &lt;span class="caps"&gt;GP&lt;/span&gt; than you should have. For instance 0xFFFFFFFF gives you 5. There&amp;#8217;s some kind of wrapping happening at various places, but I don&amp;#8217;t really know quite how. Doesn&amp;#8217;t matter. No one needs more than two billion &lt;span class="caps"&gt;GP&lt;/span&gt;, anyway, so I&amp;#8217;m calling that a&amp;nbsp;limit.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=".hack//Infection maximum money" src="https://sopoforic.github.io/images/dhi-maxmoney.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;640K should be enough for&amp;nbsp;anyone.&lt;/p&gt;</summary><category term="dot hack"></category></entry><entry><title>Interlude: Modifying Saves</title><link href="https://sopoforic.github.io/interlude-modifying-saves.html" rel="alternate"></link><updated>2015-10-12T16:36:56-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2013-09-02:interlude-modifying-saves.html</id><summary type="html">&lt;p&gt;I wrote last time that I was going to modify a save in order to test what range of values was acceptable. Time to get to work on that. Well, actually, time to continue&amp;nbsp;work.&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ve written a program that can extract information from the saves and (in principle) write it back to them. I&amp;#8217;ve been using Ross Ridge&amp;#8217;s mymc utility to get the save file off the memory card. It seemed pretty convenient, since mymc is written in python, as is my program (inventively called &amp;#8220;dothacksaveparser.py&amp;#8221;). I figured that when it came time to actually modify files, I&amp;#8217;d just import mymc do my magic, and problem&amp;nbsp;solved.&lt;/p&gt;
+&lt;p&gt;It was not to&amp;nbsp;be.&lt;/p&gt;
+&lt;p&gt;First, mymc is an interactive program, and there&amp;#8217;s no easy way to use it as a library&amp;#8212;in fact, if you try to import it, it&amp;#8217;ll just kill your program. Bad. There important initialization stuff done in the main function, so I can&amp;#8217;t just just wrap it all in if &lt;strong&gt;name&lt;/strong&gt; == &amp;#8220;&lt;strong&gt;main&lt;/strong&gt;&amp;#8220;, either. Maybe I&amp;#8217;ll eventually get it sorted out into a more useful form, but for now, importing is&amp;nbsp;out.&lt;/p&gt;
+&lt;p&gt;No problem, I though, I can just run the thing and have take its input from stdin and print to stdout, and it&amp;#8217;ll be pretty much the same thing. So I try it. And&amp;#8230; I&amp;#8217;m getting files of the wrong&amp;nbsp;size.&lt;/p&gt;
+&lt;p&gt;The save files for .hack//Infection are 34096 bytes. Somehow, when I had the files output to stdout, a hundred or so bytes were getting added. Mysterious. I compare the files, and notice that they look pretty similar, but misaligned. In fact, there are extraneous 0x0D bytes added throughout. A little closer look reveals that each extra 0x0D occurs before a 0x0A that was in the original file. Now, those are some low bytes&amp;#8230; control codes&amp;#8230; I look it up, and, indeed, python is adding a carriage return before each &amp;#8216;line feed&amp;#8217;. Of course, since it&amp;#8217;s a binary file, there aren&amp;#8217;t actually any line feeds, but&amp;#8230; there you have&amp;nbsp;it.&lt;/p&gt;
+&lt;p&gt;Some research revealed the right solution to that problem,&amp;nbsp;though:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;platform&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;win32&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;msvcrt&lt;/span&gt;
+    &lt;span class="n"&gt;msvcrt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setmode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fileno&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;O_BINARY&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Useful snippet of&amp;nbsp;code.&lt;/p&gt;
+&lt;p&gt;So, problem solved&amp;#8230; almost there. Now I can read the files in, and I know how to calculate the checksum and export the files again. One problem: the function for adding files to a memory card will not accept input from stdin. Why not? Why can I get files extracted to stdout but not added from&amp;nbsp;stdin?&lt;/p&gt;
+&lt;p&gt;Fine. I&amp;#8217;ll write the files to disk so that they can be&amp;nbsp;added.&lt;/p&gt;
+&lt;p&gt;I do all that, and it&amp;#8217;s time for a test. No modifications. Just read the file in and spit it back out. And&amp;#8230; failure. Bizarrely, a huge number of bytes have been modified in the memory card file, but I can&amp;#8217;t see why. Executing the same commands manually works fine. What&amp;#8217;s happening? I try again, and&amp;#8230; it works. Let it be known that the worst words to hear are &amp;#8220;intermittent error&amp;#8221;. I have no clue what went wrong the first time. I&amp;#8217;m going to hope that it was&amp;#8230; I don&amp;#8217;t know&amp;#8230; solar&amp;nbsp;flares.&lt;/p&gt;
+&lt;p&gt;Anyway, this story&amp;#8217;s drawing to a close. Having a successful test on unmodified files, what&amp;#8217;s left is to try a simple modification. How about giving Kite &lt;span class="caps"&gt;15000GP&lt;/span&gt;?&lt;/p&gt;
+&lt;p&gt;&lt;img alt=".hack//Infection lots of money" src="https://sopoforic.github.io/images/dhi-money-0032.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;m rich. As Kite is my witness, I&amp;#8217;ll never go hungry&amp;nbsp;again!&lt;/p&gt;</summary><category term="dot hack"></category></entry><entry><title>Saves 0031-0032: Taking Inventory, part 1</title><link href="https://sopoforic.github.io/saves-0031-0032-taking-inventory-part-1.html" rel="alternate"></link><updated>2015-10-12T16:36:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2013-09-02:saves-0031-0032-taking-inventory-part-1.html</id><summary type="html">&lt;p&gt;Offset 0x004B changed from 03 to 04. That&amp;#8217;s probably the quantity of fortune wire Kite has. The question at the moment is whether fortune wire is always stored at that offset or whether it&amp;#8217;s tied to some other value that marks it as fortune&amp;nbsp;wire.&lt;/p&gt;
+&lt;p&gt;Offset 0x687E changed from &lt;span class="caps"&gt;FF&lt;/span&gt; to 00. Not sure what that&amp;#8217;s&amp;nbsp;about.&lt;/p&gt;
+&lt;p&gt;Offset 0x749C changed from E8 to &lt;span class="caps"&gt;DE&lt;/span&gt;. Now, the one after that is 03, and 0x03E8 is 1000 in decimal, and 0x03DE is 990. I&amp;#8217;d say I&amp;#8217;ve found where money is stored. I&amp;#8217;m guessing it&amp;#8217;s a 32-bit value, too, but it may not be&amp;#8212;or maybe there&amp;#8217;s a maximum enforced elsewhere. For now, though, I&amp;#8217;m going with&amp;nbsp;it.&lt;/p&gt;
+&lt;p&gt;Now, as for that mysterious 0x687E&amp;#8230; I did accidentally speak to a person running around town. Didn&amp;#8217;t actually hit &amp;#8216;talk&amp;#8217; or &amp;#8216;trade&amp;#8217;, but I did open up that menu. Maybe it&amp;#8217;s tracking who I&amp;#8217;ve spoken to? Easy way to test that. Load save 0030, buy some fortune wire without talking to anyone, save again: save&amp;nbsp;0032.&lt;/p&gt;
+&lt;p&gt;And&amp;#8230; oh dear. Lots of changes in the region I guessed to be stats and/or inventory. I&amp;#8217;ll be ignoring those, for now. 0x687E is indeed still &lt;span class="caps"&gt;FF&lt;/span&gt; in the new save, so I&amp;#8217;m going to tentatively assume I was right about that&amp;nbsp;one.&lt;/p&gt;
+&lt;p&gt;So, I was going to test out what the money limit was, but when I made a modification, the game told me the save file was corrupt. After some careful checking, I&amp;#8217;m thinking that there&amp;#8217;s a checksum&amp;nbsp;somewhere.&lt;/p&gt;
+&lt;p&gt;&amp;#8230;and I just wasted an hour that I didn&amp;#8217;t have to waste. There is indeed a checksum. There&amp;#8217;s a file &lt;span class="caps"&gt;BASLUS&lt;/span&gt;-&lt;span class="caps"&gt;20267DOTHACK&lt;/span&gt; in the save directory on the memory card, which I believed to contain the checksum. I was right about this. However, I was wrong about exactly what the checksum was. In these files, I found four bytes changing from save to save. I naturally assumed I was looking at a 32-bit checksum. However, it didn&amp;#8217;t seem to be a simple accumulator-based checksum, nor a &lt;span class="caps"&gt;CRC&lt;/span&gt;-32. So, I now suspected it was either a custom checksum (why?) or they were only performing the sum on part of the file. This was looking like a big&amp;nbsp;undertaking.&lt;/p&gt;
+&lt;p&gt;After a while, I noticed that when I was playing around with that file, modifying what I thought to be the checksum, I was getting weird behavior. Particularly, I noticed that the clock for how long the save had been played was&amp;nbsp;different.&lt;/p&gt;
+&lt;p&gt;Ah-ha!&lt;/p&gt;
+&lt;p&gt;Two of those bytes were actually from the clock. It&amp;#8217;s only a 16-bit checksum&amp;#8212;a simple accumulator. Now that I know it, I can calculate the appropriate checksum for my modified file and insert&amp;nbsp;it.&lt;/p&gt;
+&lt;p&gt;That&amp;#8217;ll have to wait for next time, though. I&amp;#8217;ve had quite enough save file hacking for one&amp;nbsp;night.&lt;/p&gt;</summary><category term="dot hack"></category></entry><entry><title>Saves 0025-0030: Welcome to The World</title><link href="https://sopoforic.github.io/saves-0025-0030-welcome-to-the-world.html" rel="alternate"></link><updated>2015-10-12T16:34:29-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2013-09-01:saves-0025-0030-welcome-to-the-world.html</id><summary type="html">&lt;p&gt;Okay, enough preliminaries. Time to log in to The World. We&amp;#8217;re treated to a shot of Kite appearing in Mac Anu, meeting up with&amp;nbsp;Orca.&lt;/p&gt;
+&lt;p&gt;Got Orca&amp;#8217;s member address. Entered Bursting Passed Over Aqua Field. Killed some stuff. Plot&amp;nbsp;happens!&lt;/p&gt;
+&lt;p&gt;Okay, new save (0025). Diff&amp;nbsp;them&amp;#8230;&lt;/p&gt;
+&lt;p&gt;Oh! So many changes! Where to&amp;nbsp;begin?&lt;/p&gt;
+&lt;p&gt;Previously, the section after the user and character names was just a repeating string of &lt;span class="caps"&gt;FFFFFF00&lt;/span&gt;. Now, there&amp;#8217;s another byte pattern repeating throughout that&amp;nbsp;section:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;00 00 0A 05 03 00 0A 05 04 00 0A 05 05 00 0A 05
+01 00 0D 05 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;That repeats several&amp;nbsp;times.&lt;/p&gt;
+&lt;p&gt;A byte at 0x0D37. has change from 00 to 01. Starting at 0x12B8, lots of 4-byte sections have changed from &lt;span class="caps"&gt;FFFFFF00&lt;/span&gt; to something else. The last one is at 0x1DB8-0x1DBB. Just after that, a couple of 4-byte sections changed from 00000000 to something else. At 0x1E7A, two bytes change from 0000 to 0401. There&amp;#8217;s a region from 0x1EC4 to 0x2193 that was previously filled with &lt;span class="caps"&gt;FF&lt;/span&gt;. Now, it&amp;#8217;s got some other stuff scattered about. There are 1-byte changes at 0x2220, 0x2224, and 0x226A. Two bytes change at 0x246A-0x246B. One byte at 0x421C. One at 0x4FE5. Four bytes at 0x523C and two at&amp;nbsp;0x5278.&lt;/p&gt;
+&lt;p&gt;&amp;#8230;&lt;/p&gt;
+&lt;p&gt;Well, the point is that there are lots of changes. There&amp;#8217;s no way I can possibly understand them all by just looking at this one&amp;nbsp;diff.&lt;/p&gt;
+&lt;p&gt;That said, I can probably sort out at least one thing: more mail. I had a new unread mail when I saved, so let&amp;#8217;s look at the area where the previous mail was&amp;#8212;0x23A4. Previously, it was 02 when the mail was unread, and 04 when the mail was read. Now, there&amp;#8217;s a byte changed up above here: 0x226A has changed from 00 to 02. I&amp;#8217;m guessing that byte represents the new email. Save 0026: I&amp;#8217;m&amp;nbsp;right.&lt;/p&gt;
+&lt;p&gt;Also, given that the two bytes before that one are 04, I&amp;#8217;m guessing those represented the other two emails that I read before making the first&amp;nbsp;save.&lt;/p&gt;
+&lt;p&gt;Okay, try to log in to The World again&amp;#8230; all servers are down for maintenance. Well, let&amp;#8217;s go ahead and make save 0027, just to see what happens&amp;#8230; ah, two bytes changed: 0x2944 changed from 00 to 07, and 0x5548 changed from 01 to 03.&amp;nbsp;Why?&lt;/p&gt;
+&lt;p&gt;Anyway, &amp;#8220;I should post on the Board about Yasuhiko.&amp;#8221; Okay, message posted, and I have new mail. First, though: save&amp;nbsp;0028.&lt;/p&gt;
+&lt;p&gt;Several changes. One at 0x226B&amp;#8212;that&amp;#8217;ll be the new mail. Two bytes at 0x246B-0x246C&amp;#8212;don&amp;#8217;t know about this one. 0x2944 changed from 07 to 03. Given its location, that should be the post I made to the board, I&amp;#8217;m thinking. Also, 0x5548 changed from 03 to 33. Don&amp;#8217;t know what that one does, either. Some kind of flag, I&amp;nbsp;guess.&lt;/p&gt;
+&lt;p&gt;That email, it&amp;#8217;s from &amp;#8220;Au]$&amp;#8221;. How mysterious. Save 0029. And now I see tha the email at 0x226B shows up as read, and the byte at 0x5548 has changed from 33 to 73. That&amp;#8217;s surely tracking the state of the game. It&amp;#8217;s taken on five different values, so&amp;nbsp;far.&lt;/p&gt;
+&lt;p&gt;Well, let&amp;#8217;s log in to The World, again. Ah, there&amp;#8217;s BlackRose, behaving suspiciously. Well, first order of business: save&amp;nbsp;0030.&lt;/p&gt;
+&lt;p&gt;So many changes! There are lots of small changes between 0x13F8 and 0x1E3A. Given the location, I&amp;#8217;m guessing those are related to BlackRose&amp;#8212;either inventory or stats, or maybe both. The ones that changed before probably belonged to Kite and&amp;nbsp;Orca.&lt;/p&gt;
+&lt;p&gt;0x5548 changed again, to F3. A couple of other bytes changed near there, too: 0x554F-0x5550 changed from 0000 to C015. 0x54F8 changed from 01 to 00. 27 bytes changed starting at 0x81B4, and 15 starting at&amp;nbsp;0x81E4.&lt;/p&gt;
+&lt;p&gt;Whew! There have been a lot of changes, and I don&amp;#8217;t think I&amp;#8217;ve really deciphered much more, yet, but I&amp;#8217;m now in a position to figure out where the player&amp;#8217;s inventory is stored. That&amp;#8217;ll probably be a big endeavour, though, so I&amp;#8217;m going to take a break,&amp;nbsp;here.&lt;/p&gt;</summary><category term="dot hack"></category></entry><entry><title>Interlude: Memory Map</title><link href="https://sopoforic.github.io/interlude-memory-map.html" rel="alternate"></link><updated>2015-10-12T16:31:22-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2013-08-29:interlude-memory-map.html</id><summary type="html">&lt;p&gt;A tiny break from actually mapping out memory to post my current memory map. Mostly empty, but Rome wasn&amp;#8217;t built in a day,&amp;nbsp;right?&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Location&lt;/th&gt;
+&lt;th&gt;Note&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0000-000D&lt;/td&gt;
+&lt;td&gt;Character name&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;0018-0029&lt;/td&gt;
+&lt;td&gt;User name&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2236&lt;/td&gt;
+&lt;td&gt;Desktop Image&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;23A4&lt;/td&gt;
+&lt;td&gt;Reading the email &amp;#8220;Version Update&amp;#8221; changed this from 02 to 04&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2864-2867&lt;/td&gt;
+&lt;td&gt;News&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2889&lt;/td&gt;
+&lt;td&gt;News&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;28E4-28F7&lt;/td&gt;
+&lt;td&gt;Board&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2914-2917&lt;/td&gt;
+&lt;td&gt;Board&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2E54-2E55&lt;/td&gt;
+&lt;td&gt;Board&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;span class="caps"&gt;2EB4&lt;/span&gt;-&lt;span class="caps"&gt;2EB5&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;Board&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;span class="caps"&gt;2EE4&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;Board&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2F14&lt;/td&gt;
+&lt;td&gt;Board&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;32D4-32D8&lt;/td&gt;
+&lt;td&gt;Board&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3304-3307&lt;/td&gt;
+&lt;td&gt;Board&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3334-333C&lt;/td&gt;
+&lt;td&gt;Board&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3364-3366&lt;/td&gt;
+&lt;td&gt;Board&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3394-3395&lt;/td&gt;
+&lt;td&gt;Board&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3484-348A&lt;/td&gt;
+&lt;td&gt;Board&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5507&lt;/td&gt;
+&lt;td&gt;??? Changed from 80 to C0 when starting The World&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;8400-8403&lt;/td&gt;
+&lt;td&gt;Time played in 1/60 second resolution&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;span class="caps"&gt;UNKNOWN&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;There&amp;#8217;s probably lots of padding in there, and it&amp;#8217;s probable that the section with the board posts in it is used for nothing else. If everything works the way it looks like it does, so far, then I&amp;#8217;ve got a general idea of what about a quarter of the save file is for. Not too bad. The next few saves will probably give me a picture of how character stats and inventory are stored, so that should be another big chunk of it.&amp;nbsp;Progress!&lt;/p&gt;</summary><category term="dot hack"></category></entry><entry><title>Saves 0011-0024: Almost There</title><link href="https://sopoforic.github.io/saves-0011-0024-almost-there.html" rel="alternate"></link><updated>2015-10-12T16:30:34-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2013-08-29:saves-0011-0024-almost-there.html</id><summary type="html">&lt;p&gt;Enough of the desktop. Time to play some games! Almost, anyway. If you enter The World&amp;#8217;s main menu, then close it and save (0011) without doing anything else, 0x5507 changes from 0x80 to 0xC0. What does it mean, exactly? Not&amp;nbsp;sure.&lt;/p&gt;
+&lt;p&gt;Before entering The World itself, we can read posts on the board, which can also add items to the keyword list. Time for some diffs&amp;nbsp;(0012-0016)&amp;#8230;&lt;/p&gt;
+&lt;p&gt;The first thread, &amp;#8220;System Explanation&amp;#8221; seems to map to a 20 byte region from 0x28E4 to 0x28F7. Problem: there are only nineteen posts. Somewhere in the middle, and extra byte got changed, but I&amp;#8217;m not sure where. Well, I can come back to it later. Anyway, like the news items, these start as 0x01 and change to 0x03 when you read&amp;nbsp;them.&lt;/p&gt;
+&lt;p&gt;Might as well map out the other threads on the board, while I&amp;#8217;m at it&amp;nbsp;(0017-0024)&amp;#8230;&lt;/p&gt;
+&lt;p&gt;Okay, results time. They all follow the same pattern as above. Worthy of notice: each thread&amp;#8217;s posts begin at 0x???4 (e.g. 0x2914) and continue from there. I&amp;#8217;m guessing there will be quite a few padding bytes in&amp;nbsp;there.&lt;/p&gt;
+&lt;p&gt;Based on what I know so far, I&amp;#8217;m guessing that the region from about 0x2864 to about 0x40E3 is reserved for flags like that. I know for sure that there&amp;#8217;s a mail item flag at 0x2864 and a board post at 0x348A, but the region is zeroes up to 0x40E3, so that looks like an upper bound. Of course, that&amp;#8217;s far more bytes than would be needed for this kind of thing, so it&amp;#8217;s possible that there&amp;#8217;s other stuff in there,&amp;nbsp;too.&lt;/p&gt;
+&lt;p&gt;I think that really is everything you can do before playing the game. Next time: The&amp;nbsp;World!&lt;/p&gt;</summary><category term="dot hack"></category></entry><entry><title>Saves 0003-0010: Before the Beginning</title><link href="https://sopoforic.github.io/saves-0003-0010-before-the-beginning.html" rel="alternate"></link><updated>2015-10-12T16:27:39-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2013-08-28:saves-0003-0010-before-the-beginning.html</id><summary type="html">&lt;p&gt;I was forced to read some email before making the first save, but not all of it. New diff: read the final&amp;nbsp;email.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=".hack//Infection reading email" src="https://sopoforic.github.io/images/dhi-mail-0003.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Diff the files, ignore the time being different, and there&amp;#8217;s a change in only a single byte: 0x23A4 changes from 02 to 04. Hmm. This&amp;#8217;ll have to wait until I&amp;#8217;ve got more emails, I think. Incidentally, that&amp;#8217;s a lonely number in a sea of zeros. Probably this region will be filled in as events happen&amp;#8212;maybe it&amp;#8217;s a region for flags like reading email and news items. Speaking of news, why not check out&amp;nbsp;that?&lt;/p&gt;
+&lt;p&gt;&lt;img alt=".hack//Infection reading news" src="https://sopoforic.github.io/images/dhi-news-0004.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Read the top news item, diff the saves&amp;#8230; another single byte change. 0x2864 changes from 0x01 to&amp;nbsp;0x03.&lt;/p&gt;
+&lt;p&gt;Read the second news item, diff the saves&amp;#8230; one byte, again. 0x2865 changes from 0x01 to&amp;nbsp;0x03.&lt;/p&gt;
+&lt;p&gt;Now, I&amp;#8217;m not superstitious, but I think I&amp;#8217;m seeing a pattern, here. Have a look at this region of the&amp;nbsp;file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+00002860  FF FF FF FF 03 03 01 01 00 00 00 00 00 00 00 00  ÿÿÿÿ............
+00002870  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+00002880  00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00  ................
+00002890  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+000028A0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+000028B0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+000028C0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+000028D0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+000028E0  00 00 00 00 01 01 01 01 01 01 01 01 01 01 01 01  ................
+000028F0  01 01 01 01 01 01 01 01 00 00 00 00 00 00 00 00  ................
+00002900  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+00002910  00 00 00 00 01 01 01 01 00 00 00 00 00 00 00 00  ................
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Above, it&amp;#8217;s all 0xFF for a while, and below, it&amp;#8217;s all 0x00 for a while. Reading news items flipped a bit on 0x2864 and 0x2865. I&amp;#8217;ve got three unread news items left, and 0x2866 and 0x2867 are both 0x01, but I was hoping for three in a row. However, 0x2889 is also 0x01, and it&amp;#8217;s pretty nearby, so my guess is that reading these three news items will switch all three of those to 0x03. Time for some&amp;nbsp;testing&amp;#8230;&lt;/p&gt;
+&lt;p&gt;Yep! The three bytes I predicted changed, in order, when reading the news items. My guess is that 0x01 means the news item is visible, and 0x03 means it&amp;#8217;s been read. Probably the bytes between these are for other news&amp;nbsp;items.&lt;/p&gt;
+&lt;p&gt;What else is there to explore? The Desktop Image can be changed, here, so let&amp;#8217;s check that. Changing from Orange Blossom to Red Eye to Blue Moon causes 0x2236 to change from 0x31 to 0x32 to 0x33,&amp;nbsp;respectively.&lt;/p&gt;
+&lt;p&gt;That&amp;#8217;s pretty much all there is to be seen, before actually logging in to The World and starting the game proper. About 0.2% done mapping the save file. Isn&amp;#8217;t it&amp;nbsp;rewarding?&lt;/p&gt;</summary><category term="dot hack"></category></entry><entry><title>Let’s hacking! Saves 0001 and 0002.</title><link href="https://sopoforic.github.io/lets-hacking-saves-0001-and-0002.html" rel="alternate"></link><updated>2015-10-12T16:19:17-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2013-08-25:lets-hacking-saves-0001-and-0002.html</id><summary type="html">&lt;p&gt;New project: learn to reverse engineer file formats. Specimen:&amp;nbsp;.hack//Infection.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=".hack//Infection title screen" src="https://sopoforic.github.io/images/dhi-title.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I picked up a tool that extracts files from &lt;span class="caps"&gt;PS2&lt;/span&gt; memory cards. Cheating? Maybe a little. I&amp;#8217;ll worry about that&amp;nbsp;later.&lt;/p&gt;
+&lt;p&gt;The first thing to do is start a new game for experimental&amp;nbsp;purposes.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=".hack//Infection name entry" src="https://sopoforic.github.io/images/dhi-name.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ve filled in names with the maximum possible length so that I can tell exactly much room is dedicated to them in the save&amp;nbsp;file.&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;m forced to read some of the emails before saving, but&amp;nbsp;then&amp;#8230;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=".hack//Infection save 1" src="https://sopoforic.github.io/images/dhi-save-0001.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Three minutes, thirty-seven seconds. Saving in slot 1, before I&amp;#8217;ve ever entered the game for the first time. Let&amp;#8217;s see what that save file looks&amp;nbsp;like.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;00000000  4B 69 74 65 30 31 32 33 34 35 36 37 38 39 00 00  Kite0123456789..
+00000010  00 00 00 00 00 00 00 00 48 61 63 6B 65 72 30 31  ........Hacker01
+00000020  32 33 34 35 36 37 38 39 30 31 00 00 00 00 00 00  2345678901......
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Well, there are the names I put in, right at the beginning. The character&amp;#8217;s name is stored in 0x0000-0x000D, and the player&amp;#8217;s name is stored in&amp;nbsp;0x0018-0x0029.&lt;/p&gt;
+&lt;p&gt;There&amp;#8217;s not much else that we&amp;#8217;ll be able to find from just one save, I guess, but we can take a stab at finding where the time is stored. Let&amp;#8217;s just wait a few seconds, then make another&amp;nbsp;save.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=".hack//Infection save 2" src="https://sopoforic.github.io/images/dhi-save-0002.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Great. Extract the save again and compare the&amp;nbsp;two&amp;#8230;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+00008400  F7 32 00 00 40 00 10 00 80 00 00 08 00 01 40 00  ÷2..@...€.....@.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;vs.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+00008400  29 38 00 00 40 00 10 00 80 00 00 08 00 01 40 00  )8..@...€.....@.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Just two bytes differ. The &lt;span class="caps"&gt;PS2&lt;/span&gt; is little-endian, so we should read those as 0x3829 and 0x32F7. They differ by 1330, in decimal. 1330? The time should differ by 22 seconds. Hmm. Divide by 22, and let&amp;#8217;s see what we get: 60.454545&amp;#8230;. I deduce that the time is stored with 1/60 of a second&amp;nbsp;resolution.&lt;/p&gt;
+&lt;p&gt;They can&amp;#8217;t be storing the time in two bytes&amp;#8212;that&amp;#8217;s only enough for about 18 minutes. Three bytes would be enough for about 77 hours, but I imagine they want to be able to track at least 99 hours, so I&amp;#8217;ll go out on a limb and assume that they&amp;#8217;re storing the time as an ordinary 32-bit integer. So, time is stored in&amp;nbsp;0x8400-0x8403.&lt;/p&gt;
+&lt;p&gt;Hacking session 1 complete, I figure. That&amp;#8217;s 4 bytes for the time, 14 bytes for the character name, and 18 bytes for the user name. 36 bytes down, 34060 to&amp;nbsp;go.&lt;/p&gt;</summary><category term="dot hack"></category></entry><entry><title>Lessons in Efficiency</title><link href="https://sopoforic.github.io/lessons-in-efficiency.html" rel="alternate"></link><updated>2012-08-17T00:52:00-04:00</updated><author><name>Tracy Poff</name></author><id>tag:sopoforic.github.io,2012-08-17:lessons-in-efficiency.html</id><summary type="html">&lt;p&gt;I was working on &lt;a href="http://projecteuler.net/problem=92"&gt;Project Euler problem 92&lt;/a&gt;,
 and having a great deal of trouble making my program run fast enough. I’m aware
 of a trick that can be used to reduce the problem space, but I thought that with
 only ten million numbers to check, it should be possible to do it

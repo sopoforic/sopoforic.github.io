@@ -1,0 +1,172 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Sleepy Coding</title>
+		<meta name="description" content="">
+		<meta name="author" content="Tracy Poff">
+
+		<link rel="stylesheet" href="./theme/css/foundation.css" />
+		<link rel="stylesheet" href="./theme/css/pygment/monokai.css" />
+		<link rel="stylesheet" href="./theme/css/custom.css" />
+
+
+		<script src="./theme/js/modernizr.js"></script>
+
+		<!-- Feeds -->
+		<link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
+
+
+		<!-- mathjax config similar to math.stackexchange -->
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax: {
+				inlineMath: [ ['$', '$'] ],
+				displayMath: [ ['$$', '$$']],
+				processEscapes: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+			},
+			messageStyle: "none",
+			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+		});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+	<body>
+		<div class="off-canvas-wrap">
+			<div class="inner-wrap">
+				<!-- mobile top bar to activate nav -->
+				<nav class="tab-bar show-for-small">
+					<section class="left-small">
+						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+					</section>
+
+					<section class="middle tab-bar-section">
+						<h1 class="title">Sleepy&nbsp;Coding</h1>
+					</section>
+				</nav>
+
+				<!-- mobile side bar nav -->
+				<aside class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<li><a href=".">Home</a></li>
+						<li><label>Categories</label></li>
+							<li class="active"><a href="./category/misc.html">misc</a></li>
+
+						<li><label>Places</label></li>
+
+
+
+						<li><label>Links</label></li>
+							<li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+					</ul>	
+				</aside>
+
+				<!-- top bar nav -->
+				<nav class="top-bar hide-for-small-only" data-topbar>
+					<ul class="title-area">
+						<li class="name">
+							<h1><a href="./">Sleepy Coding</a></h1>
+						</li>
+					</ul>
+
+					<section class="top-bar-section">
+						<ul class="left">
+								<li><a href="./pages/about-me.html">About</a></li>
+								<li><a href="./pages/projects.html">Projects</a></li>
+						</ul>
+						<ul class="left">
+								<li class="active"><a href="./category/misc.html">misc</a></li>
+						</ul>
+					</section>
+				</nav>
+
+				<!-- Main Page Content and Sidebar -->
+				<section class="main-section">
+					<div class="row">
+						<!-- Main Content -->
+						<div class="medium-9 small-12 columns" role="content">
+<article>
+	<h2>Saves 0031-0032: Taking Inventory, part&nbsp;1</h2>
+	<p>Offset 0x004B changed from 03 to 04. That&#8217;s probably the quantity of fortune wire Kite has. The question at the moment is whether fortune wire is always stored at that offset or whether it&#8217;s tied to some other value that marks it as fortune&nbsp;wire.</p>
+<p>Offset 0x687E changed from <span class="caps">FF</span> to 00. Not sure what that&#8217;s&nbsp;about.</p>
+<p>Offset 0x749C changed from E8 to <span class="caps">DE</span>. Now, the one after that is 03, and 0x03E8 is 1000 in decimal, and 0x03DE is 990. I&#8217;d say I&#8217;ve found where money is stored. I&#8217;m guessing it&#8217;s a 32-bit value, too, but it may not be&#8212;or maybe there&#8217;s a maximum enforced elsewhere. For now, though, I&#8217;m going with&nbsp;it.</p>
+<p>Now, as for that mysterious 0x687E&#8230; I did accidentally speak to a person running around town. Didn&#8217;t actually hit &#8216;talk&#8217; or &#8216;trade&#8217;, but I did open up that menu. Maybe it&#8217;s tracking who I&#8217;ve spoken to? Easy way to test that. Load save 0030, buy some fortune wire without talking to anyone, save again: save&nbsp;0032.</p>
+<p>And&#8230; oh dear. Lots of changes in the region I guessed to be stats and/or inventory. I&#8217;ll be ignoring those, for now. 0x687E is indeed still <span class="caps">FF</span> in the new save, so I&#8217;m going to tentatively assume I was right about that&nbsp;one.</p>
+<p>So, I was going to test out what the money limit was, but when I made a modification, the game told me the save file was corrupt. After some careful checking, I&#8217;m thinking that there&#8217;s a checksum&nbsp;somewhere.</p>
+<p>&#8230;and I just wasted an hour that I didn&#8217;t have to waste. There is indeed a checksum. There&#8217;s a file <span class="caps">BASLUS</span>-<span class="caps">20267DOTHACK</span> in the save directory on the memory card, which I believed to contain the checksum. I was right about this. However, I was wrong about exactly what the checksum was. In these files, I found four bytes changing from save to save. I naturally assumed I was looking at a 32-bit checksum. However, it didn&#8217;t seem to be a simple accumulator-based checksum, nor a <span class="caps">CRC</span>-32. So, I now suspected it was either a custom checksum (why?) or they were only performing the sum on part of the file. This was looking like a big&nbsp;undertaking.</p>
+<p>After a while, I noticed that when I was playing around with that file, modifying what I thought to be the checksum, I was getting weird behavior. Particularly, I noticed that the clock for how long the save had been played was&nbsp;different.</p>
+<p>Ah-ha!</p>
+<p>Two of those bytes were actually from the clock. It&#8217;s only a 16-bit checksum&#8212;a simple accumulator. Now that I know it, I can calculate the appropriate checksum for my modified file and insert&nbsp;it.</p>
+<p>That&#8217;ll have to wait for next time, though. I&#8217;ve had quite enough save file hacking for one&nbsp;night.</p>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> on Mon 02 September 2013.</h6>
+</article>
+
+						</div>
+						<!-- End Main Content -->
+						<!-- Sidebar -->
+						<aside class="medium-3 hide-for-small-only columns"><div class="panel">
+								<h5>Tags</h5>
+								<ul class="tag-cloud">
+									<li><a href="/tag/quoted-forsooth/" class="tag-3">quoted forsooth</a></li>
+									<li><a href="/tag/javascript/" class="tag-4">javascript</a></li>
+									<li><a href="/tag/dot-hack/" class="tag-1">dot hack</a></li>
+									<li><a href="/tag/personal/" class="tag-4">personal</a></li>
+									<li><a href="/tag/assembly/" class="tag-4">assembly</a></li>
+									<li><a href="/tag/games/" class="tag-4">games</a></li>
+									<li><a href="/tag/github/" class="tag-4">github</a></li>
+									<li><a href="/tag/flask-markdown/" class="tag-4">flask-markdown</a></li>
+									<li><a href="/tag/wordspy/" class="tag-2">wordspy</a></li>
+									<li><a href="/tag/750-to-org/" class="tag-3">750-to-org</a></li>
+									<li><a href="/tag/android/" class="tag-4">android</a></li>
+									<li><a href="/tag/mercurial/" class="tag-3">mercurial</a></li>
+									<li><a href="/tag/gamecube/" class="tag-4">gamecube</a></li>
+									<li><a href="/tag/kivy/" class="tag-4">kivy</a></li>
+									<li><a href="/tag/porting/" class="tag-3">porting</a></li>
+									<li><a href="/tag/autofill-ebay/" class="tag-4">autofill-ebay</a></li>
+									<li><a href="/tag/awari/" class="tag-3">awari</a></li>
+									<li><a href="/tag/python/" class="tag-2">python</a></li>
+									<li><a href="/tag/basic/" class="tag-3">BASIC</a></li>
+									<li><a href="/tag/project-euler/" class="tag-4">Project Euler</a></li>
+									<li><a href="/tag/ffcollection/" class="tag-2">ffcollection</a></li>
+									<li><a href="/tag/cgrr/" class="tag-3">cgrr</a></li>
+									<li><a href="/tag/git/" class="tag-4">git</a></li>
+									<li><a href="/tag//" class="tag-4"></a></li>
+									<li><a href="/tag/greasemonkey/" class="tag-4">greasemonkey</a></li>
+									<li><a href="/tag/haskell/" class="tag-3">Haskell</a></li>
+								</ul>
+							</div>
+
+
+							<div class="panel">
+								<h5>Links</h5>
+								<ul class="side-nav">
+									<li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+								</ul>
+							</div>
+						</aside>
+						<!-- End Sidebar -->
+					</div>
+
+					<!-- Footer -->
+					<footer class="row">
+						<div class="medium-9 small-12">
+							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
+						</div>
+					</footer>
+					<!-- End Footer -->
+				</section>
+				<a class="exit-off-canvas"></a>
+			</div><!--off-canvas inner-->
+		</div><!--off-canvas wrap-->
+
+		<script src="./theme/js/jquery.js"></script>
+		<script src="./theme/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
+</html>

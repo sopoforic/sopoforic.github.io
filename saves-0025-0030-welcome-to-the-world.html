@@ -1,0 +1,193 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Sleepy Coding</title>
+		<meta name="description" content="">
+		<meta name="author" content="Tracy Poff">
+
+		<link rel="stylesheet" href="./theme/css/foundation.css" />
+		<link rel="stylesheet" href="./theme/css/pygment/monokai.css" />
+		<link rel="stylesheet" href="./theme/css/custom.css" />
+
+
+		<script src="./theme/js/modernizr.js"></script>
+
+		<!-- Feeds -->
+		<link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
+
+
+		<!-- mathjax config similar to math.stackexchange -->
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax: {
+				inlineMath: [ ['$', '$'] ],
+				displayMath: [ ['$$', '$$']],
+				processEscapes: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+			},
+			messageStyle: "none",
+			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+		});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+	<body>
+		<div class="off-canvas-wrap">
+			<div class="inner-wrap">
+				<!-- mobile top bar to activate nav -->
+				<nav class="tab-bar show-for-small">
+					<section class="left-small">
+						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+					</section>
+
+					<section class="middle tab-bar-section">
+						<h1 class="title">Sleepy&nbsp;Coding</h1>
+					</section>
+				</nav>
+
+				<!-- mobile side bar nav -->
+				<aside class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<li><a href=".">Home</a></li>
+						<li><label>Categories</label></li>
+							<li class="active"><a href="./category/misc.html">misc</a></li>
+
+						<li><label>Places</label></li>
+
+
+
+						<li><label>Links</label></li>
+							<li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+					</ul>	
+				</aside>
+
+				<!-- top bar nav -->
+				<nav class="top-bar hide-for-small-only" data-topbar>
+					<ul class="title-area">
+						<li class="name">
+							<h1><a href="./">Sleepy Coding</a></h1>
+						</li>
+					</ul>
+
+					<section class="top-bar-section">
+						<ul class="left">
+								<li><a href="./pages/about-me.html">About</a></li>
+								<li><a href="./pages/projects.html">Projects</a></li>
+						</ul>
+						<ul class="left">
+								<li class="active"><a href="./category/misc.html">misc</a></li>
+						</ul>
+					</section>
+				</nav>
+
+				<!-- Main Page Content and Sidebar -->
+				<section class="main-section">
+					<div class="row">
+						<!-- Main Content -->
+						<div class="medium-9 small-12 columns" role="content">
+<article>
+	<h2>Saves 0025-0030: Welcome to The&nbsp;World</h2>
+	<p>Okay, enough preliminaries. Time to log in to The World. We&#8217;re treated to a shot of Kite appearing in Mac Anu, meeting up with&nbsp;Orca.</p>
+<p>Got Orca&#8217;s member address. Entered Bursting Passed Over Aqua Field. Killed some stuff. Plot&nbsp;happens!</p>
+<p>Okay, new save (0025). Diff&nbsp;them&#8230;</p>
+<p>Oh! So many changes! Where to&nbsp;begin?</p>
+<p>Previously, the section after the user and character names was just a repeating string of <span class="caps">FFFFFF00</span>. Now, there&#8217;s another byte pattern repeating throughout that&nbsp;section:</p>
+<div class="highlight"><pre>00 00 0A 05 03 00 0A 05 04 00 0A 05 05 00 0A 05
+01 00 0D 05 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF FF 00
+</pre></div>
+
+
+<p>That repeats several&nbsp;times.</p>
+<p>A byte at 0x0D37. has change from 00 to 01. Starting at 0x12B8, lots of 4-byte sections have changed from <span class="caps">FFFFFF00</span> to something else. The last one is at 0x1DB8-0x1DBB. Just after that, a couple of 4-byte sections changed from 00000000 to something else. At 0x1E7A, two bytes change from 0000 to 0401. There&#8217;s a region from 0x1EC4 to 0x2193 that was previously filled with <span class="caps">FF</span>. Now, it&#8217;s got some other stuff scattered about. There are 1-byte changes at 0x2220, 0x2224, and 0x226A. Two bytes change at 0x246A-0x246B. One byte at 0x421C. One at 0x4FE5. Four bytes at 0x523C and two at&nbsp;0x5278.</p>
+<p>&#8230;</p>
+<p>Well, the point is that there are lots of changes. There&#8217;s no way I can possibly understand them all by just looking at this one&nbsp;diff.</p>
+<p>That said, I can probably sort out at least one thing: more mail. I had a new unread mail when I saved, so let&#8217;s look at the area where the previous mail was&#8212;0x23A4. Previously, it was 02 when the mail was unread, and 04 when the mail was read. Now, there&#8217;s a byte changed up above here: 0x226A has changed from 00 to 02. I&#8217;m guessing that byte represents the new email. Save 0026: I&#8217;m&nbsp;right.</p>
+<p>Also, given that the two bytes before that one are 04, I&#8217;m guessing those represented the other two emails that I read before making the first&nbsp;save.</p>
+<p>Okay, try to log in to The World again&#8230; all servers are down for maintenance. Well, let&#8217;s go ahead and make save 0027, just to see what happens&#8230; ah, two bytes changed: 0x2944 changed from 00 to 07, and 0x5548 changed from 01 to 03.&nbsp;Why?</p>
+<p>Anyway, &#8220;I should post on the Board about Yasuhiko.&#8221; Okay, message posted, and I have new mail. First, though: save&nbsp;0028.</p>
+<p>Several changes. One at 0x226B&#8212;that&#8217;ll be the new mail. Two bytes at 0x246B-0x246C&#8212;don&#8217;t know about this one. 0x2944 changed from 07 to 03. Given its location, that should be the post I made to the board, I&#8217;m thinking. Also, 0x5548 changed from 03 to 33. Don&#8217;t know what that one does, either. Some kind of flag, I&nbsp;guess.</p>
+<p>That email, it&#8217;s from &#8220;Au]$&#8221;. How mysterious. Save 0029. And now I see tha the email at 0x226B shows up as read, and the byte at 0x5548 has changed from 33 to 73. That&#8217;s surely tracking the state of the game. It&#8217;s taken on five different values, so&nbsp;far.</p>
+<p>Well, let&#8217;s log in to The World, again. Ah, there&#8217;s BlackRose, behaving suspiciously. Well, first order of business: save&nbsp;0030.</p>
+<p>So many changes! There are lots of small changes between 0x13F8 and 0x1E3A. Given the location, I&#8217;m guessing those are related to BlackRose&#8212;either inventory or stats, or maybe both. The ones that changed before probably belonged to Kite and&nbsp;Orca.</p>
+<p>0x5548 changed again, to F3. A couple of other bytes changed near there, too: 0x554F-0x5550 changed from 0000 to C015. 0x54F8 changed from 01 to 00. 27 bytes changed starting at 0x81B4, and 15 starting at&nbsp;0x81E4.</p>
+<p>Whew! There have been a lot of changes, and I don&#8217;t think I&#8217;ve really deciphered much more, yet, but I&#8217;m now in a position to figure out where the player&#8217;s inventory is stored. That&#8217;ll probably be a big endeavour, though, so I&#8217;m going to take a break,&nbsp;here.</p>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> on Sun 01 September 2013.</h6>
+</article>
+
+						</div>
+						<!-- End Main Content -->
+						<!-- Sidebar -->
+						<aside class="medium-3 hide-for-small-only columns"><div class="panel">
+								<h5>Tags</h5>
+								<ul class="tag-cloud">
+									<li><a href="/tag/quoted-forsooth/" class="tag-3">quoted forsooth</a></li>
+									<li><a href="/tag/javascript/" class="tag-4">javascript</a></li>
+									<li><a href="/tag/dot-hack/" class="tag-1">dot hack</a></li>
+									<li><a href="/tag/personal/" class="tag-4">personal</a></li>
+									<li><a href="/tag/assembly/" class="tag-4">assembly</a></li>
+									<li><a href="/tag/games/" class="tag-4">games</a></li>
+									<li><a href="/tag/github/" class="tag-4">github</a></li>
+									<li><a href="/tag/flask-markdown/" class="tag-4">flask-markdown</a></li>
+									<li><a href="/tag/wordspy/" class="tag-2">wordspy</a></li>
+									<li><a href="/tag/750-to-org/" class="tag-3">750-to-org</a></li>
+									<li><a href="/tag/android/" class="tag-4">android</a></li>
+									<li><a href="/tag/mercurial/" class="tag-3">mercurial</a></li>
+									<li><a href="/tag/gamecube/" class="tag-4">gamecube</a></li>
+									<li><a href="/tag/kivy/" class="tag-4">kivy</a></li>
+									<li><a href="/tag/porting/" class="tag-3">porting</a></li>
+									<li><a href="/tag/autofill-ebay/" class="tag-4">autofill-ebay</a></li>
+									<li><a href="/tag/awari/" class="tag-3">awari</a></li>
+									<li><a href="/tag/python/" class="tag-2">python</a></li>
+									<li><a href="/tag/basic/" class="tag-3">BASIC</a></li>
+									<li><a href="/tag/project-euler/" class="tag-4">Project Euler</a></li>
+									<li><a href="/tag/ffcollection/" class="tag-2">ffcollection</a></li>
+									<li><a href="/tag/cgrr/" class="tag-3">cgrr</a></li>
+									<li><a href="/tag/git/" class="tag-4">git</a></li>
+									<li><a href="/tag//" class="tag-4"></a></li>
+									<li><a href="/tag/greasemonkey/" class="tag-4">greasemonkey</a></li>
+									<li><a href="/tag/haskell/" class="tag-3">Haskell</a></li>
+								</ul>
+							</div>
+
+
+							<div class="panel">
+								<h5>Links</h5>
+								<ul class="side-nav">
+									<li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+								</ul>
+							</div>
+						</aside>
+						<!-- End Sidebar -->
+					</div>
+
+					<!-- Footer -->
+					<footer class="row">
+						<div class="medium-9 small-12">
+							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
+						</div>
+					</footer>
+					<!-- End Footer -->
+				</section>
+				<a class="exit-off-canvas"></a>
+			</div><!--off-canvas inner-->
+		</div><!--off-canvas wrap-->
+
+		<script src="./theme/js/jquery.js"></script>
+		<script src="./theme/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
+</html>

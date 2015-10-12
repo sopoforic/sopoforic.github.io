@@ -1,0 +1,181 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Sleepy Coding</title>
+		<meta name="description" content="">
+		<meta name="author" content="Tracy Poff">
+
+		<link rel="stylesheet" href="./theme/css/foundation.css" />
+		<link rel="stylesheet" href="./theme/css/pygment/monokai.css" />
+		<link rel="stylesheet" href="./theme/css/custom.css" />
+
+
+		<script src="./theme/js/modernizr.js"></script>
+
+		<!-- Feeds -->
+		<link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
+
+
+		<!-- mathjax config similar to math.stackexchange -->
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax: {
+				inlineMath: [ ['$', '$'] ],
+				displayMath: [ ['$$', '$$']],
+				processEscapes: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+			},
+			messageStyle: "none",
+			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+		});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+	<body>
+		<div class="off-canvas-wrap">
+			<div class="inner-wrap">
+				<!-- mobile top bar to activate nav -->
+				<nav class="tab-bar show-for-small">
+					<section class="left-small">
+						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+					</section>
+
+					<section class="middle tab-bar-section">
+						<h1 class="title">Sleepy&nbsp;Coding</h1>
+					</section>
+				</nav>
+
+				<!-- mobile side bar nav -->
+				<aside class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<li><a href=".">Home</a></li>
+						<li><label>Categories</label></li>
+							<li class="active"><a href="./category/misc.html">misc</a></li>
+
+						<li><label>Places</label></li>
+
+
+
+						<li><label>Links</label></li>
+							<li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+					</ul>	
+				</aside>
+
+				<!-- top bar nav -->
+				<nav class="top-bar hide-for-small-only" data-topbar>
+					<ul class="title-area">
+						<li class="name">
+							<h1><a href="./">Sleepy Coding</a></h1>
+						</li>
+					</ul>
+
+					<section class="top-bar-section">
+						<ul class="left">
+								<li><a href="./pages/about-me.html">About</a></li>
+								<li><a href="./pages/projects.html">Projects</a></li>
+						</ul>
+						<ul class="left">
+								<li class="active"><a href="./category/misc.html">misc</a></li>
+						</ul>
+					</section>
+				</nav>
+
+				<!-- Main Page Content and Sidebar -->
+				<section class="main-section">
+					<div class="row">
+						<!-- Main Content -->
+						<div class="medium-9 small-12 columns" role="content">
+<article>
+	<h2>Interlude: Modifying&nbsp;Saves</h2>
+	<p>I wrote last time that I was going to modify a save in order to test what range of values was acceptable. Time to get to work on that. Well, actually, time to continue&nbsp;work.</p>
+<p>I&#8217;ve written a program that can extract information from the saves and (in principle) write it back to them. I&#8217;ve been using Ross Ridge&#8217;s mymc utility to get the save file off the memory card. It seemed pretty convenient, since mymc is written in python, as is my program (inventively called &#8220;dothacksaveparser.py&#8221;). I figured that when it came time to actually modify files, I&#8217;d just import mymc do my magic, and problem&nbsp;solved.</p>
+<p>It was not to&nbsp;be.</p>
+<p>First, mymc is an interactive program, and there&#8217;s no easy way to use it as a library&#8212;in fact, if you try to import it, it&#8217;ll just kill your program. Bad. There important initialization stuff done in the main function, so I can&#8217;t just just wrap it all in if <strong>name</strong> == &#8220;<strong>main</strong>&#8220;, either. Maybe I&#8217;ll eventually get it sorted out into a more useful form, but for now, importing is&nbsp;out.</p>
+<p>No problem, I though, I can just run the thing and have take its input from stdin and print to stdout, and it&#8217;ll be pretty much the same thing. So I try it. And&#8230; I&#8217;m getting files of the wrong&nbsp;size.</p>
+<p>The save files for .hack//Infection are 34096 bytes. Somehow, when I had the files output to stdout, a hundred or so bytes were getting added. Mysterious. I compare the files, and notice that they look pretty similar, but misaligned. In fact, there are extraneous 0x0D bytes added throughout. A little closer look reveals that each extra 0x0D occurs before a 0x0A that was in the original file. Now, those are some low bytes&#8230; control codes&#8230; I look it up, and, indeed, python is adding a carriage return before each &#8216;line feed&#8217;. Of course, since it&#8217;s a binary file, there aren&#8217;t actually any line feeds, but&#8230; there you have&nbsp;it.</p>
+<p>Some research revealed the right solution to that problem,&nbsp;though:</p>
+<div class="highlight"><pre><span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">&quot;win32&quot;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">msvcrt</span>
+    <span class="n">msvcrt</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span> <span class="n">os</span><span class="o">.</span><span class="n">O_BINARY</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Useful snippet of&nbsp;code.</p>
+<p>So, problem solved&#8230; almost there. Now I can read the files in, and I know how to calculate the checksum and export the files again. One problem: the function for adding files to a memory card will not accept input from stdin. Why not? Why can I get files extracted to stdout but not added from&nbsp;stdin?</p>
+<p>Fine. I&#8217;ll write the files to disk so that they can be&nbsp;added.</p>
+<p>I do all that, and it&#8217;s time for a test. No modifications. Just read the file in and spit it back out. And&#8230; failure. Bizarrely, a huge number of bytes have been modified in the memory card file, but I can&#8217;t see why. Executing the same commands manually works fine. What&#8217;s happening? I try again, and&#8230; it works. Let it be known that the worst words to hear are &#8220;intermittent error&#8221;. I have no clue what went wrong the first time. I&#8217;m going to hope that it was&#8230; I don&#8217;t know&#8230; solar&nbsp;flares.</p>
+<p>Anyway, this story&#8217;s drawing to a close. Having a successful test on unmodified files, what&#8217;s left is to try a simple modification. How about giving Kite <span class="caps">15000GP</span>?</p>
+<p><img alt=".hack//Infection lots of money" src="./images/dhi-money-0032.jpg" /></p>
+<p>I&#8217;m rich. As Kite is my witness, I&#8217;ll never go hungry&nbsp;again!</p>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> on Mon 02 September 2013.</h6>
+</article>
+
+						</div>
+						<!-- End Main Content -->
+						<!-- Sidebar -->
+						<aside class="medium-3 hide-for-small-only columns"><div class="panel">
+								<h5>Tags</h5>
+								<ul class="tag-cloud">
+									<li><a href="/tag/quoted-forsooth/" class="tag-3">quoted forsooth</a></li>
+									<li><a href="/tag/javascript/" class="tag-4">javascript</a></li>
+									<li><a href="/tag/dot-hack/" class="tag-1">dot hack</a></li>
+									<li><a href="/tag/personal/" class="tag-4">personal</a></li>
+									<li><a href="/tag/assembly/" class="tag-4">assembly</a></li>
+									<li><a href="/tag/games/" class="tag-4">games</a></li>
+									<li><a href="/tag/github/" class="tag-4">github</a></li>
+									<li><a href="/tag/flask-markdown/" class="tag-4">flask-markdown</a></li>
+									<li><a href="/tag/wordspy/" class="tag-2">wordspy</a></li>
+									<li><a href="/tag/750-to-org/" class="tag-3">750-to-org</a></li>
+									<li><a href="/tag/android/" class="tag-4">android</a></li>
+									<li><a href="/tag/mercurial/" class="tag-3">mercurial</a></li>
+									<li><a href="/tag/gamecube/" class="tag-4">gamecube</a></li>
+									<li><a href="/tag/kivy/" class="tag-4">kivy</a></li>
+									<li><a href="/tag/porting/" class="tag-3">porting</a></li>
+									<li><a href="/tag/autofill-ebay/" class="tag-4">autofill-ebay</a></li>
+									<li><a href="/tag/awari/" class="tag-3">awari</a></li>
+									<li><a href="/tag/python/" class="tag-2">python</a></li>
+									<li><a href="/tag/basic/" class="tag-3">BASIC</a></li>
+									<li><a href="/tag/project-euler/" class="tag-4">Project Euler</a></li>
+									<li><a href="/tag/ffcollection/" class="tag-2">ffcollection</a></li>
+									<li><a href="/tag/cgrr/" class="tag-3">cgrr</a></li>
+									<li><a href="/tag/git/" class="tag-4">git</a></li>
+									<li><a href="/tag//" class="tag-4"></a></li>
+									<li><a href="/tag/greasemonkey/" class="tag-4">greasemonkey</a></li>
+									<li><a href="/tag/haskell/" class="tag-3">Haskell</a></li>
+								</ul>
+							</div>
+
+
+							<div class="panel">
+								<h5>Links</h5>
+								<ul class="side-nav">
+									<li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+								</ul>
+							</div>
+						</aside>
+						<!-- End Sidebar -->
+					</div>
+
+					<!-- Footer -->
+					<footer class="row">
+						<div class="medium-9 small-12">
+							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
+						</div>
+					</footer>
+					<!-- End Footer -->
+				</section>
+				<a class="exit-off-canvas"></a>
+			</div><!--off-canvas inner-->
+		</div><!--off-canvas wrap-->
+
+		<script src="./theme/js/jquery.js"></script>
+		<script src="./theme/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
+</html>

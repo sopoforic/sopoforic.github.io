@@ -1,0 +1,188 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Sleepy Coding</title>
+		<meta name="description" content="">
+		<meta name="author" content="Tracy Poff">
+
+		<link rel="stylesheet" href="./theme/css/foundation.css" />
+		<link rel="stylesheet" href="./theme/css/pygment/monokai.css" />
+		<link rel="stylesheet" href="./theme/css/custom.css" />
+
+
+		<script src="./theme/js/modernizr.js"></script>
+
+		<!-- Feeds -->
+		<link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
+
+
+		<!-- mathjax config similar to math.stackexchange -->
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax: {
+				inlineMath: [ ['$', '$'] ],
+				displayMath: [ ['$$', '$$']],
+				processEscapes: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+			},
+			messageStyle: "none",
+			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+		});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+	<body>
+		<div class="off-canvas-wrap">
+			<div class="inner-wrap">
+				<!-- mobile top bar to activate nav -->
+				<nav class="tab-bar show-for-small">
+					<section class="left-small">
+						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+					</section>
+
+					<section class="middle tab-bar-section">
+						<h1 class="title">Sleepy&nbsp;Coding</h1>
+					</section>
+				</nav>
+
+				<!-- mobile side bar nav -->
+				<aside class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<li><a href=".">Home</a></li>
+						<li><label>Categories</label></li>
+							<li class="active"><a href="./category/misc.html">misc</a></li>
+
+						<li><label>Places</label></li>
+
+
+
+						<li><label>Links</label></li>
+							<li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+					</ul>	
+				</aside>
+
+				<!-- top bar nav -->
+				<nav class="top-bar hide-for-small-only" data-topbar>
+					<ul class="title-area">
+						<li class="name">
+							<h1><a href="./">Sleepy Coding</a></h1>
+						</li>
+					</ul>
+
+					<section class="top-bar-section">
+						<ul class="left">
+								<li><a href="./pages/about-me.html">About</a></li>
+								<li><a href="./pages/projects.html">Projects</a></li>
+						</ul>
+						<ul class="left">
+								<li class="active"><a href="./category/misc.html">misc</a></li>
+						</ul>
+					</section>
+				</nav>
+
+				<!-- Main Page Content and Sidebar -->
+				<section class="main-section">
+					<div class="row">
+						<!-- Main Content -->
+						<div class="medium-9 small-12 columns" role="content">
+<article>
+	<h2>Saves 0003-0010: Before the&nbsp;Beginning</h2>
+	<p>I was forced to read some email before making the first save, but not all of it. New diff: read the final&nbsp;email.</p>
+<p><img alt=".hack//Infection reading email" src="./images/dhi-mail-0003.jpg" /></p>
+<p>Diff the files, ignore the time being different, and there&#8217;s a change in only a single byte: 0x23A4 changes from 02 to 04. Hmm. This&#8217;ll have to wait until I&#8217;ve got more emails, I think. Incidentally, that&#8217;s a lonely number in a sea of zeros. Probably this region will be filled in as events happen&#8212;maybe it&#8217;s a region for flags like reading email and news items. Speaking of news, why not check out&nbsp;that?</p>
+<p><img alt=".hack//Infection reading news" src="./images/dhi-news-0004.jpg" /></p>
+<p>Read the top news item, diff the saves&#8230; another single byte change. 0x2864 changes from 0x01 to&nbsp;0x03.</p>
+<p>Read the second news item, diff the saves&#8230; one byte, again. 0x2865 changes from 0x01 to&nbsp;0x03.</p>
+<p>Now, I&#8217;m not superstitious, but I think I&#8217;m seeing a pattern, here. Have a look at this region of the&nbsp;file:</p>
+<div class="highlight"><pre>Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+00002860  FF FF FF FF 03 03 01 01 00 00 00 00 00 00 00 00  ÿÿÿÿ............
+00002870  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+00002880  00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00  ................
+00002890  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+000028A0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+000028B0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+000028C0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+000028D0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+000028E0  00 00 00 00 01 01 01 01 01 01 01 01 01 01 01 01  ................
+000028F0  01 01 01 01 01 01 01 01 00 00 00 00 00 00 00 00  ................
+00002900  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+00002910  00 00 00 00 01 01 01 01 00 00 00 00 00 00 00 00  ................
+</pre></div>
+
+
+<p>Above, it&#8217;s all 0xFF for a while, and below, it&#8217;s all 0x00 for a while. Reading news items flipped a bit on 0x2864 and 0x2865. I&#8217;ve got three unread news items left, and 0x2866 and 0x2867 are both 0x01, but I was hoping for three in a row. However, 0x2889 is also 0x01, and it&#8217;s pretty nearby, so my guess is that reading these three news items will switch all three of those to 0x03. Time for some&nbsp;testing&#8230;</p>
+<p>Yep! The three bytes I predicted changed, in order, when reading the news items. My guess is that 0x01 means the news item is visible, and 0x03 means it&#8217;s been read. Probably the bytes between these are for other news&nbsp;items.</p>
+<p>What else is there to explore? The Desktop Image can be changed, here, so let&#8217;s check that. Changing from Orange Blossom to Red Eye to Blue Moon causes 0x2236 to change from 0x31 to 0x32 to 0x33,&nbsp;respectively.</p>
+<p>That&#8217;s pretty much all there is to be seen, before actually logging in to The World and starting the game proper. About 0.2% done mapping the save file. Isn&#8217;t it&nbsp;rewarding?</p>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> on Wed 28 August 2013.</h6>
+</article>
+
+						</div>
+						<!-- End Main Content -->
+						<!-- Sidebar -->
+						<aside class="medium-3 hide-for-small-only columns"><div class="panel">
+								<h5>Tags</h5>
+								<ul class="tag-cloud">
+									<li><a href="/tag/quoted-forsooth/" class="tag-3">quoted forsooth</a></li>
+									<li><a href="/tag/javascript/" class="tag-4">javascript</a></li>
+									<li><a href="/tag/dot-hack/" class="tag-1">dot hack</a></li>
+									<li><a href="/tag/personal/" class="tag-4">personal</a></li>
+									<li><a href="/tag/assembly/" class="tag-4">assembly</a></li>
+									<li><a href="/tag/games/" class="tag-4">games</a></li>
+									<li><a href="/tag/github/" class="tag-4">github</a></li>
+									<li><a href="/tag/flask-markdown/" class="tag-4">flask-markdown</a></li>
+									<li><a href="/tag/wordspy/" class="tag-2">wordspy</a></li>
+									<li><a href="/tag/750-to-org/" class="tag-3">750-to-org</a></li>
+									<li><a href="/tag/android/" class="tag-4">android</a></li>
+									<li><a href="/tag/mercurial/" class="tag-3">mercurial</a></li>
+									<li><a href="/tag/gamecube/" class="tag-4">gamecube</a></li>
+									<li><a href="/tag/kivy/" class="tag-4">kivy</a></li>
+									<li><a href="/tag/porting/" class="tag-3">porting</a></li>
+									<li><a href="/tag/autofill-ebay/" class="tag-4">autofill-ebay</a></li>
+									<li><a href="/tag/awari/" class="tag-3">awari</a></li>
+									<li><a href="/tag/python/" class="tag-2">python</a></li>
+									<li><a href="/tag/basic/" class="tag-3">BASIC</a></li>
+									<li><a href="/tag/project-euler/" class="tag-4">Project Euler</a></li>
+									<li><a href="/tag/ffcollection/" class="tag-2">ffcollection</a></li>
+									<li><a href="/tag/cgrr/" class="tag-3">cgrr</a></li>
+									<li><a href="/tag/git/" class="tag-4">git</a></li>
+									<li><a href="/tag//" class="tag-4"></a></li>
+									<li><a href="/tag/greasemonkey/" class="tag-4">greasemonkey</a></li>
+									<li><a href="/tag/haskell/" class="tag-3">Haskell</a></li>
+								</ul>
+							</div>
+
+
+							<div class="panel">
+								<h5>Links</h5>
+								<ul class="side-nav">
+									<li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+								</ul>
+							</div>
+						</aside>
+						<!-- End Sidebar -->
+					</div>
+
+					<!-- Footer -->
+					<footer class="row">
+						<div class="medium-9 small-12">
+							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
+						</div>
+					</footer>
+					<!-- End Footer -->
+				</section>
+				<a class="exit-off-canvas"></a>
+			</div><!--off-canvas inner-->
+		</div><!--off-canvas wrap-->
+
+		<script src="./theme/js/jquery.js"></script>
+		<script src="./theme/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
+</html>

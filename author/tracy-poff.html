@@ -271,38 +271,12 @@ the plugin stuff is just an extra mess&#8212;<span class="caps">YAGNI</span>.</p
 </article>
 <hr />
 <article>
-	<h3><a href="../lessons-in-efficiency.html">Lessons in&nbsp;Efficiency</a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Fri 17 August 2012. Tags: <a href="../tag/haskell.html">Haskell</a>, <a href="../tag/project-euler.html">Project Euler</a>, </h6>
-	<p>I was working on <a href="http://projecteuler.net/problem=92">Project Euler problem 92</a>,
-and having a great deal of trouble making my program run fast enough. I’m aware
-of a trick that can be used to reduce the problem space, but I thought that with
-only ten million numbers to check, it should be possible to do it
-straightforwardly and just check them all, as long as I wasn’t too inefficient
-doing&nbsp;it.</p>
-<p>My first successful version took about three minutes to run–much too slow. I
-eliminated a duplicate call to an expensive function, which brought me down to
-about two minutes, and at length I managed to reduce the runtime down to about
-thirty seconds–much better, though still very slow. I tried some alternate
-techniques and just couldn’t make it go any quicker while still using a brute
-force&nbsp;approach.</p>
-<p>Now, there’s one important thing I haven’t mentioned: on the Windows <span class="caps">PC</span> I’m
-using for development, the version of gcc included with the Haskell Platform
-doesn’t work. I can’t figure out why, but it makes it impossible to compile
-Haskell programs, so I’ve just been running them in the interpreter. Well, that
-gives away the ending to this anecdote: I copied the program to a (much slower)
-Linux <span class="caps">PC</span> and compiled it, and it ran in about five seconds. Even my first, very
-inefficient attempt would have been fast enough to satisfy the one minute rule.
-But I learned a bit by trying to make the interpreted version fast enough to&nbsp;pass.</p>
-<p>Lessons:</p>
-<ol>
-<li>Squaring a number with (n^2) is significantly slower than doing it with (n *&nbsp;n).</li>
-<li>Arrays are faster to access than even fairly small&nbsp;lists.</li>
-<li>It’s faster to compose several functions and then map them to a list than to
-repeatedly map individual&nbsp;functions.</li>
-</ol>
-<p>Of course, these apply to programs run through the interpreter–it’s quite
-possible that at least the first of these might not hold if the program is
-compiled. Maybe I’ll test it, some&nbsp;time.</p>
+	<h3><a href="../saves-0033-taking-inventory-part-2.html">Saves 0033-????: Taking Inventory, part&nbsp;2</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Mon 02 September 2013. Tags: <a href="../tag/dot-hack.html">dot hack</a>, </h6>
+	<p>So, since I put quite a bit of work into it, let&#8217;s use my new save file modification powers to find the max value for&nbsp;money&#8230;</p>
+<p>After some testing, I&#8217;m still not sure exactly what the max value is. 0x7FFFFFFF works, and so does 0x80000000, but some higher values (like 0xCFFFFFFF) don&#8217;t work. They give you smaller amounts of <span class="caps">GP</span> than you should have. For instance 0xFFFFFFFF gives you 5. There&#8217;s some kind of wrapping happening at various places, but I don&#8217;t really know quite how. Doesn&#8217;t matter. No one needs more than two billion <span class="caps">GP</span>, anyway, so I&#8217;m calling that a&nbsp;limit.</p>
+<p><img alt=".hack//Infection maximum money" src="../images/dhi-maxmoney.jpg" /></p>
+<p>640K should be enough for&nbsp;anyone.</p>
 </article>
 <hr />
 
@@ -326,31 +300,32 @@ compiled. Maybe I’ll test it, some&nbsp;time.</p>
 						<aside class="medium-3 hide-for-small-only columns"><div class="panel">
 								<h5>Tags</h5>
 								<ul class="tag-cloud">
+									<li><a href="/tag/quoted-forsooth/" class="tag-3">quoted forsooth</a></li>
+									<li><a href="/tag/javascript/" class="tag-4">javascript</a></li>
+									<li><a href="/tag/dot-hack/" class="tag-1">dot hack</a></li>
+									<li><a href="/tag/personal/" class="tag-4">personal</a></li>
+									<li><a href="/tag/assembly/" class="tag-4">assembly</a></li>
+									<li><a href="/tag/games/" class="tag-4">games</a></li>
+									<li><a href="/tag/github/" class="tag-4">github</a></li>
+									<li><a href="/tag/flask-markdown/" class="tag-4">flask-markdown</a></li>
+									<li><a href="/tag/wordspy/" class="tag-2">wordspy</a></li>
+									<li><a href="/tag/750-to-org/" class="tag-3">750-to-org</a></li>
+									<li><a href="/tag/android/" class="tag-4">android</a></li>
+									<li><a href="/tag/mercurial/" class="tag-3">mercurial</a></li>
 									<li><a href="/tag/gamecube/" class="tag-4">gamecube</a></li>
 									<li><a href="/tag/kivy/" class="tag-4">kivy</a></li>
-									<li><a href="/tag/git/" class="tag-4">git</a></li>
-									<li><a href="/tag/personal/" class="tag-4">personal</a></li>
-									<li><a href="/tag/porting/" class="tag-2">porting</a></li>
-									<li><a href="/tag/greasemonkey/" class="tag-4">greasemonkey</a></li>
-									<li><a href="/tag/flask-markdown/" class="tag-4">flask-markdown</a></li>
-									<li><a href="/tag/python/" class="tag-1">python</a></li>
-									<li><a href="/tag/github/" class="tag-4">github</a></li>
-									<li><a href="/tag/mercurial/" class="tag-2">mercurial</a></li>
-									<li><a href="/tag/assembly/" class="tag-4">assembly</a></li>
-									<li><a href="/tag/quoted-forsooth/" class="tag-2">quoted forsooth</a></li>
-									<li><a href="/tag/android/" class="tag-4">android</a></li>
-									<li><a href="/tag/750-to-org/" class="tag-2">750-to-org</a></li>
-									<li><a href="/tag/awari/" class="tag-2">awari</a></li>
-									<li><a href="/tag/javascript/" class="tag-4">javascript</a></li>
+									<li><a href="/tag/porting/" class="tag-3">porting</a></li>
 									<li><a href="/tag/autofill-ebay/" class="tag-4">autofill-ebay</a></li>
+									<li><a href="/tag/awari/" class="tag-3">awari</a></li>
+									<li><a href="/tag/python/" class="tag-2">python</a></li>
+									<li><a href="/tag/basic/" class="tag-3">BASIC</a></li>
 									<li><a href="/tag/project-euler/" class="tag-4">Project Euler</a></li>
-									<li><a href="/tag/wordspy/" class="tag-1">wordspy</a></li>
-									<li><a href="/tag/haskell/" class="tag-2">Haskell</a></li>
+									<li><a href="/tag/ffcollection/" class="tag-2">ffcollection</a></li>
+									<li><a href="/tag/cgrr/" class="tag-3">cgrr</a></li>
+									<li><a href="/tag/git/" class="tag-4">git</a></li>
 									<li><a href="/tag//" class="tag-4"></a></li>
-									<li><a href="/tag/games/" class="tag-4">games</a></li>
-									<li><a href="/tag/basic/" class="tag-2">BASIC</a></li>
-									<li><a href="/tag/cgrr/" class="tag-2">cgrr</a></li>
-									<li><a href="/tag/ffcollection/" class="tag-1">ffcollection</a></li>
+									<li><a href="/tag/greasemonkey/" class="tag-4">greasemonkey</a></li>
+									<li><a href="/tag/haskell/" class="tag-3">Haskell</a></li>
 								</ul>
 							</div>
 
