@@ -10,7 +10,7 @@ I can be found in several places online.
 
 ## Coding stuff
 
-* [sopoforic @ GitHub](https://github.com/sopoforic), obviously
+* [sopoforic @ GitHub](https://github.com/sopoforic)
 * [sopoforic @ Bitbucket](https://bitbucket.org/sopoforic/)
 * [TracyPoff @ WakaTime](https://wakatime.com/@TracyPoff)
 
@@ -21,6 +21,8 @@ I can be found in several places online.
 ## Blogs, etc.
 
 * [This Very Blog](https://sopoforic.github.io/)
+* [Too Much Free Time](https://tmft.wordpress.com/), video game related musings
+* [Other Stuff Exists](https://otherstuffexists.wordpress.com/), book reviews and more
 
 ## Badges
 
