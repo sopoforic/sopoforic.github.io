@@ -8,12 +8,12 @@
 		<meta name="description" content="">
 		<meta name="author" content="Tracy Poff">
 
-		<link rel="stylesheet" href="../theme/css/foundation.css" />
-		<link rel="stylesheet" href="../theme/css/pygment/monokai.css" />
-		<link rel="stylesheet" href="../theme/css/custom.css" />
+		<link rel="stylesheet" href="./theme/css/foundation.css" />
+		<link rel="stylesheet" href="./theme/css/pygment/monokai.css" />
+		<link rel="stylesheet" href="./theme/css/custom.css" />
 
 
-		<script src="../theme/js/modernizr.js"></script>
+		<script src="./theme/js/modernizr.js"></script>
 
 		<!-- Feeds -->
 		<link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
@@ -52,9 +52,9 @@
 				<!-- mobile side bar nav -->
 				<aside class="left-off-canvas-menu">
 					<ul class="off-canvas-list">
-						<li><a href="..">Home</a></li>
+						<li><a href=".">Home</a></li>
 						<li><label>Categories</label></li>
-							<li ><a href="../category/misc.html">misc</a></li>
+							<li class="active"><a href="./category/misc.html">misc</a></li>
 
 						<li><label>Places</label></li>
 
@@ -69,17 +69,17 @@
 				<nav class="top-bar hide-for-small-only" data-topbar>
 					<ul class="title-area">
 						<li class="name">
-							<h1><a href="../">Sleepy Coding</a></h1>
+							<h1><a href="./">Sleepy Coding</a></h1>
 						</li>
 					</ul>
 
 					<section class="top-bar-section">
 						<ul class="left">
-								<li><a href="../pages/about-me.html">About</a></li>
-								<li><a href="../pages/projects.html">Projects</a></li>
+								<li><a href="./pages/about-me.html">About</a></li>
+								<li><a href="./pages/projects.html">Projects</a></li>
 						</ul>
 						<ul class="left">
-								<li ><a href="../category/misc.html">misc</a></li>
+								<li class="active"><a href="./category/misc.html">misc</a></li>
 						</ul>
 					</section>
 				</nav>
@@ -89,25 +89,19 @@
 					<div class="row">
 						<!-- Main Content -->
 						<div class="medium-9 small-12 columns" role="content">
-							<div class="row">
-								<div class="small-12 columns">
-									<h2>Posts Tagged With 'github'</h2>
-								</div>
-							</div>
-
 <article>
-	<h3><a href="../cgrr-transferred.html"><span class="caps">CGRR</span> transferred to&nbsp;github</a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Mon 01 June 2015. Tags: <a href="../tag/cgrr.html">cgrr</a>, <a href="../tag/github.html">github</a>, </h6>
-	<p>After many months of procrastination, I&#8217;ve finally split up my cgrr project and
-transferred it to github. It took quite a while, but in the end I think it will
-be much more maintainable and useful with each of the parser modules taken
-separately than it would be with them all jammed together pretending to be
-plugins for some yet-unwritten master program. If I want to write some wrapper
-around them all later, they&#8217;ll perfectly well support it, but until then, all
-the plugin stuff is just an extra mess&#8212;<span class="caps">YAGNI</span>.</p>
+	<h2>git update-index &#8212;assume&nbsp;unchanged</h2>
+	<p>Thanks to <a href="http://stackoverflow.com/questions/3319479/git-can-i-commit-a-file-and-ignore-the-content-changes">this stackoverflow question</a>, I&#8217;ve learned a useful git&nbsp;trick:</p>
+<blockquote>
+<p>git update-index &#8212;assume-unchanged [<file> &#8230;]</p>
+</blockquote>
+<p>and its&nbsp;counterpart:</p>
+<blockquote>
+<p>git update-index &#8212;no-assume-unchanged [<file> &#8230;]</p>
+</blockquote>
+<p>This pair of commands lets me keep a default file in the repo (e.g. a sample config) and modify it locally without git complaining about changed files.&nbsp;Handy!</p>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> on Mon 12 October 2015.</h6>
 </article>
-<hr />
-
 
 						</div>
 						<!-- End Main Content -->
@@ -166,8 +160,8 @@ the plugin stuff is just an extra mess&#8212;<span class="caps">YAGNI</span>.</p
 			</div><!--off-canvas inner-->
 		</div><!--off-canvas wrap-->
 
-		<script src="../theme/js/jquery.js"></script>
-		<script src="../theme/js/foundation.min.js"></script>
+		<script src="./theme/js/jquery.js"></script>
+		<script src="./theme/js/foundation.min.js"></script>
 		<script>
 			$(document).foundation();
 		</script>

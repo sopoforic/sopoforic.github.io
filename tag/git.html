@@ -91,73 +91,22 @@
 						<div class="medium-9 small-12 columns" role="content">
 							<div class="row">
 								<div class="small-12 columns">
-									<h2>Posts Tagged With 'wordspy'</h2>
+									<h2>Posts Tagged With 'git'</h2>
 								</div>
 							</div>
 
 <article>
-	<h3><a href="../wordspy-milestone.html">WordsPy&nbsp;Milestone</a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 16 May 2010. Tags: <a href="../tag/wordspy.html">wordspy</a>, </h6>
-	<p>As of the most recent revision (r18:6453f11b96e6), WordsPy functions as a (bad)
-game. The dictionary is hooked up, and it only lets you remove letters if they
-form a word in the dictionary (That’s a rule. Games have rules. Ergo, game.&nbsp;Right?).</p>
-<p>Other&nbsp;features:</p>
-<ul>
-<li>Selected letters are&nbsp;highlighted</li>
-<li>Backspace&nbsp;support</li>
-<li>Nonstop key-pressing&nbsp;action!</li>
-</ul>
-<p>Next steps will be arranging it so the letter generator provides useful letters
-rather than just random ones (probably just analyze the dictionary for letter
-frequencies and use that), creating some kind of status display, and additional
-nice things (score? list of words you made in that session? difficulty levels?
-the possibilities are&nbsp;endless!)</p>
-<p>Edit: and a screenshot for&nbsp;posterity.</p>
-<p><img alt="WordsPy screenshot" src="../images/snap0391.png" /></p>
-</article>
-<hr />
-<article>
-	<h3><a href="../wordspy-again.html">WordsPy,&nbsp;again</a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 16 May 2010. Tags: <a href="../tag/wordspy.html">wordspy</a>, <a href="../tag/python.html">python</a>, </h6>
-	<p>Well, the bad news is that wordspy still does nothing other than scroll new
-lines onto the screen. The good news is that it does it in a better&nbsp;way.</p>
-<p>In order to deal with letters dropping (due to letters below them being removed)
-at the same time as a new line was scrolling up, it was necessary to re-engineer
-the whole thing. Now letters store their current location, and it’s modified
-whenever necessary by the newlinescroll and drop actions. This does have some
-other benefits, too. For example, it simplifies drawing the new line onto the
-screen somewhat. Before, I was&nbsp;doing:</p>
-<div class="highlight"><pre><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">Game</span><span class="o">.</span><span class="n">letters</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="mi">64</span><span class="o">*</span><span class="n">col</span><span class="p">,</span> <span class="mi">481</span><span class="p">))</span>
-</pre></div>
-
-
-<p>Now, since I initialize the letters with their location, I can just&nbsp;do:</p>
-<div class="highlight"><pre><span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">Game</span><span class="o">.</span><span class="n">letters</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span>
-    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">letter</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="n">letter</span><span class="o">.</span><span class="n">rect</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Which is rather more&nbsp;readable.</p>
-<p>Lesson learned, though: don’t forget to empty the dirty rectangles list after
-updating the screen. Once it grows to 64 items or so, it noticeably slows down
-the game. I’m fairly sure it shouldn’t contain more than a dozen or so items
-under normal usage, but I’ll have to remember to keep an eye on&nbsp;it.</p>
-</article>
-<hr />
-<article>
-	<h3><a href="../new-project-wordspy.html">New Project:&nbsp;WordsPy</a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sat 15 May 2010. Tags: <a href="../tag/wordspy.html">wordspy</a>, </h6>
-	<p>I found that I wanted to play Word Zap/Word Jolt/Bookworm/whatever word
-construction game, but I didn’t seem to have one on hand, and <a href="http://www.popcap.com/games/free/bookworm">the version of
-Bookworm I found</a> was far from
-satisfying. So, I did what anyone would do: set out to make my&nbsp;own.</p>
-<p>I’ve been wanting to learn to use pygame for a while, and this seemed like a
-good opportunity. I’ve had my fair share of trouble so far, but I think I’m
-beginning to get a handle on how to use it. It’s
-<a href="http://bitbucket.org/sopoforic/wordspy">here</a> for now, though it’s not playable
-yet&#8212;it only generates the letters and scrolls them onto the screen. Still, it’s
-a&nbsp;start.</p>
+	<h3><a href="../git-update-index-assume-unchanged.html">git update-index &#8212;assume&nbsp;unchanged</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Mon 12 October 2015. Tags: <a href="../tag/git.html">git</a>, </h6>
+	<p>Thanks to <a href="http://stackoverflow.com/questions/3319479/git-can-i-commit-a-file-and-ignore-the-content-changes">this stackoverflow question</a>, I&#8217;ve learned a useful git&nbsp;trick:</p>
+<blockquote>
+<p>git update-index &#8212;assume-unchanged [<file> &#8230;]</p>
+</blockquote>
+<p>and its&nbsp;counterpart:</p>
+<blockquote>
+<p>git update-index &#8212;no-assume-unchanged [<file> &#8230;]</p>
+</blockquote>
+<p>This pair of commands lets me keep a default file in the repo (e.g. a sample config) and modify it locally without git complaining about changed files.&nbsp;Handy!</p>
 </article>
 <hr />
 
