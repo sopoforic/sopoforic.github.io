@@ -91,40 +91,22 @@
 						<div class="medium-9 small-12 columns" role="content">
 							<div class="row">
 								<div class="small-12 columns">
-									<h2>Posts Tagged With 'BASIC'</h2>
+									<h2>Posts Tagged With 'perl'</h2>
 								</div>
 							</div>
 
 <article>
-	<h3><a href="../awari-ai.html">Awari <span class="caps">AI</span></a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 21 February 2010. Tags: <a href="../tag/awari.html">awari</a>, <a href="../tag/basic.html">BASIC</a>, <a href="../tag/porting.html">porting</a>, </h6>
-	<p>I&#8217;ve sorted out the <span class="caps">BASIC</span> version of Awari I&#8217;m porting into the &#8216;draw the board&#8217;
-routine, the &#8216;make a move&#8217; routine and the &#8216;incomprehensible <span class="caps">AI</span>&#8217; routine. The <span class="caps">AI</span>
-seems to first sow from the first nonempty pit, then makes some weird comparison
-and modifies a&nbsp;value:</p>
-<div class="highlight"><pre>860 FOR I=0 TO N-1:IF F(N)*6+K=INT(F(I)/6^(7-C)+.1) THEN Q=Q-2
+	<h3><a href="../creeping-perlism.html">Creeping&nbsp;Perlism</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Mon 14 December 2015. Tags: <a href="../tag/perl.html">perl</a>, </h6>
+	<p>After many hours of perl programming, my fears are realized: I find myself wanting to do things in python as I might do them in&nbsp;perl&#8230;</p>
+<div class="highlight"><pre><span class="k">if</span> <span class="p">((</span><span class="k">my</span> <span class="nv">$count</span> <span class="o">=</span> <span class="nb">scalar</span><span class="p">(</span><span class="nv">@$rows</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1"># do some stuff...</span>
+<span class="p">}</span>
 </pre></div>
 
 
-<p>The reason for that is fairly inscrutable. F is some array, and the program
-claims to have a learning mechanism to improve the <span class="caps">AI</span>, so I suspect this is that
-mechanism, but I&#8217;m not at all sure how it&#8217;s meant to work. I think I&#8217;ll have to
-make a flow chart or something to decipher this thing. This would be easier if
-the variables had meaningful names. I remember once, when I was first learning
-to program, I thought that using meaningful names was a big waste of time, since
-after all the code should be pretty self-evident, right? A second look at my
-code after some weeks disabused me of that notion, and this serves to reinforce
-that: code should be self-evident, but it won&#8217;t be if you don&#8217;t work at&nbsp;it.</p>
-<p>Oh well. With any luck, I&#8217;ll be able to sort this out with an hour or so of
-concerted effort–it&#8217;s just that reading <span class="caps">BASIC</span> is giving me a headache and I
-haven&#8217;t yet put in the requisite time. I must&nbsp;persevere!</p>
-</article>
-<hr />
-<article>
-	<h3><a href="../awari.html">Awari</a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sat 13 February 2010. Tags: <a href="../tag/awari.html">awari</a>, <a href="../tag/basic.html">BASIC</a>, <a href="../tag/porting.html">porting</a>, </h6>
-	<p>Trying to decipher an ancient implementation of Awari in a dialect of <span class="caps">BASIC</span> I’m
-not familiar with.&nbsp;Fun!</p>
+<p>It&#8217;s just so <em>convenient</em>&#8230;</p>
 </article>
 <hr />
 

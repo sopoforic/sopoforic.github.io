@@ -1,0 +1,225 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Sleepy Coding</title>
+		<meta name="description" content="">
+		<meta name="author" content="Tracy Poff">
+
+		<link rel="stylesheet" href="../theme/css/foundation.css" />
+		<link rel="stylesheet" href="../theme/css/pygment/monokai.css" />
+		<link rel="stylesheet" href="../theme/css/custom.css" />
+
+
+		<script src="../theme/js/modernizr.js"></script>
+
+		<!-- Feeds -->
+		<link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
+
+
+		<!-- mathjax config similar to math.stackexchange -->
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax: {
+				inlineMath: [ ['$', '$'] ],
+				displayMath: [ ['$$', '$$']],
+				processEscapes: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+			},
+			messageStyle: "none",
+			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+		});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+	<body>
+		<div class="off-canvas-wrap">
+			<div class="inner-wrap">
+				<!-- mobile top bar to activate nav -->
+				<nav class="tab-bar show-for-small">
+					<section class="left-small">
+						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+					</section>
+
+					<section class="middle tab-bar-section">
+						<h1 class="title">Sleepy&nbsp;Coding</h1>
+					</section>
+				</nav>
+
+				<!-- mobile side bar nav -->
+				<aside class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<li><a href="..">Home</a></li>
+						<li><label>Categories</label></li>
+							<li ><a href="../category/misc.html">misc</a></li>
+
+						<li><label>Places</label></li>
+
+
+
+						<li><label>Links</label></li>
+							<li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+					</ul>	
+				</aside>
+
+				<!-- top bar nav -->
+				<nav class="top-bar hide-for-small-only" data-topbar>
+					<ul class="title-area">
+						<li class="name">
+							<h1><a href="../">Sleepy Coding</a></h1>
+						</li>
+					</ul>
+
+					<section class="top-bar-section">
+						<ul class="left">
+								<li><a href="../pages/about-me.html">About</a></li>
+								<li><a href="../pages/projects.html">Projects</a></li>
+						</ul>
+						<ul class="left">
+								<li ><a href="../category/misc.html">misc</a></li>
+						</ul>
+					</section>
+				</nav>
+
+				<!-- Main Page Content and Sidebar -->
+				<section class="main-section">
+					<div class="row">
+						<!-- Main Content -->
+						<div class="medium-9 small-12 columns" role="content">
+							<div class="row">
+								<div class="small-12 columns">
+									<h2>Posts Tagged With 'Learning Perl'</h2>
+								</div>
+							</div>
+
+<article>
+	<h3><a href="../learning-perl-sixth-edition-chapters-1-3.html">Learning Perl, Sixth Edition: Chapters&nbsp;1-3</a></h3>
+	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Fri 16 October 2015. Tags: <a href="../tag/perl.html">perl</a>, <a href="../tag/learning-perl.html">Learning Perl</a>, </h6>
+	<p>I needed to brush up on my perl (haven&#8217;t used it for anything in a decade&#8212;brush
+up might not be <em>precisely</em> the right term), and my minor misadventures with it
+have convinced me that I should do the thing properly, so I&#8217;m going to go
+through <em>Learning Perl, Sixth Edition</em> (&#8216;the Llama book&#8217;), perhaps followed by
+some other recommended texts. Reading yet another programming text book doesn&#8217;t
+sound too exciting, but (I tell myself) strong foundations are&nbsp;important.</p>
+<p>Here follow, therefore, my notes on the book (Chapters&nbsp;1-3).</p>
+<h2>Chapter 1:&nbsp;Introduction</h2>
+<p>This is more or less a standard introductory chapter, though with rather more
+personality than usual. The exercises ask the reader first to type in a standard
+&#8216;hello world&#8217; program, then a marginally more interesting program that reformats
+the output of&nbsp;perldoc.</p>
+<p>I give this chapter points for style, but we&#8217;ve all read these kinds of things a
+hundred times, so it&#8217;s a relief to be on&nbsp;to&#8230;</p>
+<h2>Chapter 2: Scalar&nbsp;Data</h2>
+<p>This chapter looks at the ways of specifying numbers and strings, and some
+operations on them. Also: <code>use warnings;</code>, booleans (and <code>if</code>), user input (and <code>chomp</code>), <code>while</code>, <code>undef</code> (and <code>defined</code>).</p>
+<h3>Numbers</h3>
+<p>Numbers are all floating point in&nbsp;perl.</p>
+<h3>Strings</h3>
+<p>Single-quoted strings mean exactly what they say, except that <code>\\</code> means a
+single backslash, and <code>\'</code> means a single quote. In particular, interpolation
+doesn&#8217;t happen and <code>\n</code> doesn&#8217;t mean a newline&#8212;it just means those two&nbsp;characters.</p>
+<p>Double-quoted strings let you use backslash to make special characters (or any
+character) and they interpolate variables, so <code>"foo $bar baz"</code> gets the value of
+<code>$bar</code> substituted in. You can do something like <code>"foo ${ba}r baz"</code> if you need
+to (in this case) use the value <code>$ba</code> followed by the character <code>r</code>.</p>
+<ul>
+<li>Concatenate strings with <code>.</code> infix: <code>'foo' . 'bar' == 'foobar'</code></li>
+<li>Multiply strings with <code>x</code> infix: <code>'fred' x 3 == 'fredfredfred'</code></li>
+</ul>
+<h3>Jokes</h3>
+<blockquote>
+<p>In fact, nearly every sequence of punctuation is used for something in Perl.
+So, if you get writer’s block, just let the cat walk across the keyboard, and
+debug the&nbsp;result.</p>
+</blockquote>
+<h2>Chapter 3: Lists and&nbsp;Arrays</h2>
+<ul>
+<li>The range operator <code>..</code>: <code>(3..6, 12) == (3, 4, 5, 6, 12)</code></li>
+<li><code>push</code> and <code>pop</code> values at the end of a list<ul>
+<li><code>push(@array, $new_val)</code></li>
+<li><code>push(@array, @several_new_vals)</code></li>
+<li><code>pop @array</code></li>
+</ul>
+</li>
+<li><code>unshift</code> and <code>shift</code> values at the front of a&nbsp;list</li>
+<li><code>splice (@array, $start_index, $length_to_remove, @replacement_array)</code> returns
+  the removed&nbsp;items</li>
+<li>reverse arrays with <code>@array = reverse @array</code></li>
+<li><code>@sorted = sort @array</code></li>
+<li><code>while( my( $index, $value ) = each @rocks ) { say "$index: $value"; }</code>
+  with <code>use 5.012;</code></li>
+</ul>
+</article>
+<hr />
+
+
+						</div>
+						<!-- End Main Content -->
+						<!-- Sidebar -->
+						<aside class="medium-3 hide-for-small-only columns"><div class="panel">
+								<h5>Tags</h5>
+								<ul class="tag-cloud">
+									<li><a href="/tag/personal/" class="tag-4">personal</a></li>
+									<li><a href="/tag/git/" class="tag-4">git</a></li>
+									<li><a href="/tag/learning-perl/" class="tag-4">Learning Perl</a></li>
+									<li><a href="/tag/dot-hack/" class="tag-1">dot hack</a></li>
+									<li><a href="/tag/flask-markdown/" class="tag-4">flask-markdown</a></li>
+									<li><a href="/tag/ffcollection/" class="tag-2">ffcollection</a></li>
+									<li><a href="/tag/python/" class="tag-2">python</a></li>
+									<li><a href="/tag/perl/" class="tag-4">perl</a></li>
+									<li><a href="/tag/gamecube/" class="tag-4">gamecube</a></li>
+									<li><a href="/tag/basic/" class="tag-3">BASIC</a></li>
+									<li><a href="/tag/games/" class="tag-4">games</a></li>
+									<li><a href="/tag/project-euler/" class="tag-4">Project Euler</a></li>
+									<li><a href="/tag/wordspy/" class="tag-2">wordspy</a></li>
+									<li><a href="/tag/kivy/" class="tag-4">kivy</a></li>
+									<li><a href="/tag/javascript/" class="tag-4">javascript</a></li>
+									<li><a href="/tag/mercurial/" class="tag-3">mercurial</a></li>
+									<li><a href="/tag//" class="tag-4"></a></li>
+									<li><a href="/tag/autofill-ebay/" class="tag-4">autofill-ebay</a></li>
+									<li><a href="/tag/porting/" class="tag-3">porting</a></li>
+									<li><a href="/tag/haskell/" class="tag-3">Haskell</a></li>
+									<li><a href="/tag/github/" class="tag-4">github</a></li>
+									<li><a href="/tag/750-to-org/" class="tag-3">750-to-org</a></li>
+									<li><a href="/tag/cgrr/" class="tag-3">cgrr</a></li>
+									<li><a href="/tag/quoted-forsooth/" class="tag-3">quoted forsooth</a></li>
+									<li><a href="/tag/greasemonkey/" class="tag-4">greasemonkey</a></li>
+									<li><a href="/tag/assembly/" class="tag-4">assembly</a></li>
+									<li><a href="/tag/android/" class="tag-4">android</a></li>
+									<li><a href="/tag/awari/" class="tag-3">awari</a></li>
+								</ul>
+							</div>
+
+
+							<div class="panel">
+								<h5>Links</h5>
+								<ul class="side-nav">
+									<li><a href="https://twitter.com/TracyPoff">@TracyPoff</a></li>
+								</ul>
+							</div>
+						</aside>
+						<!-- End Sidebar -->
+					</div>
+
+					<!-- Footer -->
+					<footer class="row">
+						<div class="medium-9 small-12">
+							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
+						</div>
+					</footer>
+					<!-- End Footer -->
+				</section>
+				<a class="exit-off-canvas"></a>
+			</div><!--off-canvas inner-->
+		</div><!--off-canvas wrap-->
+
+		<script src="../theme/js/jquery.js"></script>
+		<script src="../theme/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
+</html>

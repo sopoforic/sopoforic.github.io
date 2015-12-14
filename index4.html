@@ -8,12 +8,12 @@
 		<meta name="description" content="">
 		<meta name="author" content="Tracy Poff">
 
-		<link rel="stylesheet" href="../theme/css/foundation.css" />
-		<link rel="stylesheet" href="../theme/css/pygment/monokai.css" />
-		<link rel="stylesheet" href="../theme/css/custom.css" />
+		<link rel="stylesheet" href="./theme/css/foundation.css" />
+		<link rel="stylesheet" href="./theme/css/pygment/monokai.css" />
+		<link rel="stylesheet" href="./theme/css/custom.css" />
 
 
-		<script src="../theme/js/modernizr.js"></script>
+		<script src="./theme/js/modernizr.js"></script>
 
 		<!-- Feeds -->
 		<link href="https://sopoforic.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Sleepy Coding Atom Feed" />
@@ -52,9 +52,9 @@
 				<!-- mobile side bar nav -->
 				<aside class="left-off-canvas-menu">
 					<ul class="off-canvas-list">
-						<li><a href="..">Home</a></li>
+						<li><a href=".">Home</a></li>
 						<li><label>Categories</label></li>
-							<li ><a href="../category/misc.html">misc</a></li>
+							<li ><a href="./category/misc.html">misc</a></li>
 
 						<li><label>Places</label></li>
 
@@ -69,17 +69,17 @@
 				<nav class="top-bar hide-for-small-only" data-topbar>
 					<ul class="title-area">
 						<li class="name">
-							<h1><a href="../">Sleepy Coding</a></h1>
+							<h1><a href="./">Sleepy Coding</a></h1>
 						</li>
 					</ul>
 
 					<section class="top-bar-section">
 						<ul class="left">
-								<li><a href="../pages/about-me.html">About</a></li>
-								<li><a href="../pages/projects.html">Projects</a></li>
+								<li><a href="./pages/about-me.html">About</a></li>
+								<li><a href="./pages/projects.html">Projects</a></li>
 						</ul>
 						<ul class="left">
-								<li ><a href="../category/misc.html">misc</a></li>
+								<li ><a href="./category/misc.html">misc</a></li>
 						</ul>
 					</section>
 				</nav>
@@ -89,45 +89,29 @@
 					<div class="row">
 						<!-- Main Content -->
 						<div class="medium-9 small-12 columns" role="content">
-							<div class="row">
-								<div class="small-12 columns">
-									<h2>Posts Tagged With 'BASIC'</h2>
-								</div>
-							</div>
 
 <article>
-	<h3><a href="../awari-ai.html">Awari <span class="caps">AI</span></a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sun 21 February 2010. Tags: <a href="../tag/awari.html">awari</a>, <a href="../tag/basic.html">BASIC</a>, <a href="../tag/porting.html">porting</a>, </h6>
-	<p>I&#8217;ve sorted out the <span class="caps">BASIC</span> version of Awari I&#8217;m porting into the &#8216;draw the board&#8217;
-routine, the &#8216;make a move&#8217; routine and the &#8216;incomprehensible <span class="caps">AI</span>&#8217; routine. The <span class="caps">AI</span>
-seems to first sow from the first nonempty pit, then makes some weird comparison
-and modifies a&nbsp;value:</p>
-<div class="highlight"><pre>860 FOR I=0 TO N-1:IF F(N)*6+K=INT(F(I)/6^(7-C)+.1) THEN Q=Q-2
-</pre></div>
-
-
-<p>The reason for that is fairly inscrutable. F is some array, and the program
-claims to have a learning mechanism to improve the <span class="caps">AI</span>, so I suspect this is that
-mechanism, but I&#8217;m not at all sure how it&#8217;s meant to work. I think I&#8217;ll have to
-make a flow chart or something to decipher this thing. This would be easier if
-the variables had meaningful names. I remember once, when I was first learning
-to program, I thought that using meaningful names was a big waste of time, since
-after all the code should be pretty self-evident, right? A second look at my
-code after some weeks disabused me of that notion, and this serves to reinforce
-that: code should be self-evident, but it won&#8217;t be if you don&#8217;t work at&nbsp;it.</p>
-<p>Oh well. With any luck, I&#8217;ll be able to sort this out with an hour or so of
-concerted effort–it&#8217;s just that reading <span class="caps">BASIC</span> is giving me a headache and I
-haven&#8217;t yet put in the requisite time. I must&nbsp;persevere!</p>
-</article>
-<hr />
-<article>
-	<h3><a href="../awari.html">Awari</a></h3>
-	<h6>Written by <a href="../author/tracy-poff.html">Tracy Poff</a> in <a href="../category/misc.html">misc</a> on Sat 13 February 2010. Tags: <a href="../tag/awari.html">awari</a>, <a href="../tag/basic.html">BASIC</a>, <a href="../tag/porting.html">porting</a>, </h6>
+	<h3><a href="./awari.html">Awari</a></h3>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> in <a href="./category/misc.html">misc</a> on Sat 13 February 2010. Tags: <a href="./tag/awari.html">awari</a>, <a href="./tag/basic.html">BASIC</a>, <a href="./tag/porting.html">porting</a>, </h6>
 	<p>Trying to decipher an ancient implementation of Awari in a dialect of <span class="caps">BASIC</span> I’m
 not familiar with.&nbsp;Fun!</p>
 </article>
 <hr />
 
+<div class="row">
+	<div class="small-12 columns text-center">
+		<div class="pagination-centered">
+			<ul class="pagination">
+				<li class="arrow"><a href="./index3.html">&larr; Previous</a></li>
+				<li class=""><a href="./index.html">1</a></li>
+				<li class=""><a href="./index2.html">2</a></li>
+				<li class=""><a href="./index3.html">3</a></li>
+				<li class="current"><a href="./index4.html">4</a></li>
+				<li class="arrow unavailable"><a href="#">&rarr; Next</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
 
 						</div>
 						<!-- End Main Content -->
@@ -188,8 +172,8 @@ not familiar with.&nbsp;Fun!</p>
 			</div><!--off-canvas inner-->
 		</div><!--off-canvas wrap-->
 
-		<script src="../theme/js/jquery.js"></script>
-		<script src="../theme/js/foundation.min.js"></script>
+		<script src="./theme/js/jquery.js"></script>
+		<script src="./theme/js/foundation.min.js"></script>
 		<script>
 			$(document).foundation();
 		</script>
