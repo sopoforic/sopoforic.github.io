@@ -9,8 +9,9 @@ Since my projects are scattered about, here I'll collect a few of them.
 
 ## Current projects
 
-[Gemstash](https://github.com/sopoforic/gemstash)
-:    A server-free memcached replacement.
+[MobyGames](http://www.mobygames.com/)
+:    The world's most comprehensive games database. I began working on this in
+     October 2015.
 
 [Quoted Forsooth](https://github.com/sopoforic/quoted-forsooth)
 :    A personal wiki/database. Presently of use mostly just to me.
@@ -62,6 +63,11 @@ subprojects that use a common library, each typically supporting a single game.
 [autofill-ebay](https://github.com/sopoforic/autofill-ebay)
 :    A greasemonkey script that automatically populates the 'maximum bid' box on
      eBay with the minimum possible bid, to ease bidding and prevent errors.
+
+[Gemstash](https://github.com/sopoforic/gemstash)
+:    A server-free memcached replacement. This mimics python-memcached (which
+     has issues), so it should only be used in case compatibility with that
+     library may be needed.
 
 [Mobygames Scripts](https://bitbucket.org/sopoforic/mobygames-scripts)
 :    A collection of greasemonkey scripts for use on
