@@ -97,6 +97,43 @@
 not familiar with.&nbsp;Fun!</p>
 </article>
 <hr />
+<article>
+	<h3><a href="./letter-a-simple-guessing-game.html"><span class="caps">LETTER</span>, a simple guessing&nbsp;game</a></h3>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> in <a href="./category/misc.html">misc</a> on Thu 11 February 2010. Tags: <a href="./tag/python.html">python</a>, <a href="./tag/game.html">game</a>, <a href="./tag/porting.html">porting</a>, <a href="./tag/basic.html">BASIC</a>, </h6>
+	<p>Recently, I&#8217;ve been looking through a book called <em>Basic Computer Games: Microcomputer Edition</em>, edited by David H. Ahl. The book contains lots of type-in computer games written in Microsoft <span class="caps">BASIC</span> for the Altair. A fair number of these &#8216;games&#8217; are more like toys, and some aren&#8217;t even interactive, but a few look like real fun, and they&#8217;re all little pieces of computing history, which I find very&nbsp;interesting.</p>
+<p>I thought I&#8217;d port a few of the more interesting games to a more modern language so people could check them out and see how far we&#8217;ve come (or, in some cases, how far we haven&#8217;t come). Of course, I thought I&#8217;d start by doing exactly what I didn&#8217;t set out to do, and port a very simple and not very interesting game, just to get a feel for it. Even this gave me a little pause, as I&#8217;ll get into. First, the game: <a href="http://www.atariarchives.org/basicgames/showpage.php?page=99" target="_blank">Letter</a>, by Bob Albrecht. That link leads to a scan of (a different edition of) the book I got the game from, so you can see the original <span class="caps">BASIC</span> code I was porting. Programmers among us will recognize that it&#8217;s extraordinarily simple, and, for a <span class="caps">BASIC</span> program, quite clean and readable. One thing gave me a little&nbsp;trouble:</p>
+<div class="highlight"><pre><span class="nt">510</span> <span class="nt">FOR</span> <span class="nt">N</span><span class="o">=</span><span class="nt">1</span> <span class="nt">TO</span> <span class="nt">15</span><span class="o">:</span> <span class="nt">PRINT</span> <span class="nt">CHR</span><span class="o">$(</span><span class="nt">7</span><span class="o">);:</span> <span class="nt">NEXT</span> <span class="nt">N</span><span class="o">&lt;/</span><span class="nt">pre</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<p>This line didn&#8217;t seem to affect the output in the printed sample run of the game, so I got an Altair emulator, just to be sure. Indeed, it doesn&#8217;t actually print, though I have no idea why. Whatever the reason, I left it out so as to faithfully reproduce the game as it was on the original system, whatever the code&nbsp;says.</p>
+<p>A part of my intention in porting these is to provide sample code for people who may be interested in learning to program; these simple games should prove to be pretty easy to understand for anyone who cares to look. Having just read through quite a lot of <span class="caps">BASIC</span> code, I wasn&#8217;t in a very pythonic frame of mind when writing this, but I think it&#8217;ll be clear&nbsp;enough.</p>
+<p>Enough about my troubles, though. You can find the game <a href="http://bitbucket.org/sopoforic/letter/">here</a>. If you have python installed, you can just get <a href="http://bitbucket.org/sopoforic/letter/raw/4a46e69f19b3/letter.py">the tiny python source file</a>. If not, or if you&#8217;re not sure, you can get <a href="http://bitbucket.org/sopoforic/letter/downloads/LETTER.zip">a <span class="caps">ZIP</span> with a Windows executable</a>, instead, which should run on anything from Windows 95 through Vista. If it won&#8217;t run, or complains of missing files, you may need <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=9b2da534-3e03-4391-8a4d-074b9f2bc1bf&amp;displaylang=en">this</a>.</p>
+<p>I&#8217;ll port something more interesting, and hopefully more fun, next time. Until then, I <span class="caps">HAVE</span> A <span class="caps">LETTER</span>. <span class="caps">START</span> <span class="caps">GUESSING</span>.</p>
+</article>
+<hr />
+<article>
+	<h3><a href="./a-fast-algorithm-for-computing-fibonacci-numbers.html">A Fast Algorithm for Computing Fibonacci&nbsp;Numbers</a></h3>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> in <a href="./category/misc.html">misc</a> on Sat 10 October 2009. Tags: <a href="./tag/python.html">python</a>, </h6>
+	<p>I came across an algorithm for computing Fibonacci numbers in <a href="http://ci.nii.ac.jp/naid/110002725383/en">a paper by
+Takahashi Daisuke</a>; the paper&#8217;s in
+Japanese, but the pseudocode of the algorithm is plain enough that it&#8217;s easy to
+understand, even if I can&#8217;t read any of the explanation. I&#8217;ve implemented it in
+python, and it&#8217;s decidedly slower than the Fibonacci function in Mathematica,
+though that&#8217;s to be expected. My implementation takes quite a few seconds to
+compute F(2^20) but is quick for numbers below about F(2^15), with the
+additional benefits of not computing absurdly huge floats or recursing a million&nbsp;times.</p>
+<p>The algorithm is apparently a refinement of another (perhaps well-known?)
+algorithm, which computes Fibonacci numbers from the product of Lucas numbers.
+I&#8217;ll have to look into it to see just how it&nbsp;works.</p>
+<p>Edit: After some investigation, a large part of Mathematica&#8217;s apparent advantage
+is in its faster display, rather than faster computation, though Mathematica
+does still beat my python program by a rather huge amount&#8212;Mathematica computes
+Fibonacci[2^23] in about 0.2 seconds, while my program takes just over five
+seconds. This disparity increases as the argument grows larger. Also, found an
+English version of that paper.&nbsp;Neat.</p>
+</article>
+<hr />
 
 <div class="row">
 	<div class="small-12 columns text-center">
@@ -119,33 +156,34 @@ not familiar with.&nbsp;Fun!</p>
 						<aside class="medium-3 hide-for-small-only columns"><div class="panel">
 								<h5>Tags</h5>
 								<ul class="tag-cloud">
-									<li><a href="/tag/porting/" class="tag-3">porting</a></li>
-									<li><a href="/tag/haskell/" class="tag-3">Haskell</a></li>
-									<li><a href="/tag/assembly/" class="tag-4">assembly</a></li>
-									<li><a href="/tag/android/" class="tag-4">android</a></li>
-									<li><a href="/tag/project-euler/" class="tag-4">Project Euler</a></li>
-									<li><a href="/tag/personal/" class="tag-4">personal</a></li>
-									<li><a href="/tag/dot-hack/" class="tag-1">dot hack</a></li>
-									<li><a href="/tag/python/" class="tag-2">python</a></li>
-									<li><a href="/tag/github/" class="tag-4">github</a></li>
-									<li><a href="/tag/quoted-forsooth/" class="tag-3">quoted forsooth</a></li>
-									<li><a href="/tag/750-to-org/" class="tag-3">750-to-org</a></li>
-									<li><a href="/tag/cgrr/" class="tag-3">cgrr</a></li>
-									<li><a href="/tag/flask-markdown/" class="tag-4">flask-markdown</a></li>
-									<li><a href="/tag/mercurial/" class="tag-3">mercurial</a></li>
-									<li><a href="/tag/perl/" class="tag-4">perl</a></li>
-									<li><a href="/tag/games/" class="tag-4">games</a></li>
-									<li><a href="/tag/git/" class="tag-4">git</a></li>
-									<li><a href="/tag/gamecube/" class="tag-4">gamecube</a></li>
-									<li><a href="/tag/ffcollection/" class="tag-2">ffcollection</a></li>
-									<li><a href="/tag/wordspy/" class="tag-2">wordspy</a></li>
-									<li><a href="/tag/javascript/" class="tag-4">javascript</a></li>
-									<li><a href="/tag/kivy/" class="tag-4">kivy</a></li>
-									<li><a href="/tag/autofill-ebay/" class="tag-4">autofill-ebay</a></li>
-									<li><a href="/tag/basic/" class="tag-3">BASIC</a></li>
-									<li><a href="/tag//" class="tag-4"></a></li>
-									<li><a href="/tag/greasemonkey/" class="tag-4">greasemonkey</a></li>
-									<li><a href="/tag/awari/" class="tag-3">awari</a></li>
+									<li><a href="/tag/.html" class="tag-4"></a></li>
+									<li><a href="/tag/flask-markdown.html" class="tag-4">flask-markdown</a></li>
+									<li><a href="/tag/haskell.html" class="tag-3">Haskell</a></li>
+									<li><a href="/tag/basic.html" class="tag-2">BASIC</a></li>
+									<li><a href="/tag/assembly.html" class="tag-4">assembly</a></li>
+									<li><a href="/tag/ffcollection.html" class="tag-2">ffcollection</a></li>
+									<li><a href="/tag/python.html" class="tag-1">python</a></li>
+									<li><a href="/tag/github.html" class="tag-4">github</a></li>
+									<li><a href="/tag/dot-hack.html" class="tag-1">dot hack</a></li>
+									<li><a href="/tag/git.html" class="tag-4">git</a></li>
+									<li><a href="/tag/gamecube.html" class="tag-4">gamecube</a></li>
+									<li><a href="/tag/porting.html" class="tag-2">porting</a></li>
+									<li><a href="/tag/greasemonkey.html" class="tag-4">greasemonkey</a></li>
+									<li><a href="/tag/awari.html" class="tag-3">awari</a></li>
+									<li><a href="/tag/game.html" class="tag-4">game</a></li>
+									<li><a href="/tag/750-to-org.html" class="tag-3">750-to-org</a></li>
+									<li><a href="/tag/cgrr.html" class="tag-3">cgrr</a></li>
+									<li><a href="/tag/quoted-forsooth.html" class="tag-3">quoted forsooth</a></li>
+									<li><a href="/tag/games.html" class="tag-4">games</a></li>
+									<li><a href="/tag/perl.html" class="tag-4">perl</a></li>
+									<li><a href="/tag/autofill-ebay.html" class="tag-4">autofill-ebay</a></li>
+									<li><a href="/tag/mercurial.html" class="tag-3">mercurial</a></li>
+									<li><a href="/tag/wordspy.html" class="tag-2">wordspy</a></li>
+									<li><a href="/tag/android.html" class="tag-4">android</a></li>
+									<li><a href="/tag/kivy.html" class="tag-4">kivy</a></li>
+									<li><a href="/tag/javascript.html" class="tag-4">javascript</a></li>
+									<li><a href="/tag/project-euler.html" class="tag-4">Project Euler</a></li>
+									<li><a href="/tag/personal.html" class="tag-4">personal</a></li>
 								</ul>
 							</div>
 

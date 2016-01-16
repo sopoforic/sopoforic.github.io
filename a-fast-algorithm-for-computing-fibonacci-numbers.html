@@ -54,7 +54,7 @@
 					<ul class="off-canvas-list">
 						<li><a href=".">Home</a></li>
 						<li><label>Categories</label></li>
-							<li ><a href="./category/misc.html">misc</a></li>
+							<li class="active"><a href="./category/misc.html">misc</a></li>
 
 						<li><label>Places</label></li>
 
@@ -79,7 +79,7 @@
 								<li><a href="./pages/projects.html">Projects</a></li>
 						</ul>
 						<ul class="left">
-								<li ><a href="./category/misc.html">misc</a></li>
+								<li class="active"><a href="./category/misc.html">misc</a></li>
 						</ul>
 					</section>
 				</nav>
@@ -89,36 +89,28 @@
 					<div class="row">
 						<!-- Main Content -->
 						<div class="medium-9 small-12 columns" role="content">
-	<ul>
-		<li><a href="./tag/.html"></a></li>
-		<li><a href="./tag/gamecube.html">gamecube</a></li>
-		<li><a href="./tag/autofill-ebay.html">autofill-ebay</a></li>
-		<li><a href="./tag/haskell.html">Haskell</a></li>
-		<li><a href="./tag/kivy.html">kivy</a></li>
-		<li><a href="./tag/greasemonkey.html">greasemonkey</a></li>
-		<li><a href="./tag/git.html">git</a></li>
-		<li><a href="./tag/personal.html">personal</a></li>
-		<li><a href="./tag/dot-hack.html">dot hack</a></li>
-		<li><a href="./tag/perl.html">perl</a></li>
-		<li><a href="./tag/quoted-forsooth.html">quoted forsooth</a></li>
-		<li><a href="./tag/basic.html">BASIC</a></li>
-		<li><a href="./tag/porting.html">porting</a></li>
-		<li><a href="./tag/android.html">android</a></li>
-		<li><a href="./tag/awari.html">awari</a></li>
-		<li><a href="./tag/assembly.html">assembly</a></li>
-		<li><a href="./tag/python.html">python</a></li>
-		<li><a href="./tag/javascript.html">javascript</a></li>
-		<li><a href="./tag/game.html">game</a></li>
-		<li><a href="./tag/flask-markdown.html">flask-markdown</a></li>
-		<li><a href="./tag/ffcollection.html">ffcollection</a></li>
-		<li><a href="./tag/github.html">github</a></li>
-		<li><a href="./tag/wordspy.html">wordspy</a></li>
-		<li><a href="./tag/mercurial.html">mercurial</a></li>
-		<li><a href="./tag/project-euler.html">Project Euler</a></li>
-		<li><a href="./tag/750-to-org.html">750-to-org</a></li>
-		<li><a href="./tag/games.html">games</a></li>
-		<li><a href="./tag/cgrr.html">cgrr</a></li>
-	</ul>
+<article>
+	<h2>A Fast Algorithm for Computing Fibonacci&nbsp;Numbers</h2>
+	<p>I came across an algorithm for computing Fibonacci numbers in <a href="http://ci.nii.ac.jp/naid/110002725383/en">a paper by
+Takahashi Daisuke</a>; the paper&#8217;s in
+Japanese, but the pseudocode of the algorithm is plain enough that it&#8217;s easy to
+understand, even if I can&#8217;t read any of the explanation. I&#8217;ve implemented it in
+python, and it&#8217;s decidedly slower than the Fibonacci function in Mathematica,
+though that&#8217;s to be expected. My implementation takes quite a few seconds to
+compute F(2^20) but is quick for numbers below about F(2^15), with the
+additional benefits of not computing absurdly huge floats or recursing a million&nbsp;times.</p>
+<p>The algorithm is apparently a refinement of another (perhaps well-known?)
+algorithm, which computes Fibonacci numbers from the product of Lucas numbers.
+I&#8217;ll have to look into it to see just how it&nbsp;works.</p>
+<p>Edit: After some investigation, a large part of Mathematica&#8217;s apparent advantage
+is in its faster display, rather than faster computation, though Mathematica
+does still beat my python program by a rather huge amount&#8212;Mathematica computes
+Fibonacci[2^23] in about 0.2 seconds, while my program takes just over five
+seconds. This disparity increases as the argument grows larger. Also, found an
+English version of that paper.&nbsp;Neat.</p>
+	<h6>Written by <a href="./author/tracy-poff.html">Tracy Poff</a> on Sat 10 October 2009.</h6>
+</article>
+
 						</div>
 						<!-- End Main Content -->
 						<!-- Sidebar -->
