@@ -2,3 +2,4 @@ ENV/
 cache/
 output/
 notmyidea/
+*.pyc
