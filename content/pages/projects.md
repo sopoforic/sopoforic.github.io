@@ -1,6 +1,6 @@
 Title: Projects
 Date: 2015-06-04 08:46:46
-Modified: 2015-06-04 08:46:46
+Modified: 2017-03-14 11:50
 Category: Page
 Slug: projects
 Authors: Tracy Poff
@@ -14,7 +14,9 @@ Since my projects are scattered about, here I'll collect a few of them.
      October 2015.
 
 [Quoted Forsooth](https://github.com/sopoforic/quoted-forsooth)
-:    A personal wiki/database. Presently of use mostly just to me.
+:    A personal wiki/database. Presently of use mostly just to me.  
+[![Code Health](https://landscape.io/github/sopoforic/quoted-forsooth/master/landscape.svg?style=flat)](https://landscape.io/github/sopoforic/quoted-forsooth/master)
+
 
 ### CGRR
 
